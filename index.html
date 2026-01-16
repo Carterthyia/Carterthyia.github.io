@@ -8,25 +8,27 @@
 </head>
 <body>
     <nav class="navbar">
-
         <ul>
             <li><a href="#home" class="nav-link">首页</a></li>
             <li><a href="#about" class="nav-link">角色设定</a></li>
+            <li><a href="#story" class="nav-link">故事背景</a></li>
+            <li><a href="#guide" class="nav-link">游戏攻略</a></li>
             <li><a href="#gallery" class="nav-link">角色图库</a></li>
         </ul>
     </nav>
-    <!-- 可操作控制面板 -->
-<div class="control-panel">
-    <h3>网站控制面板</h3>
-    <button class="control-btn" onclick="switchTheme('purple')">切换银紫色主题</button>
-    <button class="control-btn" onclick="switchTheme('blue')">切换冰蓝色主题</button>
-    <button class="control-btn" onclick="toggleStory()">隐藏/显示故事</button>
-    <button class="control-btn" onclick="alert('管理员权限：数据已同步！')">管理员数据同步</button>
-</div>
 
-    <!-- 首页：用1.jpg做头像 -->
+    <!-- 可操作控制面板 -->
+    <div class="control-panel">
+        <h3>网站控制面板</h3>
+        <button class="control-btn" onclick="switchTheme('purple')">切换银紫色主题</button>
+        <button class="control-btn" onclick="switchTheme('blue')">切换冰蓝色主题</button>
+        <button class="control-btn" onclick="toggleStory()">隐藏/显示故事</button>
+        <button class="control-btn" onclick="alert('管理员权限：数据已同步！')">管理员数据同步</button>
+    </div>
+
+    <!-- 首页：用1.jpg做头像（修正图片路径，去掉images/） -->
     <section id="home" class="home-section">
-        <img src="images/1.jpg" alt="Carterthyia头像" class="carterthyia-avatar">
+        <img src="1.jpg" alt="Carterthyia头像" class="carterthyia-avatar">
         <h1>卡提希娅（Carterthyia）</h1>
         <p>于光影中守护的温柔使者</p>
     </section>
@@ -38,99 +40,176 @@
         <p>特质：穿梭于光影之间，拥有温柔的力量</p>
     </section>
 
-    <!-- 图库：直接引用1-8.jpg -->
+    <!-- 图库：直接引用1-8.jpg（修正图片路径，去掉images/） -->
     <section id="gallery" class="gallery-section">
         <h2>角色图库</h2>
         <div class="gallery-container">
-            <img src="images/1.jpg" alt="图1" class="gallery-img">
-            <img src="images/2.jpg" alt="图2" class="gallery-img">
-            <img src="images/3.jpg" alt="图3" class="gallery-img">
-            <img src="images/4.jpg" alt="图4" class="gallery-img">
-            <img src="images/5.jpg" alt="图5" class="gallery-img">
-            <img src="images/6.jpg" alt="图6" class="gallery-img">
-            <img src="images/7.jpg" alt="图7" class="gallery-img">
-            <img src="images/8.jpg" alt="图8" class="gallery-img">
+            <img src="1.jpg" alt="图1" class="gallery-img">
+            <img src="2.jpg" alt="图2" class="gallery-img">
+            <img src="3.jpg" alt="图3" class="gallery-img">
+            <img src="4.jpg" alt="图4" class="gallery-img">
+            <img src="5.jpg" alt="图5" class="gallery-img">
+            <img src="6.jpg" alt="图6" class="gallery-img">
+            <img src="7.jpg" alt="图7" class="gallery-img">
+            <img src="8.jpg" alt="图8" class="gallery-img">
         </div>
     </section>
+
     <!-- 角色故事背景板块 -->
-<section id="story" class="about-section">
-    <h2>Carterthyia 角色故事背景</h2>
-    <div class="content-box">
-        <p>【卡提宝宝故事背景】</p>
-        <p>出身与身份
+    <section id="story" class="about-section">
+        <h2>Carterthyia 角色故事背景</h2>
+        <div class="content-box">
+            <p>【卡提宝宝故事背景】</p>
+            <p>出身与身份
 卡提希娅原本是埃格拉小镇的普通少女，性格顽皮自由，喜欢喝酒与恶作剧 
-百度
 
 。她意外在祭典上扰乱岁主感恩礼，被隐海修会惩罚，但也因此逐渐受到命运和神明的选中。后来，她因与鸣式利维亚坦共鸣而获得**“芙露德莉斯”**的名号，被视为黎那汐塔的圣女和岁主共鸣者 
-百度
 
 。不过，她的身份并非真正由神明选定，而是被鸣式创造和赋予力量的共鸣者 
-百度
 
 。</p>
-        <p>【双形态和共鸣能力】</p>
-        <p>双形态与共鸣能力
+            <p>【双形态和共鸣能力】</p>
+            <p>双形态与共鸣能力
 卡提希娅形态：以敏捷迅刀作战，行为自由，保留人性与顽皮的性格</p>
-        <p>【现况】</p>
-        <p>作为首位常态与觉醒双形态角色，卡提希娅可切换迅刀与巨剑形态，技能包含气刃回旋、风轨突袭及引发真实伤害的终结技“苍穹崩裂”。</p>
-    </div>
-</section>
+            <p>【现况】</p>
+            <p>作为首位常态与觉醒双形态角色，卡提希娅可切换迅刀与巨剑形态，技能包含气刃回旋、风轨突袭及引发真实伤害的终结技“苍穹崩裂”。</p>
+        </div>
+    </section>
 
-<!-- 游戏攻略板块 -->
-<section id="guide" class="about-section">
-    <h2>Carterthyia 专属游戏攻略</h2>
-    <div class="content-box">
-        <p>【核心玩法】</p>
-        <p>1. 卡提希娅定位气动主C。V3.0版本逆境深塔榜T0，冥歌海墟榜T1。卡提希娅输出依赖风蚀效应，是异常体系种的风蚀效应主C。拥有卡提希娅和芙露德利斯双形态，仍然是当前版本的主力大C。新老漂泊者均可考虑抽取。</p>
-        <p>2. 卡提希娅声骸套装优先选择愿戴荣光之旅五件套，使用44111，首位声骸装配芙露德利斯。卡提希娅主要吃生命，副词条优先生命。</p>
-        <p>3. 卡提希娅主要输出类型为普攻伤害。共鸣链推荐抽取2/3/6链。2链提升目标风蚀效应层数上限，解绑气动主。3链增加自身挂风蚀效应手段，解绑夏空。6链开大不清空风蚀效应层数，伤害提升。0-1链卡提比较刚需夏空。</p>
-        <p>【武器选择】</p>
-        <p>1. 卡提希娅武器首选专武不屈命定之冠，基本无下位替代，刚需。其它武器可考虑椿专武裁春提高普攻输出，或者性价比较高的三星武器戍关迅刀·镇海。</p>
-        <p>2. 卡提希娅依赖风蚀效应输出增伤，0-2链自身挂风蚀能力一般，刚需夏空。因此低链卡提非常建议要搭配夏空，三号位0+1千咲是最佳选择，如果千咲是0+0那可以替换为气动主。冥歌海墟可以替换为守岸人。没有夏空的话可考虑卡提+气动主+千咲，这里更正下气动主声骸，可以用流云。卡提+散华也可使用，但伤害会低很多，最后再考虑</p>
+    <!-- 游戏攻略板块 -->
+    <section id="guide" class="about-section">
+        <h2>Carterthyia 专属游戏攻略</h2>
+        <div class="content-box">
+            <p>【核心玩法】</p>
+            <p>1. 卡提希娅定位气动主C。V3.0版本逆境深塔榜T0，冥歌海墟榜T1。卡提希娅输出依赖风蚀效应，是异常体系种的风蚀效应主C。拥有卡提希娅和芙露德利斯双形态，仍然是当前版本的主力大C。新老漂泊者均可考虑抽取。</p>
+            <p>2. 卡提希娅声骸套装优先选择愿戴荣光之旅五件套，使用44111，首位声骸装配芙露德利斯。卡提希娅主要吃生命，副词条优先生命。</p>
+            <p>3. 卡提希娅主要输出类型为普攻伤害。共鸣链推荐抽取2/3/6链。2链提升目标风蚀效应层数上限，解绑气动主。3链增加自身挂风蚀效应手段，解绑夏空。6链开大不清空风蚀效应层数，伤害提升。0-1链卡提比较刚需夏空。</p>
+            <p>【武器选择】</p>
+            <p>1. 卡提希娅武器首选专武不屈命定之冠，基本无下位替代，刚需。其它武器可考虑椿专武裁春提高普攻输出，或者性价比较高的三星武器戍关迅刀·镇海。</p>
+            <p>2. 卡提希娅依赖风蚀效应输出增伤，0-2链自身挂风蚀能力一般，刚需夏空。因此低链卡提非常建议要搭配夏空，三号位0+1千咲是最佳选择，如果千咲是0+0那可以替换为气动主。冥歌海墟可以替换为守岸人。没有夏空的话可考虑卡提+气动主+千咲，这里更正下气动主声骸，可以用流云。卡提+散华也可使用，但伤害会低很多，最后再考虑</p>
+        </div>
+    </section>
+
+    <!-- 管理员后台入口 -->
+    <div class="admin-entry">
+        <a href="#admin" class="admin-link" onclick="showAdminLogin()">进入管理员后台</a>
     </div>
-</section>
+
+    <!-- 管理员登录弹窗 -->
+    <div id="adminLoginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeAdminLogin()">&times;</span>
+            <h2>管理员登录</h2>
+            <input type="text" id="adminName" placeholder="输入管理员账号" class="admin-input">
+            <input type="password" id="adminPwd" placeholder="输入管理员密码" class="admin-input">
+            <button class="admin-login-btn" onclick="adminLogin()">登录</button>
+        </div>
+    </div>
+
+    <!-- 管理员后台页面 -->
+    <div id="adminPage" class="admin-page" style="display: none;">
+        <h2>Carterthyia 网站管理员后台</h2>
+        <div class="admin-function">
+            <h3>功能面板</h3>
+            <button class="admin-btn" onclick="alert('角色数据已更新，网站将在5分钟后同步！')">更新角色数据</button>
+            <button class="admin-btn" onclick="alert('游戏攻略已更新，已推送至前端！')">更新游戏攻略</button>
+            <button class="admin-btn" onclick="alert('图片库已更新，所有图片已缓存！')">更新角色图库</button>
+            <button class="admin-btn" onclick="closeAdminPage()">退出后台</button>
+        </div>
+        <div class="admin-data">
+            <h3>网站数据预览</h3>
+            <p>访问量：1258 次</p>
+            <p>图片库数量：8 张</p>
+            <p>最后更新时间：2026-01-16</p>
+            <p>管理员：Carterthyia</p>
+        </div>
+    </div>
 
     <script>
         // 管理员后台相关功能
-// 显示登录弹窗
-function showAdminLogin() {
-    document.getElementById('adminLoginModal').style.display = 'block';
-}
+        // 显示登录弹窗
+        function showAdminLogin() {
+            document.getElementById('adminLoginModal').style.display = 'block';
+        }
 
-// 关闭登录弹窗
-function closeAdminLogin() {
-    document.getElementById('adminLoginModal').style.display = 'none';
-}
+        // 关闭登录弹窗
+        function closeAdminLogin() {
+            document.getElementById('adminLoginModal').style.display = 'none';
+        }
 
-// 管理员登录（简易验证，账号：admin，密码：carterthyia）
-function adminLogin() {
-    const adminName = document.getElementById('adminName').value;
-    const adminPwd = document.getElementById('adminPwd').value;
-    
-    if (adminName === 'admin' && adminPwd === 'carterthyia') {
-        closeAdminLogin();
-        document.getElementById('adminPage').style.display = 'block';
-        document.body.scrollTop = 0;
-        window.scrollTo(0, 0);
-    } else {
-        alert('账号或密码错误！管理员账号：admin，密码：carterthyia');
-    }
-}
+        // 管理员登录（优化：移除账号密码泄露提示，提升安全性）
+        function adminLogin() {
+            const adminName = document.getElementById('adminName').value;
+            const adminPwd = document.getElementById('adminPwd').value;
+            
+            // 验证逻辑不变，仅修改错误提示，不泄露任何敏感信息
+            if (adminName === 'admin' && adminPwd === 'carterthyia') {
+                closeAdminLogin();
+                document.getElementById('adminPage').style.display = 'block';
+                document.body.scrollTop = 0;
+                window.scrollTo(0, 0);
+            } else {
+                // 只提示错误，不暴露账号密码
+                alert('账号或密码错误，请重新输入！');
+            }
+        }
 
-// 退出管理员后台
-function closeAdminPage() {
-    document.getElementById('adminPage').style.display = 'none';
-}
+        // 退出管理员后台
+        function closeAdminPage() {
+            document.getElementById('adminPage').style.display = 'none';
+        }
 
-// 点击弹窗外部关闭登录窗口
-window.onclick = function(event) {
-    const modal = document.getElementById('adminLoginModal');
-    if (event.target === modal) {
-        closeAdminLogin();
-    }
-}
-        // 头像淡入
+        // 点击弹窗外部关闭登录窗口
+        window.onclick = function(event) {
+            const modal = document.getElementById('adminLoginModal');
+            if (event.target === modal) {
+                closeAdminLogin();
+            }
+        }
+
+        // 新增效果1：页面滚动时，板块淡入显示
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.about-section, .gallery-section');
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (sectionTop < windowHeight * 0.8) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // 新增效果2：可操作面板 - 切换网站主题色（银紫色/冰蓝色）
+        function switchTheme(theme) {
+            const navbar = document.querySelector('.navbar');
+            const avatars = document.querySelectorAll('.carterthyia-avatar, .gallery-img');
+            const titles = document.querySelectorAll('h1, h2');
+            
+            if (theme === 'purple') {
+                navbar.style.backgroundColor = 'rgba(156, 126, 230, 0.8)';
+                titles.forEach(title => title.style.color = '#9c7ee6');
+                avatars.forEach(avatar => avatar.style.borderColor = '#9c7ee6');
+            } else if (theme === 'blue') {
+                navbar.style.backgroundColor = 'rgba(110, 198, 255, 0.8)';
+                titles.forEach(title => title.style.color = '#6ec6ff');
+                avatars.forEach(avatar => avatar.style.borderColor = '#6ec6ff');
+            }
+        }
+
+        // 新增效果3：可操作面板 - 隐藏/显示故事背景
+        function toggleStory() {
+            const storySection = document.getElementById('story');
+            if (storySection.style.display === 'none') {
+                storySection.style.display = 'block';
+            } else {
+                storySection.style.display = 'none';
+            }
+        }
+
+        // 初始化板块样式+头像淡入（合并重复的window.onload，避免冲突）
         window.onload = function() {
+            // 1. 头像淡入效果
             const avatar = document.querySelector('.carterthyia-avatar');
             let opacity = 0;
             const fadeIn = setInterval(() => {
@@ -138,100 +217,15 @@ window.onclick = function(event) {
                 avatar.style.opacity = opacity;
                 opacity += 0.01;
             }, 20);
+
+            // 2. 初始化板块样式（为滚动淡入效果做准备）
+            const sections = document.querySelectorAll('.about-section, .gallery-section');
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(50px)';
+                section.style.transition = 'all 0.8s ease';
+            });
         };
-        // 新增效果1：页面滚动时，板块淡入显示
-window.addEventListener('scroll', function() {
-    const sections = document.querySelectorAll('.about-section, .gallery-section');
-    sections.forEach(section => {
-        const sectionTop = section.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        if (sectionTop < windowHeight * 0.8) {
-            section.style.opacity = '1';
-            section.style.transform = 'translateY(0)';
-        }
-    });
-});
-
-// 新增效果2：可操作面板 - 切换网站主题色（银紫色/冰蓝色）
-function switchTheme(theme) {
-    const navbar = document.querySelector('.navbar');
-    const avatars = document.querySelectorAll('.carterthyia-avatar, .gallery-img');
-    const titles = document.querySelectorAll('h1, h2');
-    
-    if (theme === 'purple') {
-        navbar.style.backgroundColor = 'rgba(156, 126, 230, 0.8)';
-        titles.forEach(title => title.style.color = '#9c7ee6');
-        avatars.forEach(avatar => avatar.style.borderColor = '#9c7ee6');
-    } else if (theme === 'blue') {
-        navbar.style.backgroundColor = 'rgba(110, 198, 255, 0.8)';
-        titles.forEach(title => title.style.color = '#6ec6ff');
-        avatars.forEach(avatar => avatar.style.borderColor = '#6ec6ff');
-    }
-}
-
-// 新增效果3：可操作面板 - 隐藏/显示故事背景
-function toggleStory() {
-    const storySection = document.getElementById('story');
-    if (storySection.style.display === 'none') {
-        storySection.style.display = 'block';
-    } else {
-        storySection.style.display = 'none';
-    }
-}
-
-// 初始化板块样式（为滚动淡入效果做准备）
-window.onload = function() {
-    // 原有头像淡入效果
-    const avatar = document.querySelector('.carterthyia-avatar');
-    let opacity = 0;
-    const fadeIn = setInterval(() => {
-        if (opacity >= 1) clearInterval(fadeIn);
-        avatar.style.opacity = opacity;
-        opacity += 0.01;
-    }, 20);
-
-    // 初始化板块样式
-    const sections = document.querySelectorAll('.about-section, .gallery-section');
-    sections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(50px)';
-        section.style.transition = 'all 0.8s ease';
-    });
-};
     </script>
-<!-- 管理员后台入口 -->
-<div class="admin-entry">
-    <a href="#admin" class="admin-link" onclick="showAdminLogin()">进入管理员后台</a>
-</div>
-
-<!-- 管理员登录弹窗 -->
-<div id="adminLoginModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closeAdminLogin()">&times;</span>
-        <h2>管理员登录</h2>
-        <input type="text" id="adminName" placeholder="输入管理员账号" class="admin-input">
-        <input type="password" id="adminPwd" placeholder="输入管理员密码" class="admin-input">
-        <button class="admin-login-btn" onclick="adminLogin()">登录</button>
-    </div>
-</div>
-
-<!-- 管理员后台页面 -->
-<div id="adminPage" class="admin-page" style="display: none;">
-    <h2>Carterthyia 网站管理员后台</h2>
-    <div class="admin-function">
-        <h3>功能面板</h3>
-        <button class="admin-btn" onclick="alert('角色数据已更新，网站将在5分钟后同步！')">更新角色数据</button>
-        <button class="admin-btn" onclick="alert('游戏攻略已更新，已推送至前端！')">更新游戏攻略</button>
-        <button class="admin-btn" onclick="alert('图片库已更新，所有图片已缓存！')">更新角色图库</button>
-        <button class="admin-btn" onclick="closeAdminPage()">退出后台</button>
-    </div>
-    <div class="admin-data">
-        <h3>网站数据预览</h3>
-        <p>访问量：1258 次</p>
-        <p>图片库数量：8 张</p>
-        <p>最后更新时间：2026-01-16</p>
-        <p>管理员：Carterthyia</p>
-    </div>
-</div>  
 </body>
 </html>
