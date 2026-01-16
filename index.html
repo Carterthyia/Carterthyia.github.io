@@ -1,356 +1,237 @@
 <!DOCTYPE html>
-<html 
-	lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		
-<link rel="stylesheet" href="/css/layout.css">
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carterthyia（卡提希娅）的星光小站</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
 
-		
-		<title> 卡提希娅</title>
-		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
-		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
-		
-<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
-
-		
-<script src="/lib/mdui/mdui.min.js"></script>
-
-		<!-- lazyload -->
-		
-<script src="/lib/lazysizes.js"></script>
-
-		<!-- smooth-scrolling -->
-		
-<script src="/lib/smooth-scrolling.js"></script>
-
-		<!-- highlight -->
-		
-<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
-
-		
-<script src="/lib/highlight/highlight.min.js"></script>
-
-		<!-- 预置 kiraicon -->
-		
-<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
-
-		
-		<link
-			rel="shortcut icon"
-			href="https://kira.host/assets/Pictures/Others/116359b4ccf19917.jpg"
-			type="image/png"
-		/>
-		
-<link rel="stylesheet" href="/deps/css/APlayer.min.css">
-
-		
-		
-<script src="/deps/js/APlayer.min.js"></script>
-<script src="/deps/js/Meting.min.js"></script>
-
-	<meta name="generator" content="Hexo 8.1.1"></head>
-
-	<body>
-		<div
-			class="kira-background"
-			style="background-image: url('https://kira.host/assets/Pictures/Others/-f0d5cc34c6e5aa7_compressed.jpg')"
-		></div>
-		<div class="kira-header">
-    <a
-        class="kira-drawer-button mdui-ripple"
-        title="导航栏"
-        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
-    >
-        <i class="kirafont icon-menu"></i>
-    </a>
-    <a href="/" title="卡提希娅">
-        <img
-			src="https://kira.host/assets/Pictures/Others/20220922230447.jpg"
-			alt="John Doe"
-		/>
-    </a>
-</div>
-		<div class="kira-body">
-			<div class="kira-sidebar" id="sidebar">
-	<div class="kira-avatar mdui-ripple">
-		<a target="_blank" rel="noopener" href="https://kira.host/assets/Pictures/Others/20220922230447.jpg" title="John Doe">
-			<img
-				src="https://kira.host/assets/Pictures/Others/20220922230447.jpg"
-				alt="John Doe"
-			/>
-		</a>
-	</div>
-	<div class="kira-count">
-		<div><span>文章</span>2</div>
-		<div><span>标签</span>0</div>
-		<div><span>分类</span>0</div>
-	</div>
-	<div class="kira-list">
-		
-		<a
-			class="kira-list-item mdui-ripple true"
-			href="/"
-			title="回到首页"
-		>
-			<i
-				class="kirafont
-					
-						icon-home
-					"
-			></i>
-			<div class="kira-list-item-content">
-				回到首页
-			</div>
-		</a>
-		
-		<a
-			class="kira-list-item mdui-ripple false"
-			href="/archive.html"
-			title="文章归档"
-		>
-			<i
-				class="kirafont
-					
-						icon-container
-					"
-			></i>
-			<div class="kira-list-item-content">
-				文章归档
-			</div>
-		</a>
-		
-		<a
-			class="kira-list-item mdui-ripple false"
-			href="/about.html"
-			title="关于本人"
-		>
-			<i
-				class="kirafont
-					
-						icon-user
-					"
-			></i>
-			<div class="kira-list-item-content">
-				关于本人
-			</div>
-		</a>
-		
-		<a
-			class="kira-list-item mdui-ripple false"
-			href="/friends.html"
-			title="我的朋友"
-		>
-			<i
-				class="kirafont
-					
-						icon-team
-					"
-			></i>
-			<div class="kira-list-item-content">
-				我的朋友
-			</div>
-		</a>
-		
-	</div>
-	<aside id="kira-sidebar">
-		
-			<div class="kira-widget-wrap">
-	<div class="kira-widget kira-social">
-		
-			<a
-				class="mdui-ripple"
-				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=<去掉尖括号后填上你的QQ号>&website=www.oicqzone.com"
-				target="_blank"
-				mdui-tooltip="{content: 'QQ'}"
-				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
-			>
-				<i
-					class="kirafont
-					
-						icon-QQ
-					"
-				></i>
-			</a>
-		
-			<a
-				class="mdui-ripple"
-				href="https://space.bilibili.com/<改成你的B站uid>"
-				target="_blank"
-				mdui-tooltip="{content: '哔哩哔哩'}"
-				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
-			>
-				<i
-					class="kirafont
-					
-						icon-bilibili
-					"
-				></i>
-			</a>
-		
-			<a
-				class="mdui-ripple"
-				href="https://github.com/<你的github id>/"
-				target="_blank"
-				mdui-tooltip="{content: 'GitHub'}"
-				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
-			>
-				<i
-					class="kirafont
-					
-						icon-github
-					"
-				></i>
-			</a>
-		
-			<a
-				class="mdui-ripple"
-				href="https://gitee.com/<你的gitee id>"
-				target="_blank"
-				mdui-tooltip="{content: 'Gitee'}"
-				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
-			>
-				<i
-					class="kirafont
-					
-						icon-gitee
-					"
-				></i>
-			</a>
-		
-	</div>
+        <ul>
+            <li><a href="#home" class="nav-link">首页</a></li>
+            <li><a href="#about" class="nav-link">角色设定</a></li>
+            <li><a href="#gallery" class="nav-link">角色图库</a></li>
+        </ul>
+    </nav>
+    <!-- 可操作控制面板 -->
+<div class="control-panel">
+    <h3>网站控制面板</h3>
+    <button class="control-btn" onclick="switchTheme('purple')">切换银紫色主题</button>
+    <button class="control-btn" onclick="switchTheme('blue')">切换冰蓝色主题</button>
+    <button class="control-btn" onclick="toggleStory()">隐藏/显示故事</button>
+    <button class="control-btn" onclick="alert('管理员权限：数据已同步！')">管理员数据同步</button>
 </div>
 
-		
-			
-		
-			
+    <!-- 首页：用1.jpg做头像 -->
+    <section id="home" class="home-section">
+        <img src="images/1.jpg" alt="Carterthyia头像" class="carterthyia-avatar">
+        <h1>卡提希娅（Carterthyia）</h1>
+        <p>于光影中守护的温柔使者</p>
+    </section>
 
-		
-			
-	<div class="kira-widget-wrap">
-		<h3 class="kira-widget-title">
-			Archive
-		</h3>
-		<div class="kira-widget">
-			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">2</span></li></ul>
-		</div>
-	</div>
+    <!-- 设定 -->
+    <section id="about" class="about-section">
+        <h2>角色设定</h2>
+        <p>姓名：卡提希娅（Carterthyia）</p>
+        <p>特质：穿梭于光影之间，拥有温柔的力量</p>
+    </section>
 
-
-		
-	</aside>
-	<div class="kira-copyright">
-		&copy; 2026
-		<a href="/">John Doe</a>
-		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
-		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
-		<br />
-		
-		
-	</div>
-</div>
-<div
-	class="kira-sidebar-modal"
-	id="sidebar-modal"
-	onclick="(function(self) {
-		self.classList.remove('show');
-		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
-	})(this)"
-></div>
-			<div class="kira-content">
-				<div id="kira-top-header"></div>
-				<div class="kira-main-content">
-					<div class="kira-posts">
-    
-        <div class="kira-post">
-            <a href="/2026/01/16/%E5%8D%A1%E6%8F%90%E5%B8%8C%E5%A8%85%E9%AA%91%E5%A3%AB%E5%87%BA%E5%87%BB/">
-                
-                <div
-                    class="kira-post-cover mdui-ripple"
-                    style="padding-bottom: '56.25%'"
-                >
-                    <img
-                        data-src="https://kira.host/assets/Pictures/Others/-f0d5cc34c6e5aa7_compressed.jpg"
-                        data-sizes="auto"
-                        alt="卡提希娅骑士出击"
-                        class="lazyload"
-                    />
-                    <h1>卡提希娅骑士出击</h1>
-                </div>
-                
-            </a>
-
-            <div class="kira-post-meta kira-rainbow">
-                <a>
-                    <i class="kirafont icon-calendar-fill"></i>
-                    2026年01月16日
-                </a>
-                <a>
-                    <i class="kirafont icon-edit-fill"></i>
-                    820 字
-                </a>
-                <a>
-                    <i class="kirafont icon-time-circle-fill"></i>大概
-                    3 分钟
-                </a>
-            </div>
-    
-            
+    <!-- 图库：直接引用1-8.jpg -->
+    <section id="gallery" class="gallery-section">
+        <h2>角色图库</h2>
+        <div class="gallery-container">
+            <img src="images/1.jpg" alt="图1" class="gallery-img">
+            <img src="images/2.jpg" alt="图2" class="gallery-img">
+            <img src="images/3.jpg" alt="图3" class="gallery-img">
+            <img src="images/4.jpg" alt="图4" class="gallery-img">
+            <img src="images/5.jpg" alt="图5" class="gallery-img">
+            <img src="images/6.jpg" alt="图6" class="gallery-img">
+            <img src="images/7.jpg" alt="图7" class="gallery-img">
+            <img src="images/8.jpg" alt="图8" class="gallery-img">
         </div>
-        <div class="kira-hr"></div>
-    
-        <div class="kira-post">
-            <a href="/2026/01/16/hello-world/">
-                
-                <div
-                    class="kira-post-cover mdui-ripple"
-                    style="padding-bottom: '56.25%'"
-                >
-                    <img
-                        data-src="https://kira.host/assets/Pictures/Others/-f0d5cc34c6e5aa7_compressed.jpg"
-                        data-sizes="auto"
-                        alt="Hello World"
-                        class="lazyload"
-                    />
-                    <h1>Hello World</h1>
-                </div>
-                
-            </a>
+    </section>
+    <!-- 角色故事背景板块 -->
+<section id="story" class="about-section">
+    <h2>Carterthyia 角色故事背景</h2>
+    <div class="content-box">
+        <p>【卡提宝宝故事背景】</p>
+        <p>出身与身份
+卡提希娅原本是埃格拉小镇的普通少女，性格顽皮自由，喜欢喝酒与恶作剧 
+百度
 
-            <div class="kira-post-meta kira-rainbow">
-                <a>
-                    <i class="kirafont icon-calendar-fill"></i>
-                    2026年01月16日
-                </a>
-                <a>
-                    <i class="kirafont icon-edit-fill"></i>
-                    73 字
-                </a>
-                <a>
-                    <i class="kirafont icon-time-circle-fill"></i>大概
-                    1 分钟
-                </a>
-            </div>
+。她意外在祭典上扰乱岁主感恩礼，被隐海修会惩罚，但也因此逐渐受到命运和神明的选中。后来，她因与鸣式利维亚坦共鸣而获得**“芙露德莉斯”**的名号，被视为黎那汐塔的圣女和岁主共鸣者 
+百度
+
+。不过，她的身份并非真正由神明选定，而是被鸣式创造和赋予力量的共鸣者 
+百度
+
+。</p>
+        <p>【双形态和共鸣能力】</p>
+        <p>双形态与共鸣能力
+卡提希娅形态：以敏捷迅刀作战，行为自由，保留人性与顽皮的性格</p>
+        <p>【现况】</p>
+        <p>作为首位常态与觉醒双形态角色，卡提希娅可切换迅刀与巨剑形态，技能包含气刃回旋、风轨突袭及引发真实伤害的终结技“苍穹崩裂”。</p>
+    </div>
+</section>
+
+<!-- 游戏攻略板块 -->
+<section id="guide" class="about-section">
+    <h2>Carterthyia 专属游戏攻略</h2>
+    <div class="content-box">
+        <p>【核心玩法】</p>
+        <p>1. 卡提希娅定位气动主C。V3.0版本逆境深塔榜T0，冥歌海墟榜T1。卡提希娅输出依赖风蚀效应，是异常体系种的风蚀效应主C。拥有卡提希娅和芙露德利斯双形态，仍然是当前版本的主力大C。新老漂泊者均可考虑抽取。</p>
+        <p>2. 卡提希娅声骸套装优先选择愿戴荣光之旅五件套，使用44111，首位声骸装配芙露德利斯。卡提希娅主要吃生命，副词条优先生命。</p>
+        <p>3. 卡提希娅主要输出类型为普攻伤害。共鸣链推荐抽取2/3/6链。2链提升目标风蚀效应层数上限，解绑气动主。3链增加自身挂风蚀效应手段，解绑夏空。6链开大不清空风蚀效应层数，伤害提升。0-1链卡提比较刚需夏空。</p>
+        <p>【武器选择】</p>
+        <p>1. 卡提希娅武器首选专武不屈命定之冠，基本无下位替代，刚需。其它武器可考虑椿专武裁春提高普攻输出，或者性价比较高的三星武器戍关迅刀·镇海。</p>
+        <p>2. 卡提希娅依赖风蚀效应输出增伤，0-2链自身挂风蚀能力一般，刚需夏空。因此低链卡提非常建议要搭配夏空，三号位0+1千咲是最佳选择，如果千咲是0+0那可以替换为气动主。冥歌海墟可以替换为守岸人。没有夏空的话可考虑卡提+气动主+千咲，这里更正下气动主声骸，可以用流云。卡提+散华也可使用，但伤害会低很多，最后再考虑</p>
+    </div>
+</section>
+
+    <script>
+        // 管理员后台相关功能
+// 显示登录弹窗
+function showAdminLogin() {
+    document.getElementById('adminLoginModal').style.display = 'block';
+}
+
+// 关闭登录弹窗
+function closeAdminLogin() {
+    document.getElementById('adminLoginModal').style.display = 'none';
+}
+
+// 管理员登录（简易验证，账号：admin，密码：carterthyia）
+function adminLogin() {
+    const adminName = document.getElementById('adminName').value;
+    const adminPwd = document.getElementById('adminPwd').value;
     
-            
-        </div>
-        <div class="kira-hr"></div>
+    if (adminName === 'admin' && adminPwd === 'carterthyia') {
+        closeAdminLogin();
+        document.getElementById('adminPage').style.display = 'block';
+        document.body.scrollTop = 0;
+        window.scrollTo(0, 0);
+    } else {
+        alert('账号或密码错误！管理员账号：admin，密码：carterthyia');
+    }
+}
+
+// 退出管理员后台
+function closeAdminPage() {
+    document.getElementById('adminPage').style.display = 'none';
+}
+
+// 点击弹窗外部关闭登录窗口
+window.onclick = function(event) {
+    const modal = document.getElementById('adminLoginModal');
+    if (event.target === modal) {
+        closeAdminLogin();
+    }
+}
+        // 头像淡入
+        window.onload = function() {
+            const avatar = document.querySelector('.carterthyia-avatar');
+            let opacity = 0;
+            const fadeIn = setInterval(() => {
+                if (opacity >= 1) clearInterval(fadeIn);
+                avatar.style.opacity = opacity;
+                opacity += 0.01;
+            }, 20);
+        };
+        // 新增效果1：页面滚动时，板块淡入显示
+window.addEventListener('scroll', function() {
+    const sections = document.querySelectorAll('.about-section, .gallery-section');
+    sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (sectionTop < windowHeight * 0.8) {
+            section.style.opacity = '1';
+            section.style.transform = 'translateY(0)';
+        }
+    });
+});
+
+// 新增效果2：可操作面板 - 切换网站主题色（银紫色/冰蓝色）
+function switchTheme(theme) {
+    const navbar = document.querySelector('.navbar');
+    const avatars = document.querySelectorAll('.carterthyia-avatar, .gallery-img');
+    const titles = document.querySelectorAll('h1, h2');
     
+    if (theme === 'purple') {
+        navbar.style.backgroundColor = 'rgba(156, 126, 230, 0.8)';
+        titles.forEach(title => title.style.color = '#9c7ee6');
+        avatars.forEach(avatar => avatar.style.borderColor = '#9c7ee6');
+    } else if (theme === 'blue') {
+        navbar.style.backgroundColor = 'rgba(110, 198, 255, 0.8)';
+        titles.forEach(title => title.style.color = '#6ec6ff');
+        avatars.forEach(avatar => avatar.style.borderColor = '#6ec6ff');
+    }
+}
+
+// 新增效果3：可操作面板 - 隐藏/显示故事背景
+function toggleStory() {
+    const storySection = document.getElementById('story');
+    if (storySection.style.display === 'none') {
+        storySection.style.display = 'block';
+    } else {
+        storySection.style.display = 'none';
+    }
+}
+
+// 初始化板块样式（为滚动淡入效果做准备）
+window.onload = function() {
+    // 原有头像淡入效果
+    const avatar = document.querySelector('.carterthyia-avatar');
+    let opacity = 0;
+    const fadeIn = setInterval(() => {
+        if (opacity >= 1) clearInterval(fadeIn);
+        avatar.style.opacity = opacity;
+        opacity += 0.01;
+    }, 20);
+
+    // 初始化板块样式
+    const sections = document.querySelectorAll('.about-section, .gallery-section');
+    sections.forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(50px)';
+        section.style.transition = 'all 0.8s ease';
+    });
+};
+    </script>
+<!-- 管理员后台入口 -->
+<div class="admin-entry">
+    <a href="#admin" class="admin-link" onclick="showAdminLogin()">进入管理员后台</a>
 </div>
 
-				</div>
-			</div>
-			<div class="kira-right-column">
-	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
-		<button class="mdui-fab mdui-ripple">
-			<i class="kirafont icon-caret-up"></i>
-		</button>
-	</a>
+<!-- 管理员登录弹窗 -->
+<div id="adminLoginModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeAdminLogin()">&times;</span>
+        <h2>管理员登录</h2>
+        <input type="text" id="adminName" placeholder="输入管理员账号" class="admin-input">
+        <input type="password" id="adminPwd" placeholder="输入管理员密码" class="admin-input">
+        <button class="admin-login-btn" onclick="adminLogin()">登录</button>
+    </div>
 </div>
 
-		</div>
-	</body>
+<!-- 管理员后台页面 -->
+<div id="adminPage" class="admin-page" style="display: none;">
+    <h2>Carterthyia 网站管理员后台</h2>
+    <div class="admin-function">
+        <h3>功能面板</h3>
+        <button class="admin-btn" onclick="alert('角色数据已更新，网站将在5分钟后同步！')">更新角色数据</button>
+        <button class="admin-btn" onclick="alert('游戏攻略已更新，已推送至前端！')">更新游戏攻略</button>
+        <button class="admin-btn" onclick="alert('图片库已更新，所有图片已缓存！')">更新角色图库</button>
+        <button class="admin-btn" onclick="closeAdminPage()">退出后台</button>
+    </div>
+    <div class="admin-data">
+        <h3>网站数据预览</h3>
+        <p>访问量：1258 次</p>
+        <p>图片库数量：8 张</p>
+        <p>最后更新时间：2026-01-16</p>
+        <p>管理员：Carterthyia</p>
+    </div>
+</div>  
+</body>
 </html>

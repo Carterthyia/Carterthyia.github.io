@@ -1,0 +1,241 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Microsoft YaHei";
+}
+
+body {
+    background: #f0f4f8;
+}
+
+.navbar {
+    background: rgba(156, 126, 230, 0.8);
+    padding: 15px;
+    position: sticky;
+    top: 0;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: #6ec6ff;
+    font-size: 20px;
+}
+
+.home-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.carterthyia-avatar {
+    width: 200px;
+    border-radius: 50%;
+    border: 5px solid #9c7ee6;
+    margin-bottom: 20px;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.carterthyia-avatar:hover {
+    transform: scale(1.1);
+}
+
+.about-section, .gallery-section {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    margin: 30px auto;
+    width: 80%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.gallery-img {
+    width: 200px;
+    border-radius: 8px;
+    border: 3px solid #9c7ee6;
+    transition: 0.5s;
+}
+
+.gallery-img:hover {
+    transform: scale(1.08);
+    border-color: #6ec6ff;
+}
+/* 故事/攻略内容排版优化 */
+.content-box {
+    text-align: left;
+    margin: 20px auto;
+    width: 90%;
+    line-height: 1.8; /* 行高，提升可读性 */
+}
+
+.content-box p {
+    margin-bottom: 15px;
+}
+/* 可操作控制面板样式 */
+.control-panel {
+    position: fixed; /* 固定在页面右侧 */
+    top: 100px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #9c7ee6;
+    z-index: 9999; /* 最上层显示，不被遮挡 */
+}
+
+.control-panel h3 {
+    color: #9c7ee6;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 16px;
+}
+
+
+.control-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #9c7ee6;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+    background: #6ec6ff;
+    transform: scale(1.05);
+}
+/* 管理员后台入口样式 */
+.admin-entry {
+    text-align: center;
+    padding: 20px;
+    background: rgba(156, 126, 230, 0.1);
+}
+
+.admin-link {
+    color: #9c7ee6;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.admin-link:hover {
+    color: #6ec6ff;
+    text-decoration: underline;
+}
+
+/* 登录弹窗样式 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 2px solid #9c7ee6;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+}
+
+.close-btn {
+    color: #9c7ee6;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: #6ec6ff;
+}
+
+.admin-input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #9c7ee6;
+    border-radius: 5px;
+}
+
+.admin-login-btn, .admin-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: #9c7ee6;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.admin-login-btn:hover, .admin-btn:hover {
+    background: #6ec6ff;
+}
+
+/* 管理员后台页面样式 */
+.admin-page {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    margin: 50px auto;
+    width: 80%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.admin-function, .admin-data {
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px solid #9c7ee6;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.admin-function h3, .admin-data h3 {
+    color: #9c7ee6;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.admin-btn {
+    margin: 0 10px 10px 0;
+}
+
+.admin-data p {
+    line-height: 1.8;
+    margin-bottom: 10px;
+    color: #333;
+}
