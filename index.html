@@ -5,227 +5,226 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carterthyia（卡提希娅）的星光小站</title>
     <link rel="stylesheet" href="style.css">
+    <!-- 引入图标库（新增，丰富交互图标） -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar">
-        <ul>
-            <li><a href="#home" class="nav-link">首页</a></li>
-            <li><a href="#about" class="nav-link">角色设定</a></li>
-            <li><a href="#story" class="nav-link">故事背景</a></li>
-            <li><a href="#guide" class="nav-link">游戏攻略</a></li>
-            <li><a href="#gallery" class="nav-link">角色图库</a></li>
-        </ul>
+    <!-- 导航栏（新增固定定位、滚动动效） -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-star"></i>
+                <span>卡提希娅的星光小站</span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="#home" class="nav-link" data-scroll>首页</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link" data-scroll>角色设定</a></li>
+                <li class="nav-item"><a href="#story" class="nav-link" data-scroll>故事背景</a></li>
+                <li class="nav-item"><a href="#guide" class="nav-link" data-scroll>游戏攻略</a></li>
+                <li class="nav-item"><a href="#gallery" class="nav-link" data-scroll>角色图库</a></li>
+                <li class="nav-item"><a href="#admin" class="nav-link" data-scroll>管理员后台</a></li>
+            </ul>
+            <!-- 移动端菜单按钮（新增响应式） -->
+            <div class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
     </nav>
 
-    <!-- 可操作控制面板 -->
-    <div class="control-panel">
-        <h3>网站控制面板</h3>
-        <button class="control-btn" onclick="switchTheme('purple')">切换银紫色主题</button>
-        <button class="control-btn" onclick="switchTheme('blue')">切换冰蓝色主题</button>
-        <button class="control-btn" onclick="toggleStory()">隐藏/显示故事</button>
-        <button class="control-btn" onclick="alert('管理员权限：数据已同步！')">管理员数据同步</button>
+    <!-- 可操作控制面板（优化样式、新增动效） -->
+    <div class="control-panel" id="controlPanel">
+        <h3><i class="fas fa-sliders"></i> 网站控制面板</h3>
+        <button class="control-btn" onclick="switchTheme('purple')" data-hover>
+            <i class="fas fa-palette"></i> 切换银紫色主题
+        </button>
+        <button class="control-btn" onclick="switchTheme('blue')" data-hover>
+            <i class="fas fa-snowflake"></i> 切换冰蓝色主题
+        </button>
+        <button class="control-btn" onclick="toggleStory()" data-hover>
+            <i class="fas fa-book"></i> 隐藏/显示故事
+        </button>
+        <button class="control-btn" onclick="toggleDarkMode()" data-hover>
+            <i class="fas fa-moon"></i> 切换深色/浅色模式
+        </button>
+        <button class="control-btn" onclick="alert('管理员权限：数据已同步！')" data-hover>
+            <i class="fas fa-sync-alt"></i> 管理员数据同步
+        </button>
     </div>
 
-    <!-- 首页：用1.jpg做头像（修正图片路径，去掉images/） -->
-    <section id="home" class="home-section">
-        <img src="1.jpg" alt="Carterthyia头像" class="carterthyia-avatar">
-        <h1>卡提希娅（Carterthyia）</h1>
-        <p>于光影中守护的温柔使者</p>
-    </section>
-
-    <!-- 设定 -->
-    <section id="about" class="about-section">
-        <h2>角色设定</h2>
-        <p>姓名：卡提希娅（Carterthyia）</p>
-        <p>特质：穿梭于光影之间，拥有温柔的力量</p>
-    </section>
-
-    <!-- 图库：直接引用1-8.jpg（修正图片路径，去掉images/） -->
-    <section id="gallery" class="gallery-section">
-        <h2>角色图库</h2>
-        <div class="gallery-container">
-            <img src="1.jpg" alt="图1" class="gallery-img">
-            <img src="2.jpg" alt="图2" class="gallery-img">
-            <img src="3.jpg" alt="图3" class="gallery-img">
-            <img src="4.jpg" alt="图4" class="gallery-img">
-            <img src="5.jpg" alt="图5" class="gallery-img">
-            <img src="6.jpg" alt="图6" class="gallery-img">
-            <img src="7.jpg" alt="图7" class="gallery-img">
-            <img src="8.jpg" alt="图8" class="gallery-img">
+    <!-- 首页（新增渐变背景、淡入动效、头像悬浮） -->
+    <section id="home" class="home-section section-animate">
+        <div class="home-container">
+            <img src="1.jpg" alt="Carterthyia头像" class="carterthyia-avatar" id="avatar">
+            <h1 class="character-title" id="characterTitle">卡提希娅（Carterthyia）</h1>
+            <p class="character-desc" id="characterDesc">于光影中守护的温柔使者</p>
+            <div class="home-btns">
+                <a href="#gallery" class="btn" data-hover><i class="fas fa-images"></i> 进入图库</a>
+                <a href="#story" class="btn btn-secondary" data-hover><i class="fas fa-book"></i> 查看故事</a>
+            </div>
         </div>
     </section>
 
-    <!-- 角色故事背景板块 -->
-    <section id="story" class="about-section">
-        <h2>Carterthyia 角色故事背景</h2>
-        <div class="content-box">
-            <p>【卡提宝宝故事背景】</p>
-            <p>出身与身份
-卡提希娅原本是埃格拉小镇的普通少女，性格顽皮自由，喜欢喝酒与恶作剧 
-
-。她意外在祭典上扰乱岁主感恩礼，被隐海修会惩罚，但也因此逐渐受到命运和神明的选中。后来，她因与鸣式利维亚坦共鸣而获得**“芙露德莉斯”**的名号，被视为黎那汐塔的圣女和岁主共鸣者 
-
-。不过，她的身份并非真正由神明选定，而是被鸣式创造和赋予力量的共鸣者 
-
-。</p>
-            <p>【双形态和共鸣能力】</p>
-            <p>双形态与共鸣能力
-卡提希娅形态：以敏捷迅刀作战，行为自由，保留人性与顽皮的性格</p>
-            <p>【现况】</p>
-            <p>作为首位常态与觉醒双形态角色，卡提希娅可切换迅刀与巨剑形态，技能包含气刃回旋、风轨突袭及引发真实伤害的终结技“苍穹崩裂”。</p>
+    <!-- 角色设定（新增卡片样式、淡入动效、悬浮阴影） -->
+    <section id="about" class="about-section section-animate">
+        <div class="section-header">
+            <h2><i class="fas fa-user-circle"></i> 角色设定</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="about-card card-animate">
+            <p class="about-info"><span class="info-label"><i class="fas fa-id-card"></i> 姓名：</span>卡提希娅（Carterthyia）</p>
+            <p class="about-info"><span class="info-label"><i class="fas fa-feather-alt"></i> 特质：</span>穿梭于光影之间，拥有温柔的力量</p>
+            <p class="about-info"><span class="info-label"><i class="fas fa-sword"></i> 形态：</span>迅刀形态 / 巨剑形态（双形态切换）</p>
+            <p class="about-info"><span class="info-label"><i class="fas fa-crown"></i> 称号：</span>芙露德莉斯（黎那汐塔圣女）</p>
         </div>
     </section>
 
-    <!-- 游戏攻略板块 -->
-    <section id="guide" class="about-section">
-        <h2>Carterthyia 专属游戏攻略</h2>
-        <div class="content-box">
-            <p>【核心玩法】</p>
-            <p>1. 卡提希娅定位气动主C。V3.0版本逆境深塔榜T0，冥歌海墟榜T1。卡提希娅输出依赖风蚀效应，是异常体系种的风蚀效应主C。拥有卡提希娅和芙露德利斯双形态，仍然是当前版本的主力大C。新老漂泊者均可考虑抽取。</p>
-            <p>2. 卡提希娅声骸套装优先选择愿戴荣光之旅五件套，使用44111，首位声骸装配芙露德利斯。卡提希娅主要吃生命，副词条优先生命。</p>
-            <p>3. 卡提希娅主要输出类型为普攻伤害。共鸣链推荐抽取2/3/6链。2链提升目标风蚀效应层数上限，解绑气动主。3链增加自身挂风蚀效应手段，解绑夏空。6链开大不清空风蚀效应层数，伤害提升。0-1链卡提比较刚需夏空。</p>
-            <p>【武器选择】</p>
-            <p>1. 卡提希娅武器首选专武不屈命定之冠，基本无下位替代，刚需。其它武器可考虑椿专武裁春提高普攻输出，或者性价比较高的三星武器戍关迅刀·镇海。</p>
-            <p>2. 卡提希娅依赖风蚀效应输出增伤，0-2链自身挂风蚀能力一般，刚需夏空。因此低链卡提非常建议要搭配夏空，三号位0+1千咲是最佳选择，如果千咲是0+0那可以替换为气动主。冥歌海墟可以替换为守岸人。没有夏空的话可考虑卡提+气动主+千咲，这里更正下气动主声骸，可以用流云。卡提+散华也可使用，但伤害会低很多，最后再考虑</p>
+    <!-- 角色故事背景（优化卡片、新增折叠动画、文字淡入） -->
+    <section id="story" class="about-section section-animate">
+        <div class="section-header">
+            <h2><i class="fas fa-book-open"></i> 角色故事背景</h2>
+            <div class="section-divider"></div>
+            <button class="toggle-btn" onclick="toggleStory()" data-hover id="storyToggle">
+                <i class="fas fa-chevron-up"></i> 收起故事
+            </button>
+        </div>
+        <div class="content-box card-animate" id="storyContent">
+            <p class="story-title">【卡提宝宝故事背景】</p>
+            <p class="story-paragraph">
+                出身与身份<br>
+                卡提希娅原本是埃格拉小镇的普通少女，性格顽皮自由，喜欢喝酒与恶作剧。
+                她意外在祭典上扰乱岁主感恩礼，被隐海修会惩罚，但也因此逐渐受到命运和神明的选中。后来，她因与鸣式利维亚坦共鸣而获得<strong>“芙露德莉斯”</strong>的名号，被视为黎那汐塔的圣女和岁主共鸣者。
+                不过，她的身份并非真正由神明选定，而是被鸣式创造和赋予力量的共鸣者。
+            </p>
+            <p class="story-title">【双形态和共鸣能力】</p>
+            <p class="story-paragraph">
+                双形态与共鸣能力<br>
+                卡提希娅形态：以敏捷迅刀作战，行为自由，保留人性与顽皮的性格
+            </p>
+            <p class="story-title">【现况】</p>
+            <p class="story-paragraph">
+                作为首位常态与觉醒双形态角色，卡提希娅可切换迅刀与巨剑形态，技能包含气刃回旋、风轨突袭及引发真实伤害的终结技“苍穹崩裂”。
+            </p>
         </div>
     </section>
 
-    <!-- 管理员后台入口 -->
-    <div class="admin-entry">
-        <a href="#admin" class="admin-link" onclick="showAdminLogin()">进入管理员后台</a>
+    <!-- 游戏攻略（新增标签切换、卡片布局、滚动动效） -->
+    <section id="guide" class="about-section section-animate">
+        <div class="section-header">
+            <h2><i class="fas fa-gamepad"></i> 游戏攻略</h2>
+            <div class="section-divider"></div>
+        </div>
+        <!-- 攻略标签切换（新增交互） -->
+        <div class="guide-tabs" id="guideTabs">
+            <button class="tab-btn active" data-tab="core" onclick="switchGuideTab('core')" data-hover>核心玩法</button>
+            <button class="tab-btn" data-tab="weapon" onclick="switchGuideTab('weapon')" data-hover>武器选择</button>
+            <button class="tab-btn" data-tab="team" onclick="switchGuideTab('team')" data-hover>配队推荐</button>
+        </div>
+        <!-- 攻略内容（核心玩法） -->
+        <div class="guide-content card-animate" id="coreContent">
+            <p class="guide-paragraph">1. 卡提希娅定位气动主C。V3.0版本逆境深塔榜T0，冥歌海墟榜T1。卡提希娅输出依赖风蚀效应，是异常体系种的风蚀效应主C。拥有卡提希娅和芙露德利斯双形态，仍然是当前版本的主力大C。新老漂泊者均可考虑抽取。</p>
+            <p class="guide-paragraph">2. 卡提希娅声骸套装优先选择愿戴荣光之旅五件套，使用44111，首位声骸装配芙露德利斯。卡提希娅主要吃生命，副词条优先生命。</p>
+            <p class="guide-paragraph">3. 卡提希娅主要输出类型为普攻伤害。共鸣链推荐抽取2/3/6链。2链提升目标风蚀效应层数上限，解绑气动主。3链增加自身挂风蚀效应手段，解绑夏空。6链开大不清空风蚀效应层数，伤害提升。0-1链卡提比较刚需夏空。</p>
+        </div>
+        <!-- 攻略内容（武器选择） -->
+        <div class="guide-content card-animate hidden" id="weaponContent">
+            <p class="guide-paragraph">1. 卡提希娅武器首选专武不屈命定之冠，基本无下位替代，刚需。</p>
+            <p class="guide-paragraph">2. 替代武器：椿专武裁春（提升普攻输出，适合平民玩家）。</p>
+            <p class="guide-paragraph">3. 平民过渡：三星武器戍关迅刀·镇海（性价比高，容易获取和养成）。</p>
+        </div>
+        <!-- 攻略内容（配队推荐） -->
+        <div class="guide-content card-animate hidden" id="teamContent">
+            <p class="guide-paragraph">1. 最优配队：卡提希娅 + 夏空 + 千咲（风蚀体系拉满，输出最大化）。</p>
+            <p class="guide-paragraph">2. 平民配队：卡提希娅 + 气动主 + 散华（易获取，成型快）。</p>
+            <p class="guide-paragraph">3. 深渊配队：卡提希娅 + 守岸人 + 千咲（兼顾生存与输出，应对高难副本）。</p>
+        </div>
+    </section>
+
+    <!-- 角色图库（优化网格布局、新增图片悬浮放大、点击预览、加载动效） -->
+    <section id="gallery" class="gallery-section section-animate">
+        <div class="section-header">
+            <h2><i class="fas fa-images"></i> 角色图库</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="gallery-container" id="galleryContainer">
+            <img src="1.jpg" alt="图1" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <img src="2.jpg" alt="图2" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <img src="3.jpg" alt="图3" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <img src="4.jpg" alt="图4" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <img src="5.jpg" alt="图5" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <img src="6.jpg" alt="图6" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <img src="7.jpg" alt="图7" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <img src="8.jpg" alt="图8" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+        </div>
+    </section>
+
+    <!-- 管理员后台入口（优化样式、新增动效） -->
+    <section id="admin" class="about-section section-animate">
+        <div class="section-header">
+            <h2><i class="fas fa-shield-alt"></i> 管理员后台</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="admin-card card-animate">
+            <a href="#adminLogin" class="admin-link" onclick="showAdminLogin()" data-hover>
+                <i class="fas fa-sign-in-alt"></i> 进入管理员后台登录
+            </a>
+        </div>
+    </section>
+
+    <!-- 管理员登录弹窗（优化样式、新增淡入动效） -->
+    <div id="adminLoginModal" class="modal modal-hidden">
+        <div class="modal-content card-animate" id="modalContent">
+            <span class="close-btn" onclick="closeAdminLogin()" data-hover>&times;</span>
+            <h2><i class="fas fa-user-shield"></i> 管理员登录</h2>
+            <input type="text" id="adminName" placeholder="请输入管理员账号" class="admin-input">
+            <input type="password" id="adminPwd" placeholder="请输入管理员密码" class="admin-input">
+            <button class="admin-login-btn" onclick="adminLogin()" data-hover>
+                <i class="fas fa-key"></i> 登录
+            </button>
+        </div>
     </div>
 
-    <!-- 管理员登录弹窗 -->
-    <div id="adminLoginModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeAdminLogin()">&times;</span>
-            <h2>管理员登录</h2>
-            <input type="text" id="adminName" placeholder="输入管理员账号" class="admin-input">
-            <input type="password" id="adminPwd" placeholder="输入管理员密码" class="admin-input">
-            <button class="admin-login-btn" onclick="adminLogin()">登录</button>
+    <!-- 管理员后台页面（优化样式、保留原有功能） -->
+    <div id="adminPage" class="admin-page hidden">
+        <div class="admin-container card-animate">
+            <h2><i class="fas fa-tachometer-alt"></i> 卡提希娅网站管理员后台</h2>
+            <div class="admin-function">
+                <h3><i class="fas fa-cogs"></i> 功能面板</h3>
+                <button class="admin-btn" onclick="alert('角色数据已更新，网站将在5分钟后同步！')" data-hover>
+                    <i class="fas fa-user-edit"></i> 更新角色数据
+                </button>
+                <button class="admin-btn" onclick="alert('游戏攻略已更新，已推送至前端！')" data-hover>
+                    <i class="fas fa-file-alt"></i> 更新游戏攻略
+                </button>
+                <button class="admin-btn" onclick="alert('角色图库已更新，所有图片已缓存！')" data-hover>
+                    <i class="fas fa-images"></i> 更新角色图库
+                </button>
+                <button class="admin-btn" onclick="closeAdminPage()" data-hover>
+                    <i class="fas fa-sign-out-alt"></i> 退出后台
+                </button>
+            </div>
+            <div class="admin-data">
+                <h3><i class="fas fa-chart-bar"></i> 网站数据预览</h3>
+                <p class="admin-data-item"><i class="fas fa-eye"></i> 访问量：1258 次</p>
+                <p class="admin-data-item"><i class="fas fa-picture-o"></i> 图片库数量：8 张</p>
+                <p class="admin-data-item"><i class="fas fa-calendar"></i> 最后更新时间：2026-01-17</p>
+                <p class="admin-data-item"><i class="fas fa-user"></i> 管理员：Carterthyia Admin</p>
+            </div>
         </div>
     </div>
 
-    <!-- 管理员后台页面 -->
-    <div id="adminPage" class="admin-page" style="display: none;">
-        <h2>Carterthyia 网站管理员后台</h2>
-        <div class="admin-function">
-            <h3>功能面板</h3>
-            <button class="admin-btn" onclick="alert('角色数据已更新，网站将在5分钟后同步！')">更新角色数据</button>
-            <button class="admin-btn" onclick="alert('游戏攻略已更新，已推送至前端！')">更新游戏攻略</button>
-            <button class="admin-btn" onclick="alert('图片库已更新，所有图片已缓存！')">更新角色图库</button>
-            <button class="admin-btn" onclick="closeAdminPage()">退出后台</button>
-        </div>
-        <div class="admin-data">
-            <h3>网站数据预览</h3>
-            <p>访问量：1258 次</p>
-            <p>图片库数量：8 张</p>
-            <p>最后更新时间：2026-01-16</p>
-            <p>管理员：Carterthyia</p>
+    <!-- 图片预览弹窗（新增交互、点击关闭） -->
+    <div id="imagePreviewModal" class="modal modal-hidden" onclick="closeImagePreview()">
+        <div class="preview-content">
+            <img src="" alt="预览图片" id="previewImage">
+            <span class="preview-close" onclick="closeImagePreview()" data-hover>&times;</span>
         </div>
     </div>
 
-    <script>
-        // 管理员后台相关功能
-        // 显示登录弹窗
-        function showAdminLogin() {
-            document.getElementById('adminLoginModal').style.display = 'block';
-        }
+    <!-- 回到顶部按钮（新增交互、滚动显示/隐藏） -->
+    <button id="backToTop" class="back-to-top hidden" onclick="backToTop()" data-hover>
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
-        // 关闭登录弹窗
-        function closeAdminLogin() {
-            document.getElementById('adminLoginModal').style.display = 'none';
-        }
-
-        // 管理员登录（优化：移除账号密码泄露提示，提升安全性）
-        function adminLogin() {
-            const adminName = document.getElementById('adminName').value;
-            const adminPwd = document.getElementById('adminPwd').value;
-            
-            // 验证逻辑不变，仅修改错误提示，不泄露任何敏感信息
-            if (adminName === 'admin' && adminPwd === 'carterthyia') {
-                closeAdminLogin();
-                document.getElementById('adminPage').style.display = 'block';
-                document.body.scrollTop = 0;
-                window.scrollTo(0, 0);
-            } else {
-                // 只提示错误，不暴露账号密码
-                alert('账号或密码错误，请重新输入！');
-            }
-        }
-
-        // 退出管理员后台
-        function closeAdminPage() {
-            document.getElementById('adminPage').style.display = 'none';
-        }
-
-        // 点击弹窗外部关闭登录窗口
-        window.onclick = function(event) {
-            const modal = document.getElementById('adminLoginModal');
-            if (event.target === modal) {
-                closeAdminLogin();
-            }
-        }
-
-        // 新增效果1：页面滚动时，板块淡入显示
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('.about-section, .gallery-section');
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                if (sectionTop < windowHeight * 0.8) {
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
-                }
-            });
-        });
-
-        // 新增效果2：可操作面板 - 切换网站主题色（银紫色/冰蓝色）
-        function switchTheme(theme) {
-            const navbar = document.querySelector('.navbar');
-            const avatars = document.querySelectorAll('.carterthyia-avatar, .gallery-img');
-            const titles = document.querySelectorAll('h1, h2');
-            
-            if (theme === 'purple') {
-                navbar.style.backgroundColor = 'rgba(156, 126, 230, 0.8)';
-                titles.forEach(title => title.style.color = '#9c7ee6');
-                avatars.forEach(avatar => avatar.style.borderColor = '#9c7ee6');
-            } else if (theme === 'blue') {
-                navbar.style.backgroundColor = 'rgba(110, 198, 255, 0.8)';
-                titles.forEach(title => title.style.color = '#6ec6ff');
-                avatars.forEach(avatar => avatar.style.borderColor = '#6ec6ff');
-            }
-        }
-
-        // 新增效果3：可操作面板 - 隐藏/显示故事背景
-        function toggleStory() {
-            const storySection = document.getElementById('story');
-            if (storySection.style.display === 'none') {
-                storySection.style.display = 'block';
-            } else {
-                storySection.style.display = 'none';
-            }
-        }
-
-        // 初始化板块样式+头像淡入（合并重复的window.onload，避免冲突）
-        window.onload = function() {
-            // 1. 头像淡入效果
-            const avatar = document.querySelector('.carterthyia-avatar');
-            let opacity = 0;
-            const fadeIn = setInterval(() => {
-                if (opacity >= 1) clearInterval(fadeIn);
-                avatar.style.opacity = opacity;
-                opacity += 0.01;
-            }, 20);
-
-            // 2. 初始化板块样式（为滚动淡入效果做准备）
-            const sections = document.querySelectorAll('.about-section, .gallery-section');
-            sections.forEach(section => {
-                section.style.opacity = '0';
-                section.style.transform = 'translateY(50px)';
-                section.style.transition = 'all 0.8s ease';
-            });
-        };
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
