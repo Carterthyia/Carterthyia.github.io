@@ -54,10 +54,8 @@
     <!-- 首页（头像正常显示+打字机动效+悬浮旋转） -->
     <section id="home" class="home-section section-animate">
         <div class="home-container">
-            <!-- 头像：优先本地 avatar.jpg，同时提供网络图片备用（注释部分） -->
-            <img src="avatar.jpg" alt="Carterthyia头像" class="carterthyia-avatar" id="avatar">
-            <!-- 若本地无 avatar.jpg，取消下面注释，使用网络图片（无需本地文件） -->
-            <!-- <img src="https://picsum.photos/180/180?random=1" alt="Carterthyia头像" class="carterthyia-avatar" id="avatar"> -->
+            <!-- 已修改：使用网络头像，无需本地文件，直接显示 -->
+            <img src="https://picsum.photos/180/180?random=1" alt="Carterthyia头像" class="carterthyia-avatar" id="avatar">
             <h1 class="character-title" id="characterTitle">卡提希娅（Carterthyia）</h1>
             <p class="character-desc" id="characterDesc">于光影中守护的温柔使者</p>
             <div class="home-btns">
@@ -142,31 +140,21 @@
         </div>
     </section>
 
-    <!-- 角色图库（图片预览+悬浮放大） -->
+    <!-- 角色图库（已修改：全部使用网络图片，无需本地文件，点击可预览） -->
     <section id="gallery" class="gallery-section section-animate">
         <div class="section-header">
             <h2><i class="fas fa-images"></i> 角色图库</h2>
             <div class="section-divider"></div>
         </div>
         <div class="gallery-container" id="galleryContainer">
-            <!-- 图库图片：优先本地图片，同时提供网络图片备用 -->
-            <img src="img1.jpg" alt="图1" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
-            <img src="img2.jpg" alt="图2" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
-            <img src="img3.jpg" alt="图3" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
-            <img src="img4.jpg" alt="图4" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
-            <img src="img5.jpg" alt="图5" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
-            <img src="img6.jpg" alt="图6" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
-            <img src="img7.jpg" alt="图7" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
-            <img src="img8.jpg" alt="图8" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
-            <!-- 若本地无图库图片，取消下面注释，使用网络图片（无需本地文件） -->
-            <!-- <img src="https://picsum.photos/250/280?random=2" alt="图1" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <img src="https://picsum.photos/250/280?random=2" alt="图1" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
             <img src="https://picsum.photos/250/280?random=3" alt="图2" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
             <img src="https://picsum.photos/250/280?random=4" alt="图3" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
             <img src="https://picsum.photos/250/280?random=5" alt="图4" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
             <img src="https://picsum.photos/250/280?random=6" alt="图5" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
             <img src="https://picsum.photos/250/280?random=7" alt="图6" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
             <img src="https://picsum.photos/250/280?random=8" alt="图7" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
-            <img src="https://picsum.photos/250/280?random=9" alt="图8" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover> -->
+            <img src="https://picsum.photos/250/280?random=9" alt="图8" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
         </div>
     </section>
 
