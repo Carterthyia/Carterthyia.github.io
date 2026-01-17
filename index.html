@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carterthyia（卡提希娅）的星光小站</title>
     <link rel="stylesheet" href="style.css">
-    <!-- 引入图标库（新增，丰富交互图标） -->
+    <!-- 引入图标库（确保交互图标正常显示） -->
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- 导航栏（新增固定定位、滚动动效） -->
+    <!-- 导航栏（固定定位+滚动动效+响应式） -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-logo">
@@ -24,14 +24,14 @@
                 <li class="nav-item"><a href="#gallery" class="nav-link" data-scroll>角色图库</a></li>
                 <li class="nav-item"><a href="#admin" class="nav-link" data-scroll>管理员后台</a></li>
             </ul>
-            <!-- 移动端菜单按钮（新增响应式） -->
+            <!-- 移动端菜单按钮 -->
             <div class="nav-toggle" id="navToggle">
                 <i class="fas fa-bars"></i>
             </div>
         </div>
     </nav>
 
-    <!-- 可操作控制面板（优化样式、新增动效） -->
+    <!-- 可操作控制面板（悬浮+动效） -->
     <div class="control-panel" id="controlPanel">
         <h3><i class="fas fa-sliders"></i> 网站控制面板</h3>
         <button class="control-btn" onclick="switchTheme('purple')" data-hover>
@@ -51,10 +51,13 @@
         </button>
     </div>
 
-    <!-- 首页（新增渐变背景、淡入动效、头像悬浮） -->
+    <!-- 首页（头像正常显示+打字机动效+悬浮旋转） -->
     <section id="home" class="home-section section-animate">
         <div class="home-container">
-            <img src="1.jpg" alt="Carterthyia头像" class="carterthyia-avatar" id="avatar">
+            <!-- 头像：优先本地 avatar.jpg，同时提供网络图片备用（注释部分） -->
+            <img src="avatar.jpg" alt="Carterthyia头像" class="carterthyia-avatar" id="avatar">
+            <!-- 若本地无 avatar.jpg，取消下面注释，使用网络图片（无需本地文件） -->
+            <!-- <img src="https://picsum.photos/180/180?random=1" alt="Carterthyia头像" class="carterthyia-avatar" id="avatar"> -->
             <h1 class="character-title" id="characterTitle">卡提希娅（Carterthyia）</h1>
             <p class="character-desc" id="characterDesc">于光影中守护的温柔使者</p>
             <div class="home-btns">
@@ -64,7 +67,7 @@
         </div>
     </section>
 
-    <!-- 角色设定（新增卡片样式、淡入动效、悬浮阴影） -->
+    <!-- 角色设定（卡片+悬浮动效） -->
     <section id="about" class="about-section section-animate">
         <div class="section-header">
             <h2><i class="fas fa-user-circle"></i> 角色设定</h2>
@@ -78,7 +81,7 @@
         </div>
     </section>
 
-    <!-- 角色故事背景（优化卡片、新增折叠动画、文字淡入） -->
+    <!-- 角色故事背景（折叠+动画） -->
     <section id="story" class="about-section section-animate">
         <div class="section-header">
             <h2><i class="fas fa-book-open"></i> 角色故事背景</h2>
@@ -107,13 +110,13 @@
         </div>
     </section>
 
-    <!-- 游戏攻略（新增标签切换、卡片布局、滚动动效） -->
+    <!-- 游戏攻略（标签切换+交互） -->
     <section id="guide" class="about-section section-animate">
         <div class="section-header">
             <h2><i class="fas fa-gamepad"></i> 游戏攻略</h2>
             <div class="section-divider"></div>
         </div>
-        <!-- 攻略标签切换（新增交互） -->
+        <!-- 攻略标签切换 -->
         <div class="guide-tabs" id="guideTabs">
             <button class="tab-btn active" data-tab="core" onclick="switchGuideTab('core')" data-hover>核心玩法</button>
             <button class="tab-btn" data-tab="weapon" onclick="switchGuideTab('weapon')" data-hover>武器选择</button>
@@ -139,25 +142,35 @@
         </div>
     </section>
 
-    <!-- 角色图库（优化网格布局、新增图片悬浮放大、点击预览、加载动效） -->
+    <!-- 角色图库（图片预览+悬浮放大） -->
     <section id="gallery" class="gallery-section section-animate">
         <div class="section-header">
             <h2><i class="fas fa-images"></i> 角色图库</h2>
             <div class="section-divider"></div>
         </div>
         <div class="gallery-container" id="galleryContainer">
-            <img src="1.jpg" alt="图1" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
-            <img src="2.jpg" alt="图2" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
-            <img src="3.jpg" alt="图3" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
-            <img src="4.jpg" alt="图4" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
-            <img src="5.jpg" alt="图5" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
-            <img src="6.jpg" alt="图6" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
-            <img src="7.jpg" alt="图7" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
-            <img src="8.jpg" alt="图8" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <!-- 图库图片：优先本地图片，同时提供网络图片备用 -->
+            <img src="img1.jpg" alt="图1" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <img src="img2.jpg" alt="图2" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <img src="img3.jpg" alt="图3" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <img src="img4.jpg" alt="图4" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <img src="img5.jpg" alt="图5" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <img src="img6.jpg" alt="图6" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <img src="img7.jpg" alt="图7" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <img src="img8.jpg" alt="图8" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <!-- 若本地无图库图片，取消下面注释，使用网络图片（无需本地文件） -->
+            <!-- <img src="https://picsum.photos/250/280?random=2" alt="图1" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <img src="https://picsum.photos/250/280?random=3" alt="图2" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <img src="https://picsum.photos/250/280?random=4" alt="图3" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <img src="https://picsum.photos/250/280?random=5" alt="图4" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <img src="https://picsum.photos/250/280?random=6" alt="图5" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <img src="https://picsum.photos/250/280?random=7" alt="图6" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <img src="https://picsum.photos/250/280?random=8" alt="图7" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <img src="https://picsum.photos/250/280?random=9" alt="图8" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover> -->
         </div>
     </section>
 
-    <!-- 管理员后台入口（优化样式、新增动效） -->
+    <!-- 管理员后台入口 -->
     <section id="admin" class="about-section section-animate">
         <div class="section-header">
             <h2><i class="fas fa-shield-alt"></i> 管理员后台</h2>
@@ -170,7 +183,7 @@
         </div>
     </section>
 
-    <!-- 管理员登录弹窗（优化样式、新增淡入动效） -->
+    <!-- 管理员登录弹窗 -->
     <div id="adminLoginModal" class="modal modal-hidden">
         <div class="modal-content card-animate" id="modalContent">
             <span class="close-btn" onclick="closeAdminLogin()" data-hover>&times;</span>
@@ -183,7 +196,7 @@
         </div>
     </div>
 
-    <!-- 管理员后台页面（优化样式、保留原有功能） -->
+    <!-- 管理员后台页面 -->
     <div id="adminPage" class="admin-page hidden">
         <div class="admin-container card-animate">
             <h2><i class="fas fa-tachometer-alt"></i> 卡提希娅网站管理员后台</h2>
@@ -212,7 +225,7 @@
         </div>
     </div>
 
-    <!-- 图片预览弹窗（新增交互、点击关闭） -->
+    <!-- 图片预览弹窗 -->
     <div id="imagePreviewModal" class="modal modal-hidden" onclick="closeImagePreview()">
         <div class="preview-content">
             <img src="" alt="预览图片" id="previewImage">
@@ -220,11 +233,12 @@
         </div>
     </div>
 
-    <!-- 回到顶部按钮（新增交互、滚动显示/隐藏） -->
+    <!-- 回到顶部按钮 -->
     <button id="backToTop" class="back-to-top hidden" onclick="backToTop()" data-hover>
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- 引入JS文件（确保路径正确，同一目录） -->
     <script src="script.js"></script>
 </body>
 </html>

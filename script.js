@@ -41,28 +41,32 @@ function initAnimations() {
     // 手动触发一次滚动事件，初始化可见元素
     window.dispatchEvent(new Event('scroll'));
 
-    // 头像悬浮动效
+    // 头像悬浮动效（确保头像交互正常）
     const avatar = document.getElementById('avatar');
-    avatar.addEventListener('mouseenter', function() {
-        this.style.transform = 'scale(1.05) rotate(5deg)';
-    });
-    avatar.addEventListener('mouseleave', function() {
-        this.style.transform = 'scale(1) rotate(0deg)';
-    });
+    if (avatar) { // 判空，避免头像不存在时报错
+        avatar.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05) rotate(5deg)';
+        });
+        avatar.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1) rotate(0deg)';
+        });
+    }
 
     // 标题文字渐变动效
     const title = document.getElementById('characterTitle');
-    let titleIndex = 0;
-    const titleText = title.textContent;
-    title.textContent = '';
-    const typeWriter = setInterval(function() {
-        if (titleIndex < titleText.length) {
-            title.textContent += titleText.charAt(titleIndex);
-            titleIndex++;
-        } else {
-            clearInterval(typeWriter);
-        }
-    }, 100);
+    if (title) { // 判空，避免报错
+        let titleIndex = 0;
+        const titleText = title.textContent;
+        title.textContent = '';
+        const typeWriter = setInterval(function() {
+            if (titleIndex < titleText.length) {
+                title.textContent += titleText.charAt(titleIndex);
+                titleIndex++;
+            } else {
+                clearInterval(typeWriter);
+            }
+        }, 100);
+    }
 }
 
 // 2. 初始化导航栏（移动端菜单、滚动样式变化）
@@ -82,22 +86,24 @@ function initNavbar() {
     });
 
     // 移动端菜单切换
-    navToggle.addEventListener('click', function() {
-        navMenu.classList.toggle('active');
-        const icon = this.querySelector('i');
-        if (navMenu.classList.contains('active')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            const icon = this.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    }
 
     // 导航链接点击后关闭移动端菜单
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
-            if (navMenu.classList.contains('active')) {
+            if (navMenu && navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
                 const icon = navToggle.querySelector('i');
                 icon.classList.remove('fa-times');
@@ -113,10 +119,12 @@ function initBackToTop() {
 
     // 滚动时显示/隐藏按钮
     window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) {
-            backToTopBtn.classList.remove('hidden');
-        } else {
-            backToTopBtn.classList.add('hidden');
+        if (backToTopBtn) {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.remove('hidden');
+            } else {
+                backToTopBtn.classList.add('hidden');
+            }
         }
     });
 }
@@ -131,12 +139,12 @@ function switchTheme(theme) {
         root.style.setProperty('--primary-color', 'var(--primary-color-purple)');
         root.style.setProperty('--secondary-color', 'var(--secondary-color-purple)');
         root.style.setProperty('--bg-color', 'var(--bg-color-purple)');
-        avatar.style.boxShadow = '0 0 30px rgba(156, 126, 230, 0.3)';
+        if (avatar) avatar.style.boxShadow = '0 0 30px rgba(156, 126, 230, 0.3)';
     } else if (theme === 'blue') {
         root.style.setProperty('--primary-color', 'var(--primary-color-blue)');
         root.style.setProperty('--secondary-color', 'var(--secondary-color-blue)');
         root.style.setProperty('--bg-color', 'var(--bg-color-blue)');
-        avatar.style.boxShadow = '0 0 30px rgba(110, 198, 255, 0.3)';
+        if (avatar) avatar.style.boxShadow = '0 0 30px rgba(110, 198, 255, 0.3)';
     }
 
     // 主题切换动效
@@ -153,6 +161,8 @@ function switchTheme(theme) {
 function toggleStory() {
     const storyContent = document.getElementById('storyContent');
     const storyToggle = document.getElementById('storyToggle');
+    if (!storyContent || !storyToggle) return; // 判空避免报错
+
     isStoryVisible = !isStoryVisible;
 
     if (isStoryVisible) {
@@ -185,12 +195,16 @@ function toggleDarkMode() {
 
     if (isDarkMode) {
         body.classList.add('dark-mode');
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
+        if (icon) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
     } else {
         body.classList.remove('dark-mode');
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
+        if (icon) {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        }
     }
 
     alert(`已切换为${isDarkMode ? '深色' : '浅色'}模式！`);
@@ -211,9 +225,11 @@ function switchGuideTab(tab) {
     });
 
     // 显示当前标签内容
-    document.getElementById(`${tab}Content`).classList.remove('hidden');
+    const currentContent = document.getElementById(`${tab}Content`);
+    if (currentContent) currentContent.classList.remove('hidden');
     // 添加当前标签激活状态
-    document.querySelector(`.tab-btn[data-tab="${tab}"]`).classList.add('active');
+    const currentBtn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
+    if (currentBtn) currentBtn.classList.add('active');
 
     // 触发卡片动效
     window.dispatchEvent(new Event('scroll'));
@@ -223,6 +239,7 @@ function switchGuideTab(tab) {
 function previewImage(src) {
     const previewModal = document.getElementById('imagePreviewModal');
     const previewImage = document.getElementById('previewImage');
+    if (!previewModal || !previewImage) return; // 判空避免报错
 
     previewImage.src = src;
     previewModal.classList.remove('modal-hidden');
@@ -234,6 +251,8 @@ function previewImage(src) {
 // 9. 关闭图片预览（新增）
 function closeImagePreview() {
     const previewModal = document.getElementById('imagePreviewModal');
+    if (!previewModal) return; // 判空避免报错
+
     previewModal.classList.add('modal-hidden');
 
     // 恢复页面滚动
@@ -251,6 +270,8 @@ function backToTop() {
 // 11. 管理员后台相关功能（保留原有功能，优化动效）
 function showAdminLogin() {
     const adminModal = document.getElementById('adminLoginModal');
+    if (!adminModal) return; // 判空避免报错
+
     adminModal.classList.remove('modal-hidden');
 
     // 禁止页面滚动
@@ -259,6 +280,8 @@ function showAdminLogin() {
 
 function closeAdminLogin() {
     const adminModal = document.getElementById('adminLoginModal');
+    if (!adminModal) return; // 判空避免报错
+
     adminModal.classList.add('modal-hidden');
 
     // 恢复页面滚动
@@ -266,28 +289,33 @@ function closeAdminLogin() {
 }
 
 function adminLogin() {
-    const adminName = document.getElementById('adminName').value;
-    const adminPwd = document.getElementById('adminPwd').value;
+    const adminName = document.getElementById('adminName');
+    const adminPwd = document.getElementById('adminPwd');
+    if (!adminName || !adminPwd) return; // 判空避免报错
 
-    if (adminName === 'admin' && adminPwd === 'carterthyia') {
+    if (adminName.value === 'admin' && adminPwd.value === 'carterthyia') {
         closeAdminLogin();
-        document.getElementById('adminPage').classList.remove('hidden');
+        const adminPage = document.getElementById('adminPage');
+        if (adminPage) adminPage.classList.remove('hidden');
 
         // 管理员登录成功动效
         const adminContainer = document.querySelector('.admin-container');
-        adminContainer.style.opacity = '0';
-        adminContainer.style.transform = 'scale(0.9)';
-        setTimeout(function() {
-            adminContainer.style.opacity = '1';
-            adminContainer.style.transform = 'scale(1)';
-        }, 100);
+        if (adminContainer) {
+            adminContainer.style.opacity = '0';
+            adminContainer.style.transform = 'scale(0.9)';
+            setTimeout(function() {
+                adminContainer.style.opacity = '1';
+                adminContainer.style.transform = 'scale(1)';
+            }, 100);
+        }
     } else {
         alert('账号或密码错误，请重新输入！');
     }
 }
 
 function closeAdminPage() {
-    document.getElementById('adminPage').classList.add('hidden');
+    const adminPage = document.getElementById('adminPage');
+    if (adminPage) adminPage.classList.add('hidden');
 }
 
 // 点击弹窗外部关闭弹窗
