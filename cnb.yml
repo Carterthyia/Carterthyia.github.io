@@ -1,0 +1,8 @@
+main:
+  push:
+    docker:
+      image: nginx:alpine  # 用 Nginx 容器托管静态文件（最稳定的静态托管方案）
+      volumes:
+        - ./:/usr/share/nginx/html  # 将你仓库的所有文件（index.html、videos等）映射到 Nginx 根目录
+    stages:
+      - echo "静态网站构建完成"  # 无额外构建步骤，直接托管
