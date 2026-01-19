@@ -1,4 +1,4 @@
-/* 全局样式重置 + 高级基础配置 */
+/* 全局样式重置 + 高级基础配置（移除backdrop-filter毛玻璃特效） */
 * {
     margin: 0;
     padding: 0;
@@ -12,13 +12,15 @@
     --primary-color-purple: #9c7ee6;
     --secondary-color-purple: #b8a3f5;
     --bg-color-purple: rgba(156, 126, 230, 0.1);
-    --card-bg-purple: rgba(255, 255, 255, 0.8);
+    /* 移除毛玻璃，改为纯色不透明背景 */
+    --card-bg-purple: #ffffff;
     --shadow-purple: 0 8px 32px rgba(156, 126, 230, 0.2);
 
     --primary-color-blue: #6ec6ff;
     --secondary-color-blue: #99d1ff;
     --bg-color-blue: rgba(110, 198, 255, 0.1);
-    --card-bg-blue: rgba(255, 255, 255, 0.8);
+    /* 移除毛玻璃，改为纯色不透明背景 */
+    --card-bg-blue: #ffffff;
     --shadow-blue: 0 8px 32px rgba(110, 198, 255, 0.2);
 
     /* 默认银紫色主题（读取config.js中的defaultTheme） */
@@ -35,14 +37,15 @@
     --white-color: #fff;
     --transition: all 0.3s ease-in-out;
     --border-radius: 12px;
-    --backdrop-blur: blur(12px);
+    /* 移除毛玻璃变量，不再使用 */
 }
 
-/* 深色模式样式（保留高级效果） */
+/* 深色模式样式（保留高级效果，移除毛玻璃，改为纯色不透明背景） */
 .dark-mode {
     --text-color: #f5f5f5;
     --text-light-color: #ccc;
-    --card-bg: rgba(45, 45, 45, 0.8);
+    /* 移除毛玻璃，改为深色纯色不透明背景 */
+    --card-bg: #2d2d2d;
     --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     --card-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.4);
     background-color: #1a1a1a;
@@ -59,7 +62,7 @@
     transition: opacity 0.3s ease;
 }
 
-/* 高级按钮样式（保留渐变、hover动效） */
+/* 高级按钮样式（保留渐变、hover动效，无修改） */
 .btn {
     display: inline-block;
     padding: 12px 24px;
@@ -92,15 +95,15 @@
     background: var(--bg-color);
 }
 
-/* 导航栏（固定+滚动动效，保留高级样式） */
+/* 导航栏（固定+滚动动效，移除毛玻璃，改为纯色背景） */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 999;
+    /* 移除backdrop-filter，保留纯色背景 */
     background: var(--card-bg);
-    backdrop-filter: var(--backdrop-blur);
     box-shadow: var(--card-shadow);
     transition: var(--transition);
 }
@@ -162,14 +165,14 @@
     width: 100%;
 }
 
-/* 控制面板（固定右侧+毛玻璃，保留主题切换） */
+/* 控制面板（固定右侧，移除毛玻璃，改为纯色背景） */
 .control-panel {
     position: fixed;
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
+    /* 移除backdrop-filter，保留纯色背景 */
     background: var(--card-bg);
-    backdrop-filter: var(--backdrop-blur);
     border-radius: var(--border-radius);
     box-shadow: var(--card-shadow);
     padding: 20px;
@@ -212,7 +215,7 @@
     color: var(--white-color);
 }
 
-/* 板块动效（滚动淡入，保留高级动效） */
+/* 板块动效（滚动淡入，保留高级动效，无修改） */
 .section-animate {
     opacity: 0;
     transform: translateY(50px);
@@ -249,13 +252,13 @@
     border-radius: 3px;
 }
 
-/* 卡片样式（毛玻璃+阴影+hover动效，保留高级感） */
+/* 卡片样式（移除毛玻璃，改为纯色背景，保留阴影+hover动效） */
 .card-animate {
     opacity: 0;
     transform: scale(0.95);
     transition: opacity 0.6s ease, transform 0.6s ease;
+    /* 移除backdrop-filter，保留纯色背景 */
     background: var(--card-bg);
-    backdrop-filter: var(--backdrop-blur);
     border-radius: var(--border-radius);
     box-shadow: var(--card-shadow);
     padding: 30px;
@@ -272,7 +275,7 @@
     transform: translateY(-5px);
 }
 
-/* 首页样式（全屏+头像动效，保留高级感） */
+/* 首页样式（全屏+头像动效，保留高级感，无修改） */
 .home-section {
     height: 100vh;
     display: flex;
@@ -317,7 +320,7 @@
     letter-spacing: 1px;
 }
 
-/* 文字内容样式（保证清晰，无抽象，层级分明） */
+/* 文字内容样式（保证清晰，无抽象，层级分明，无修改） */
 .about-info {
     color: var(--text-color);
     font-size: 16px;
@@ -368,7 +371,7 @@
     color: var(--white-color);
 }
 
-/* 图库样式（网格布局+hover动效，保留高级感） */
+/* 图库样式（网格布局+hover动效，保留高级感，无修改） */
 .gallery-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -391,10 +394,10 @@
     box-shadow: var(--card-shadow-hover);
 }
 
-/* 视频样式（保留高级交互+兼容播放，核心修复） */
+/* 视频样式（保留高级交互+兼容播放，移除毛玻璃，核心修复） */
 .demo-panel {
+    /* 移除backdrop-filter，保留纯色背景 */
     background: var(--card-bg);
-    backdrop-filter: var(--backdrop-blur);
     border-radius: var(--border-radius);
     box-shadow: var(--card-shadow);
     padding: 30px;
@@ -467,8 +470,8 @@
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: var(--backdrop-blur);
+    /* 移除播放按钮毛玻璃，改为半透明纯色 */
+    background: rgba(255, 255, 255, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -490,15 +493,15 @@
     background: var(--bg-color);
 }
 
-/* 图片预览弹窗（毛玻璃+淡入淡出，保留高级感） */
+/* 图片预览弹窗（移除毛玻璃，改为纯色背景，保留高级感） */
 #imagePreviewModal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(8px);
+    /* 移除backdrop-filter，改为纯色半透明背景 */
+    background: rgba(0, 0, 0, 0.9);
     z-index: 9999;
     display: flex;
     align-items: center;
@@ -533,7 +536,7 @@
     transform: rotate(90deg);
 }
 
-/* 回到顶部按钮（固定+hover动效，保留高级感） */
+/* 回到顶部按钮（固定+hover动效，保留高级感，无修改） */
 .back-to-top {
     position: fixed;
     bottom: 30px;
@@ -557,7 +560,7 @@
     box-shadow: var(--card-shadow-hover);
 }
 
-/* 移动端适配（保留所有高级效果，仅调整布局） */
+/* 移动端适配（保留所有高级效果，仅调整布局，无修改） */
 @media (max-width: 768px) {
     .nav-menu {
         flex-direction: column;
@@ -566,8 +569,8 @@
         top: 70px;
         left: 0;
         width: 100%;
+        /* 移除毛玻璃，改为纯色背景 */
         background: var(--card-bg);
-        backdrop-filter: var(--backdrop-blur);
         padding: 20px 0;
         box-shadow: var(--card-shadow);
         transform: translateY(-150%);

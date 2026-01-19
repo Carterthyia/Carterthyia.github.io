@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>卡提希娅的星光小站</title>
-    <!-- 1. 引入高级样式表 -->
+    <!-- 1. 引入高级样式表（已移除毛玻璃） -->
     <link rel="stylesheet" href="style.css">
     <!-- 2. 引入稳定Font Awesome CDN（保证图标正常显示） -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <!-- 导航栏（高级效果，固定+毛玻璃） -->
+    <!-- 导航栏（高级效果，固定+纯色背景，无毛玻璃） -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
@@ -31,7 +31,7 @@
         </div>
     </nav>
 
-    <!-- 控制面板（主题切换，高级毛玻璃效果） -->
+    <!-- 控制面板（主题切换，纯色背景，无毛玻璃） -->
     <div class="control-panel">
         <h3><i class="fa fa-sliders"></i> 个性化设置</h3>
         <button class="control-btn" onclick="switchTheme('purple')">
@@ -45,12 +45,12 @@
         </button>
     </div>
 
-    <!-- 回到顶部按钮（高级动效） -->
+    <!-- 回到顶部按钮（高级动效，无修改） -->
     <div class="back-to-top hidden">
         <i class="fa fa-arrow-up"></i>
     </div>
 
-    <!-- 首页（全屏+头像动效，高级效果） -->
+    <!-- 首页（全屏+头像动效，保留高级感，无修改） -->
     <section id="home" class="home-section section-animate">
         <div class="home-container">
             <img src="1.jpg" alt="卡提希娅头像" class="carterthyia-avatar">
@@ -63,7 +63,7 @@
         </div>
     </section>
 
-    <!-- 角色设定（完整文字+高级卡片效果） -->
+    <!-- 角色设定（完整文字+高级卡片效果，无毛玻璃） -->
     <section id="about" class="section-animate">
         <div class="section-header">
             <h2><i class="fa fa-user-circle"></i> 角色设定</h2>
@@ -93,7 +93,7 @@
         </div>
     </section>
 
-    <!-- 故事背景（完整文字+展开/收起，高级卡片效果） -->
+    <!-- 故事背景（完整文字+展开/收起，高级卡片效果，无毛玻璃） -->
     <section id="story" class="section-animate">
         <div class="section-header">
             <h2><i class="fa fa-book-open"></i> 角色故事背景</h2>
@@ -121,7 +121,7 @@
         </div>
     </section>
 
-    <!-- 游戏攻略（完整内容+标签切换，高级卡片效果） -->
+    <!-- 游戏攻略（完整内容+标签切换，高级卡片效果，无毛玻璃） -->
     <section id="guide" class="section-animate">
         <div class="section-header">
             <h2><i class="fa fa-gamepad"></i> 游戏攻略指南</h2>
@@ -190,7 +190,7 @@
         </div>
     </section>
 
-    <!-- 角色图库（网格布局+预览，高级效果） -->
+    <!-- 角色图库（网格布局+预览，高级效果，无毛玻璃） -->
     <section id="gallery" class="section-animate">
         <div class="section-header">
             <h2><i class="fa fa-images"></i> 角色图库</h2>
@@ -216,7 +216,7 @@
         </div>
     </section>
 
-    <!-- 实机演示（视频正常播放+高级交互，核心修复） -->
+    <!-- 实机演示（视频正常播放+高级交互，无毛玻璃，核心修复） -->
     <section id="demo" class="section-animate">
         <div class="section-header">
             <h2><i class="fa fa-film"></i> 实机演示视频</h2>
@@ -253,7 +253,7 @@
         </div>
     </section>
 
-    <!-- 图片预览弹窗（高级毛玻璃效果） -->
+    <!-- 图片预览弹窗（高级效果，无毛玻璃） -->
     <div id="imagePreviewModal" class="modal-hidden" onclick="closeImagePreview()">
         <div class="preview-content">
             <span class="preview-close" onclick="closeImagePreview()">&times;</span>
