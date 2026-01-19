@@ -251,142 +251,16 @@ function previewImage(src) {
 // 9. 关闭图片预览（新增）
 function closeImagePreview() {
     const previewModal = document.getElementById('imagePreviewModal');
-    if (!previewModal) return; // 判空避免报错
-
+    if (!previewModal) return;
     previewModal.classList.add('modal-hidden');
-
     // 恢复页面滚动
     document.body.style.overflow = 'auto';
 }
 
-// 10. 回到顶部功能（新增）
+// 10. 回到顶部功能
 function backToTop() {
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
     });
 }
-
-// 11. 管理员后台相关功能（保留原有功能，优化动效）
-function showAdminLogin() {
-    const adminModal = document.getElementById('adminLoginModal');
-    if (!adminModal) return; // 判空避免报错
-
-    adminModal.classList.remove('modal-hidden');
-
-    // 禁止页面滚动
-    document.body.style.overflow = 'hidden';
-}
-
-function closeAdminLogin() {
-    const adminModal = document.getElementById('adminLoginModal');
-    if (!adminModal) return; // 判空避免报错
-
-    adminModal.classList.add('modal-hidden');
-
-    // 恢复页面滚动
-    document.body.style.overflow = 'auto';
-}
-
-function adminLogin() {
-    const adminName = document.getElementById('adminName');
-    const adminPwd = document.getElementById('adminPwd');
-    if (!adminName || !adminPwd) return; // 判空避免报错
-
-    if (adminName.value === 'admin' && adminPwd.value === 'carterthyia') {
-        closeAdminLogin();
-        const adminPage = document.getElementById('adminPage');
-        if (adminPage) adminPage.classList.remove('hidden');
-
-        // 管理员登录成功动效
-        const adminContainer = document.querySelector('.admin-container');
-        if (adminContainer) {
-            adminContainer.style.opacity = '0';
-            adminContainer.style.transform = 'scale(0.9)';
-            setTimeout(function() {
-                adminContainer.style.opacity = '1';
-                adminContainer.style.transform = 'scale(1)';
-            }, 100);
-        }
-    } else {
-        alert('账号或密码错误，请重新输入！');
-    }
-}
-
-function closeAdminPage() {
-    const adminPage = document.getElementById('adminPage');
-    if (adminPage) adminPage.classList.add('hidden');
-}
-
-// 点击弹窗外部关闭弹窗
-window.onclick = function(event) {
-    const adminModal = document.getElementById('adminLoginModal');
-    const previewModal = document.getElementById('imagePreviewModal');
-    const adminPage = document.getElementById('adminPage');
-
-    if (event.target === adminModal) {
-        closeAdminLogin();
-    }
-
-    if (event.target === previewModal) {
-        closeImagePreview();
-    }
-
-    if (event.target === adminPage) {
-        closeAdminPage();
-    }
-}
-// ======================================
-// 网站高级感优化 - 交互逻辑整合
-// ======================================
-
-/* 1. 滚动监听：板块渐入动画 */
-window.addEventListener('scroll', () => {
-  document.querySelectorAll('.section-animate').forEach(section => {
-    const sectionTop = section.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
-    if (sectionTop < windowHeight * 0.8) {
-      section.classList.add('active');
-    }
-  });
-});
-
-/* 2. 页面加载时：触发首屏板块渐入 */
-window.addEventListener('load', () => {
-  // 首屏板块直接激活
-  document.querySelectorAll('.section-animate')[0].classList.add('active');
-  // 延迟激活其他板块，营造节奏
-  setTimeout(() => {
-    document.querySelectorAll('.section-animate').forEach(section => {
-      section.classList.add('active');
-    });
-  }, 300);
-});
-
-/* 3. 图库分类筛选功能 */
-document.querySelectorAll('.gallery-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    // 移除所有标签active状态
-    document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
-    // 给当前标签添加active
-    tab.classList.add('active');
-    // 获取筛选类型
-    const filterType = tab.dataset.type;
-    // 筛选图片
-    document.querySelectorAll('.gallery-img').forEach(img => {
-      if (filterType === 'all' || img.dataset.type === filterType) {
-        // 显示并添加渐入动画
-        img.style.display = 'block';
-        setTimeout(() => {
-          img.style.opacity = '1';
-        }, 100);
-      } else {
-        // 隐藏
-        img.style.opacity = '0';
-        setTimeout(() => {
-          img.style.display = 'none';
-        }, 300);
-      }
-    });
-  });
-});

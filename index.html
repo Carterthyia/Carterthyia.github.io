@@ -18,7 +18,6 @@
         }
         .demo-title {
             font-size: 24px;
-            color: #c8aaff;
             text-align: center;
             margin-bottom: 30px;
             background: linear-gradient(135deg, #c8aaff, #8b6ef7);
@@ -26,7 +25,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        /* 这是一个视频标签切换面板 */
+        /* 视频标签切换面板 */
         .video-tabs {
             display: flex;
             justify-content: center;
@@ -37,7 +36,7 @@
             padding: 12px 24px;
             border-radius: 8px;
             background: rgba(255, 255, 255, 0.08);
-            color: #e0e6ff;
+            color: var(--text-color);
             cursor: pointer;
             transition: all 0.3s ease;
             border: 1px solid transparent;
@@ -51,7 +50,7 @@
         .video-tab:hover:not(.active) {
             background: rgba(255, 255, 255, 0.15);
         }
-        /* 视频的容器（默认隐藏，点击标签显示） */
+        /* 视频容器（默认隐藏，点击标签显示） */
         .video-container {
             display: none;
             position: relative;
@@ -62,7 +61,7 @@
         .video-container.active {
             display: block;
         }
-        /* 视频封面遮罩（解决裸露问题） */
+        /* 视频封面遮罩 */
         .video-cover {
             position: absolute;
             top: 0;
@@ -120,10 +119,28 @@
             }
         }
 
-        /* ======================================
-           新增：网站高级感优化 - 视觉+交互样式
-           ====================================== */
-        /* 1. 全局毛玻璃质感（卡片/弹窗/演示面板通用） */
+        /* 角色图库样式 */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .gallery-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--card-shadow);
+        }
+        .gallery-img:hover {
+            transform: scale(1.05);
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        /* 高级感优化样式 */
         .card-animate, .modal-content, .demo-panel {
             background: rgba(255, 255, 255, 0.05) !important;
             backdrop-filter: blur(12px) !important;
@@ -131,89 +148,68 @@
             box-shadow: 0 8px 32px rgba(70, 40, 200, 0.15) !important;
             transition: all 0.5s ease !important;
         }
-
-        /* 2. 文字排版层次优化（提升可读性+精致感） */
         .section-header h2, .demo-title, .character-title {
             font-weight: 600;
             letter-spacing: 1px;
             line-height: 1.4;
         }
-
         .story-paragraph, .guide-paragraph, .about-info {
             font-weight: 300;
             line-height: 1.8;
-            color: rgba(255, 255, 255, 0.9) !important;
+            color: var(--text-color) !important;
         }
-
-        /* 3. 统一主题渐变（按钮+标题强化） */
         .btn, .admin-login-btn, .control-btn:hover {
             background: linear-gradient(135deg, #8b6ef7, #c8aaff) !important;
             border: none !important;
             box-shadow: 0 4px 16px rgba(139, 110, 247, 0.3) !important;
             transition: all 0.3s ease !important;
         }
-
         .character-title, .demo-title {
             background: linear-gradient(135deg, #c8aaff, #8b6ef7) !important;
             -webkit-background-clip: text !important;
             -webkit-text-fill-color: transparent !important;
             background-clip: text !important;
         }
-
-        /* 4. 滚动渐入动画（板块进入视口渐显） */
         .section-animate {
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
-
-        .section-animate.active {
+        .section-animate.visible {
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* 5. 可交互元素微动效（按钮/卡片/标签） */
         .btn:hover, .admin-btn:hover, .video-tab:hover, .gallery-tab:hover, .tab-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(139, 110, 247, 0.4) !important;
         }
-
         .gallery-img:hover, .about-card:hover {
             transform: scale(1.02);
             box-shadow: 0 12px 32px rgba(70, 40, 200, 0.2) !important;
         }
-
         .video-tab.active, .tab-btn.active, .gallery-tab.active {
             background: linear-gradient(135deg, #8b6ef7, #c8aaff) !important;
             color: #fff !important;
             border-color: #c8aaff !important;
             box-shadow: 0 4px 12px rgba(139, 110, 247, 0.2) !important;
         }
-
-        /* 6. 图片/视频加载占位（避免空白突兀） */
         .gallery-img, .demo-video {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(150, 120, 255, 0.08) 100%);
             aspect-ratio: 16/9;
             object-fit: cover;
         }
-
-        /* 7. 自定义视频控制栏（契合网站主题） */
         .demo-video::-webkit-media-controls-progress-bar {
             background-color: rgba(255, 255, 255, 0.2);
             border-radius: 2px;
         }
-
         .demo-video::-webkit-media-controls-play-button,
         .demo-video::-webkit-media-controls-fullscreen-button {
             background-color: rgba(139, 110, 247, 0.3);
             border-radius: 50%;
         }
-
         .demo-video::-webkit-media-controls-current-time-display {
             color: #c8aaff;
         }
-
-        /* 8. 图库分类标签样式（新增功能配套） */
         .gallery-tabs {
             display: flex;
             justify-content: center;
@@ -221,12 +217,11 @@
             margin-bottom: 30px;
             flex-wrap: wrap;
         }
-
         .gallery-tab {
             padding: 10px 20px;
             border-radius: 8px;
             background: rgba(255, 255, 255, 0.08);
-            color: #e0e6ff;
+            color: var(--text-color);
             cursor: pointer;
             transition: all 0.3s ease;
             border: 1px solid transparent;
@@ -238,7 +233,7 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <i class="fas fa-star"></i>
+                <<i class="fas fa-star"></</i>
                 <span>卡提希娅的星光小站</span>
             </div>
             <ul class="nav-menu" id="navMenu">
@@ -248,49 +243,41 @@
                 <li class="nav-item"><a href="#guide" class="nav-link" data-scroll>游戏攻略</a></li>
                 <li class="nav-item"><a href="#gallery" class="nav-link" data-scroll>角色图库</a></li>
                 <li class="nav-item"><a href="#demo" class="nav-link" data-scroll>实机演示</a></li>
-                <li class="nav-item"><a href="#admin" class="nav-link" data-scroll>管理员后台</a></li>
             </ul>
             <div class="nav-toggle" id="navToggle">
-                <i class="fas fa-bars"></i>
+                <<i class="fas fa-bars"></</i>
             </div>
         </div>
     </nav>
 
     <!-- 控制面板 -->
-    <div class="control-panel" id="controlPanel">
-        <h3>
-            <i class="fas fa-sliders"></i> 网站控制面板
-        </h3>
-        <button class="control-btn" onclick="switchTheme('purple')" data-hover>
-            <i class="fas fa-palette"></i> 切换银紫色主题
+    <div class="control-panel">
+        <h3><<i class="fas fa-sliders-h"></</i> 个性化设置</h3>
+        <button class="control-btn" onclick="switchTheme('purple')">
+            <<i class="fas fa-palette"></</i> 银紫色主题
         </button>
-        <button class="control-btn" onclick="switchTheme('blue')" data-hover>
-            <i class="fas fa-snowflake"></i> 切换冰蓝色主题
+        <button class="control-btn" onclick="switchTheme('blue')">
+            <<i class="fas fa-snowflake"></</i> 冰蓝色主题
         </button>
-        <button class="control-btn" onclick="toggleStory()" data-hover>
-            <i class="fas fa-book"></i> 隐藏/显示故事
+        <button class="control-btn" onclick="toggleDarkMode()">
+            <<i class="fas fa-moon"></</i> 深色模式
         </button>
-        <button class="control-btn" onclick="toggleDarkMode()" data-hover>
-            <i class="fas fa-moon"></i> 切换深色/浅色模式
-        </button>
-        <button class="control-btn" onclick="alert('管理员权限：数据已同步！')" data-hover>
-            <i class="fas fa-sync-alt"></i> 管理员数据同步
-        </button>
+    </div>
+
+    <!-- 回到顶部按钮 -->
+    <div id="backToTop" class="back-to-top hidden" onclick="backToTop()">
+        <<i class="fas fa-arrow-up"></</i>
     </div>
 
     <!-- 首页 -->
     <section id="home" class="home-section section-animate">
         <div class="home-container">
-            <img src="1.jpg" alt="Carterthyia头像" class="carterthyia-avatar" id="avatar">
-            <h1 class="character-title" id="characterTitle">卡提希娅（Carterthyia）</h1>
-            <p class="character-desc" id="characterDesc">于光影中守护的温柔使者</p>
+            <img src="1.jpg" alt="卡提希娅头像" id="avatar" class="carterthyia-avatar">
+            <h1 id="characterTitle">卡提希娅的星光小站</h1>
+            <p class="character-desc">于光影中守护的温柔使者</p>
             <div class="home-btns">
-                <a href="#gallery" class="btn" data-hover>
-                    <i class="fas fa-images"></i> 进入图库
-                </a>
-                <a href="#story" class="btn btn-secondary" data-hover>
-                    <i class="fas fa-book"></i> 查看故事
-                </a>
+                <a href="#gallery" class="btn">进入图库</a>
+                <a href="#story" class="btn btn-secondary">查看故事</a>
             </div>
         </div>
     </section>
@@ -298,32 +285,36 @@
     <!-- 角色设定 -->
     <section id="about" class="about-section section-animate">
         <div class="section-header">
-            <h2>
-                <i class="fas fa-user-circle"></i> 角色设定
-            </h2>
+            <h2><<i class="fas fa-user-circle"></</i> 角色设定</h2>
             <div class="section-divider"></div>
         </div>
         <div class="about-card card-animate">
-            <p class="about-info"><span class="info-label">
-                <i class="fas fa-id-card"></i> 姓名：</span>卡提希娅（Carterthyia）</p>
-            <p class="about-info"><span class="info-label">
-                <i class="fas fa-feather-alt"></i> 特质：</span>穿梭于光影之间，拥有温柔的力量</p>
-            <p class="about-info"><span class="info-label">
-                <i class="fas fa-sword"></i> 形态：</span>迅刀形态 / 巨剑形态（双形态切换）</p>
-            <p class="about-info"><span class="info-label">
-                <i class="fas fa-crown"></i> 称号：</span>芙露德莉斯（黎那汐塔圣女）</p>
+            <div class="about-info">
+                <span class="info-label">姓名：</span>
+                <span>卡提希娅（Carterthyia）</span>
+            </div>
+            <div class="about-info">
+                <span class="info-label">特质：</span>
+                <span>穿梭于光影之间，拥有温柔的力量</span>
+            </div>
+            <div class="about-info">
+                <span class="info-label">形态：</span>
+                <span>迅刀形态（小卡） / 巨剑形态（大卡·芙露德莉丝）</span>
+            </div>
+            <div class="about-info">
+                <span class="info-label">称号：</span>
+                <span>芙露德莉斯（黎那汐塔圣女）</span>
+            </div>
         </div>
     </section>
 
     <!-- 故事背景 -->
     <section id="story" class="about-section section-animate">
         <div class="section-header">
-            <h2>
-                <i class="fas fa-book-open"></i> 角色故事背景
-            </h2>
+            <h2><<i class="fas fa-book-open"></</i> 角色故事背景</h2>
             <div class="section-divider"></div>
             <button class="toggle-btn" onclick="toggleStory()" data-hover id="storyToggle">
-                <i class="fas fa-chevron-up"></i> 收起故事
+                <<i class="fas fa-chevron-up"></</i> 收起故事
             </button>
         </div>
         <div class="content-box card-animate" id="storyContent">
@@ -337,7 +328,8 @@
             <p class="story-title">【双形态和共鸣能力】</p>
             <p class="story-paragraph">
                 双形态与共鸣能力<br>
-                卡提希娅形态：以敏捷迅刀作战，行为自由，保留人性与顽皮的性格
+                卡提希娅形态（小卡）：以敏捷迅刀作战，行为自由，保留人性与顽皮的性格<br>
+                芙露德莉丝形态（大卡）：切换为巨剑形态，力量大幅提升，兼具防御与范围攻击能力
             </p>
             <p class="story-title">【现况】</p>
             <p class="story-paragraph">
@@ -349,9 +341,7 @@
     <!-- 游戏攻略 -->
     <section id="guide" class="about-section section-animate">
         <div class="section-header">
-            <h2>
-                <i class="fas fa-gamepad"></i> 游戏攻略
-            </h2>
+            <h2><<i class="fas fa-gamepad"></</i> 游戏攻略</h2>
             <div class="section-divider"></div>
         </div>
         <div class="guide-tabs" id="guideTabs">
@@ -376,15 +366,14 @@
         </div>
     </section>
 
-    <!-- 角色图库（新增：分类标签栏） -->
+    <!-- 角色图库 -->
     <section id="gallery" class="gallery-section section-animate">
         <div class="section-header">
             <h2>
-                <i class="fas fa-images"></i> 角色图库
+                <<i class="fas fa-images"></</i> 角色图库
             </h2>
             <div class="section-divider"></div>
         </div>
-        <!-- 新增：图库分类标签栏 -->
         <div class="gallery-tabs">
             <button class="gallery-tab active" data-type="all">全部</button>
             <button class="gallery-tab" data-type="art">立绘</button>
@@ -394,133 +383,55 @@
         <div class="gallery-container" id="galleryContainer">
             <img src="1.jpg" alt="图1" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover data-type="art">
             <img src="2.jpg" alt="图2" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover data-type="art">
-            <img src="3.jpg" alt="图3" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover data-type="battle">
+            <img src="3.jpg" alt="图3" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover data-type="daily">
             <img src="4.jpg" alt="图4" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover data-type="battle">
-            <img src="5.jpg" alt="图5" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover data-type="daily">
+            <img src="5.jpg" alt="图5" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover data-type="battle">
             <img src="6.jpg" alt="图6" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover data-type="daily">
             <img src="7.jpg" alt="图7" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover data-type="art">
             <img src="8.jpg" alt="图8" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover data-type="battle">
         </div>
     </section>
 
-    <!-- 新增：实机演示交互界面（嵌套双视频） -->
+    <!-- 实机演示（已调整视频对应关系：小卡=111.mp4，大卡=12.mp4） -->
     <section id="demo" class="about-section section-animate">
         <div class="section-header">
             <h2>
-                <i class="fas fa-gamepad"></i> 实机演示
+                <<i class="fas fa-gamepad"></</i> 实机演示
             </h2>
             <div class="section-divider"></div>
         </div>
         <div class="demo-panel">
             <h3 class="demo-title">卡提希娅双形态战斗演示</h3>
-            <!-- 视频标签切换 -->
             <div class="video-tabs">
                 <div class="video-tab active" data-target="video1">小卡（迅刀形态）</div>
-                <div class="video-tab" data-target="video2">大卡（巨剑形态）</div>
+                <div class="video-tab" data-target="video2">大卡（芙露德莉丝·巨剑形态）</div>
             </div>
-            <!-- 视频1：小卡（11.mp4）—— 核心改动21：替换为纯相对路径，适配你仓库的videos文件夹 -->
+            <!-- 小卡对应视频：111.mp4 -->
             <div class="video-container active" id="video1">
                 <video class="demo-video" id="videoPlayer1" controls muted playsinline poster="1.jpg" preload="metadata">
-                    <!-- 改动21-1：删除GitHub用户名绝对路径，改用相对路径videos/11.mp4 -->
-                    <!-- 新增：明确编码格式，提升浏览器兼容性 -->
-                    <source src="videos/111.mp4" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
+                    <source src="111.mp4" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
                     你的浏览器不支持视频播放，请更新浏览器
                 </video>
                 <div class="video-cover" onclick="playVideo('videoPlayer1', this)">
                     <div class="play-btn">
-                        <i class="fas fa-play"></i>
+                        <<i class="fas fa-play"></</i>
                     </div>
                 </div>
             </div>
-            <!-- 视频2：大卡（111.mp4）—— 核心改动23：替换为纯相对路径，适配你仓库的videos文件夹 -->
+            <!-- 大卡对应视频：12.mp4 -->
             <div class="video-container" id="video2">
                 <video class="demo-video" id="videoPlayer2" controls muted playsinline poster="2.jpg" preload="metadata">
-                    <!-- 改动23-1：删除GitHub用户名绝对路径，改用相对路径videos/111.mp4 -->
-                    <!-- 新增：明确编码格式，提升浏览器兼容性 -->
-                    <source src="videos/12.mp4" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
+                    <source src="12.mp4" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
                     你的浏览器不支持视频播放，请更新浏览器
                 </video>
                 <div class="video-cover" onclick="playVideo('videoPlayer2', this)">
                     <div class="play-btn">
-                        <i class="fas fa-play"></i>
+                        <<i class="fas fa-play"></</i>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- 管理员后台 -->
-    <section id="admin" class="about-section section-animate">
-        <div class="section-header">
-            <h2>
-                <i class="fas fa-shield-alt"></i> 管理员后台
-            </h2>
-            <div class="section-divider"></div>
-        </div>
-        <div class="admin-card card-animate">
-            <a href="#adminLogin" class="admin-link" onclick="showAdminLogin()" data-hover>
-                <i class="fas fa-sign-in-alt"></i> 进入管理员后台登录
-            </a>
-        </div>
-    </section>
-
-    <!-- 登录弹窗 -->
-    <div id="adminLoginModal" class="modal modal-hidden">
-        <div class="modal-content card-animate" id="modalContent">
-            <span class="close-btn" onclick="closeAdminLogin()" data-hover>&times;</span>
-            <h2>
-                <i class="fas fa-user-shield"></i> 管理员登录
-            </h2>
-            <input type="text" id="adminName" placeholder="请输入管理员账号" class="admin-input">
-            <input type="password" id="adminPwd" placeholder="请输入管理员密码" class="admin-input">
-            <button class="admin-login-btn" onclick="adminLogin()" data-hover>
-                <i class="fas fa-key"></i> 登录
-            </button>
-        </div>
-    </div>
-
-    <!-- 管理员页面 -->
-    <div id="adminPage" class="admin-page hidden">
-        <div class="admin-container card-animate">
-            <h2>
-                <i class="fas fa-tachometer-alt"></i> 卡提希娅网站管理员后台
-            </h2>
-            <div class="admin-function">
-                <h3>
-                    <i class="fas fa-cogs"></i> 功能面板
-                </h3>
-                <button class="admin-btn" onclick="alert('角色数据已更新，网站将在5分钟后同步！')" data-hover>
-                    <i class="fas fa-user-edit"></i> 更新角色数据
-                </button>
-                <button class="admin-btn" onclick="alert('游戏攻略已更新，已推送至前端！')" data-hover>
-                    <i class="fas fa-file-alt"></i> 更新游戏攻略
-                </button>
-                <button class="admin-btn" onclick="alert('角色图库已更新，所有图片已缓存！')" data-hover>
-                    <i class="fas fa-images"></i> 更新角色图库
-                </button>
-                <button class="admin-btn" onclick="closeAdminPage()" data-hover>
-                    <i class="fas fa-sign-out-alt"></i> 退出后台
-                </button>
-            </div>
-            <div class="admin-data">
-                <h3>
-                    <i class="fas fa-chart-bar"></i> 网站数据预览
-                </h3>
-                <p class="admin-data-item">
-                    <i class="fas fa-eye"></i> 访问量：1258 次
-                </p>
-                <p class="admin-data-item">
-                    <i class="fas fa-picture-o"></i> 图片库数量：8 张
-                </p>
-                <p class="admin-data-item">
-                    <i class="fas fa-calendar"></i> 最后更新时间：2026-01-17
-                </p>
-                <p class="admin-data-item">
-                    <i class="fas fa-user"></i> 管理员：Carterthyia Admin
-                </p>
-            </div>
-        </div>
-    </div>
 
     <!-- 图片预览弹窗 -->
     <div id="imagePreviewModal" class="modal modal-hidden" onclick="closeImagePreview()">
@@ -530,24 +441,13 @@
         </div>
     </div>
 
-    <!-- 回到顶部 -->
-    <button id="backToTop" class="back-to-top hidden" onclick="backToTop()" data-hover>
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- 交互JS：优先引入config.js（核心整合点） -->
     <script src="config.js"></script>
-    
-    <!-- 视频标签切换 & 播放逻辑（原有功能不变） -->
     <script>
         // 视频标签切换
         document.querySelectorAll('.video-tab').forEach(tab => {
             tab.addEventListener('click', () => {
-                // 移除所有标签的active
                 document.querySelectorAll('.video-tab').forEach(t => t.classList.remove('active'));
-                // 移除所有视频容器的active
                 document.querySelectorAll('.video-container').forEach(v => v.classList.remove('active'));
-                // 给当前标签和对应容器加active
                 tab.classList.add('active');
                 document.getElementById(tab.dataset.target).classList.add('active');
             });
@@ -557,21 +457,14 @@
         function playVideo(playerId, cover) {
             const video = document.getElementById(playerId);
             video.play();
-            cover.style.display = 'none'; // 播放后隐藏封面
-            // 视频结束后显示封面
+            cover.style.display = 'none';
             video.addEventListener('ended', () => {
                 cover.style.display = 'flex';
             });
         }
     </script>
-
-    <!-- 新增：高级感优化交互JS（滚动渐入+图库筛选） -->
     <script>
-        // ======================================
-        // 网站高级感优化 - 交互逻辑整合
-        // ======================================
-
-        /* 1. 滚动监听：板块渐入动画 */
+        // 滚动监听：板块渐入动画
         window.addEventListener('scroll', () => {
           document.querySelectorAll('.section-animate').forEach(section => {
             const sectionTop = section.getBoundingClientRect().top;
@@ -582,11 +475,9 @@
           });
         });
 
-        /* 2. 页面加载时：触发首屏板块渐入 */
+        // 页面加载时：触发首屏板块渐入
         window.addEventListener('load', () => {
-          // 首屏板块直接激活
           document.querySelectorAll('.section-animate')[0].classList.add('active');
-          // 延迟激活其他板块，营造节奏
           setTimeout(() => {
             document.querySelectorAll('.section-animate').forEach(section => {
               section.classList.add('active');
@@ -594,25 +485,19 @@
           }, 300);
         });
 
-        /* 3. 图库分类筛选功能 */
+        // 图库分类筛选功能
         document.querySelectorAll('.gallery-tab').forEach(tab => {
           tab.addEventListener('click', () => {
-            // 移除所有标签active状态
             document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
-            // 给当前标签添加active
             tab.classList.add('active');
-            // 获取筛选类型
             const filterType = tab.dataset.type;
-            // 筛选图片
             document.querySelectorAll('.gallery-img').forEach(img => {
               if (filterType === 'all' || img.dataset.type === filterType) {
-                // 显示并添加渐入动画
                 img.style.display = 'block';
                 setTimeout(() => {
                   img.style.opacity = '1';
                 }, 100);
               } else {
-                // 隐藏
                 img.style.opacity = '0';
                 setTimeout(() => {
                   img.style.display = 'none';
@@ -622,8 +507,6 @@
           });
         });
     </script>
-    
-    <!-- 最后引入业务JS文件 -->
     <script src="script.js"></script>
 </body>
 </html>
