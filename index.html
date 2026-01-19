@@ -19,6 +19,7 @@
         <li><a href="#guide">游戏攻略</a></li>
         <li><a href="#gallery">角色图库</a></li>
         <li><a href="#demo">实机演示</a></li>
+        <li><a href="admin.html" class="admin-link">后台登录</a></li>
       </ul>
       <div class="nav-toggle"><i class="fa fa-bars"></i></div>
     </div>
@@ -38,50 +39,63 @@
   </section>
 
   <!-- 角色设定 -->
-  <section id="about" class="content-section">
+  <section id="about" class="content-section section-animate">
     <div class="section-header"><h2><i class="fa fa-user-circle"></i> 角色设定</h2></div>
-    <div class="card">
+    <div class="card card-animate">
       <p><strong>姓名：</strong>卡提希娅（Carterthyia）</p>
       <p><strong>特质：</strong>穿梭于光影之间，温柔又坚毅</p>
       <p><strong>形态：</strong>迅刀 / 巨剑（芙露德莉丝）</p>
       <p><strong>称号：</strong>黎那汐塔圣女 · 岁主共鸣者</p>
+      <p><strong>核心技能：</strong>气刃回旋、风轨突袭、苍穹崩裂</p>
     </div>
   </section>
 
   <!-- 故事背景 -->
-  <section id="story" class="content-section">
+  <section id="story" class="content-section section-animate">
     <div class="section-header"><h2><i class="fa fa-book"></i> 故事背景</h2></div>
-    <div class="card">
-      <p>卡提希娅原本是埃格拉小镇的少女，顽皮又热爱生活……</p>
-      <p>与鸣式共鸣后，她成为“芙露德莉丝”，肩负新的使命……</p>
+    <div class="card card-animate story-content">
+      <p><strong>出身与命运：</strong>卡提希娅原本是埃格拉小镇的少女，顽皮又热爱生活……</p>
+      <p><strong>双形态的秘密：</strong>作为首位常态与觉醒双形态角色，卡提希娅可自由切换迅刀与巨剑形态……</p>
+      <p><strong>现况与未来：</strong>守护身边的人，一边探寻鸣式与神明的秘密……</p>
     </div>
   </section>
 
-  <!-- 攻略 -->
-  <section id="guide" class="content-section">
+  <!-- 游戏攻略 -->
+  <section id="guide" class="content-section section-animate">
     <div class="section-header"><h2><i class="fa fa-gamepad"></i> 游戏攻略</h2></div>
-    <div class="card">
-      <p><strong>定位：</strong>风蚀主C</p>
-      <p><strong>核心机制：</strong>风蚀层叠加 + 苍穹崩裂引爆</p>
-      <p><strong>推荐队伍：</strong>卡提希娅 + 夏空 + 千咲</p>
+    <div class="card card-animate">
+      <div class="guide-tabs">
+        <button class="tab-btn active" data-tab="core">核心机制</button>
+        <button class="tab-btn" data-tab="weapon">武器选择</button>
+        <button class="tab-btn" data-tab="team">配队推荐</button>
+      </div>
+      <div id="coreContent" class="guide-content visible">
+        <p>卡提希娅是风蚀体系主C，输出核心为「风蚀效应」与「苍穹崩裂」爆发。</p>
+      </div>
+      <div id="weaponContent" class="guide-content hidden">
+        <p>毕业武器：不屈命定之冠。平替：裁春、镇海迅刀。</p>
+      </div>
+      <div id="teamContent" class="guide-content hidden">
+        <p>推荐队伍：卡提希娅 + 夏空 + 千咲（高配）；卡提 + 气动主 + 散华（平民）。</p>
+      </div>
     </div>
   </section>
 
   <!-- 图库 -->
-  <section id="gallery" class="content-section">
+  <section id="gallery" class="content-section section-animate">
     <div class="section-header"><h2><i class="fa fa-image"></i> 角色图库</h2></div>
-    <div class="gallery-grid">
-      <img src="1.jpg" alt="立绘1">
-      <img src="2.jpg" alt="立绘2">
-      <img src="3.jpg" alt="战斗1">
-      <img src="4.jpg" alt="战斗2">
+    <div class="gallery-grid card-animate">
+      <img src="1.jpg" alt="立绘1" onclick="previewImage(this.src)">
+      <img src="2.jpg" alt="立绘2" onclick="previewImage(this.src)">
+      <img src="3.jpg" alt="战斗1" onclick="previewImage(this.src)">
+      <img src="4.jpg" alt="战斗2" onclick="previewImage(this.src)">
     </div>
   </section>
 
   <!-- 实机演示 -->
-  <section id="demo" class="content-section">
+  <section id="demo" class="content-section section-animate">
     <div class="section-header"><h2><i class="fa fa-film"></i> 实机演示</h2></div>
-    <div class="card demo-panel">
+    <div class="demo-panel card-animate">
       <h3 class="demo-title">卡提希娅双形态战斗演示</h3>
       <div class="video-tabs">
         <div class="video-tab active" data-target="video1">迅刀形态</div>
@@ -92,7 +106,7 @@
         <div class="video-cover" onclick="playVideo('videoPlayer1', this)">
           <div class="play-btn"><i class="fa fa-play"></i></div>
         </div>
-        <video class="demo-video" id="videoPlayer1" controls muted playsinline preload="metadata" poster="1.jpg">
+        <video id="videoPlayer1" class="demo-video" controls muted playsinline preload="metadata" poster="1.jpg">
           <source src="videos/111.mp4" type="video/mp4">
         </video>
       </div>
@@ -101,7 +115,7 @@
         <div class="video-cover" onclick="playVideo('videoPlayer2', this)">
           <div class="play-btn"><i class="fa fa-play"></i></div>
         </div>
-        <video class="demo-video" id="videoPlayer2" controls muted playsinline preload="metadata" poster="2.jpg">
+        <video id="videoPlayer2" class="demo-video" controls muted playsinline preload="metadata" poster="2.jpg">
           <source src="videos/12.mp4" type="video/mp4">
         </video>
       </div>
