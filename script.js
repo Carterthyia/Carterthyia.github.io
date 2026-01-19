@@ -129,11 +129,8 @@ function initBackToTop() {
     });
 }
 
-// 5. 初始化视频标签切换（读取config.js视频配置，保证视频切换无冲突）
+// 5. 初始化视频配置（读取config.js，保证视频路径正确）
 function initVideoTabs() {
-    const videoTabs = document.querySelectorAll('.video-tab');
-    if (!videoTabs.length) return;
-
     // 从config.js读取视频配置
     const videoConfig = window.siteConfig?.videoConfig;
     if (videoConfig) {
@@ -149,21 +146,6 @@ function initVideoTabs() {
             video2.poster = videoConfig.videoPoster2;
         }
     }
-
-    videoTabs.forEach(tab => {
-        tab.addEventListener('click', function() {
-            // 移除所有激活状态
-            document.querySelectorAll('.video-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.video-container').forEach(v => v.classList.remove('active'));
-
-            // 激活当前标签和视频
-            this.classList.add('active');
-            const targetVideo = this.dataset.target;
-            if (targetVideo) {
-                document.getElementById(targetVideo).classList.add('active');
-            }
-        });
-    });
 }
 
 // 6. 初始化图库筛选（读取config.js图库配置，保证交互正常）
@@ -177,7 +159,7 @@ function initGalleryFilter() {
         types: window.siteConfig?.galleryTypes || ["all", "art", "battle", "daily"]
     };
 
-    // 更新图库筛选标签（若需动态生成）
+    // 更新图库筛选标签
     galleryTabs.forEach(tab => {
         tab.addEventListener('click', function() {
             galleryTabs.forEach(t => t.classList.remove('active'));
@@ -269,11 +251,11 @@ function toggleStory() {
 
     if (isStoryVisible) {
         storyContent.style.display = 'block';
-        storyToggle.innerHTML = '<i class="fa fa-chevron-up"></i> 收起故事';
+        storyToggle.innerHTML = '<<i class="fa fa-chevron-up"></</i> 收起故事';
         storyContent.classList.add('visible');
     } else {
         storyContent.style.display = 'none';
-        storyToggle.innerHTML = '<i class="fa fa-chevron-down"></i> 展开故事';
+        storyToggle.innerHTML = '<<i class="fa fa-chevron-down"></</i> 展开故事';
         storyContent.classList.remove('visible');
     }
 }
@@ -351,5 +333,28 @@ function playVideo(playerId, coverElement) {
     } catch (error) {
         alert('视频播放失败，请检查视频文件格式（推荐WebM或H.264+AAC编码的MP4）');
         console.log('视频播放异常：', error);
+    }
+}
+
+// 15. 实机演示视频切换（和角色图库标签逻辑一致，统一排版）
+function switchVideo(type) {
+    // 切换标签激活状态
+    const videoTabs = document.querySelectorAll('.gallery-tab[data-type]');
+    videoTabs.forEach(tab => {
+        tab.classList.remove('active');
+        if (tab.dataset.type === type) {
+            tab.classList.add('active');
+        }
+    });
+
+    // 切换视频显示
+    const smallVideo = document.getElementById('smallVideo');
+    const bigVideo = document.getElementById('bigVideo');
+    if (type === 'small') {
+        smallVideo.classList.remove('hidden');
+        bigVideo.classList.add('hidden');
+    } else if (type === 'big') {
+        smallVideo.classList.add('hidden');
+        bigVideo.classList.remove('hidden');
     }
 }
