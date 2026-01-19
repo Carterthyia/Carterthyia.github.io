@@ -119,6 +119,118 @@
                 font-size: 22px;
             }
         }
+
+        /* ======================================
+           新增：网站高级感优化 - 视觉+交互样式
+           ====================================== */
+        /* 1. 全局毛玻璃质感（卡片/弹窗/演示面板通用） */
+        .card-animate, .modal-content, .demo-panel {
+            background: rgba(255, 255, 255, 0.05) !important;
+            backdrop-filter: blur(12px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            box-shadow: 0 8px 32px rgba(70, 40, 200, 0.15) !important;
+            transition: all 0.5s ease !important;
+        }
+
+        /* 2. 文字排版层次优化（提升可读性+精致感） */
+        .section-header h2, .demo-title, .character-title {
+            font-weight: 600;
+            letter-spacing: 1px;
+            line-height: 1.4;
+        }
+
+        .story-paragraph, .guide-paragraph, .about-info {
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9) !important;
+        }
+
+        /* 3. 统一主题渐变（按钮+标题强化） */
+        .btn, .admin-login-btn, .control-btn:hover {
+            background: linear-gradient(135deg, #8b6ef7, #c8aaff) !important;
+            border: none !important;
+            box-shadow: 0 4px 16px rgba(139, 110, 247, 0.3) !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .character-title, .demo-title {
+            background: linear-gradient(135deg, #c8aaff, #8b6ef7) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+        }
+
+        /* 4. 滚动渐入动画（板块进入视口渐显） */
+        .section-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .section-animate.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 5. 可交互元素微动效（按钮/卡片/标签） */
+        .btn:hover, .admin-btn:hover, .video-tab:hover, .gallery-tab:hover, .tab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 110, 247, 0.4) !important;
+        }
+
+        .gallery-img:hover, .about-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 32px rgba(70, 40, 200, 0.2) !important;
+        }
+
+        .video-tab.active, .tab-btn.active, .gallery-tab.active {
+            background: linear-gradient(135deg, #8b6ef7, #c8aaff) !important;
+            color: #fff !important;
+            border-color: #c8aaff !important;
+            box-shadow: 0 4px 12px rgba(139, 110, 247, 0.2) !important;
+        }
+
+        /* 6. 图片/视频加载占位（避免空白突兀） */
+        .gallery-img, .demo-video {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(150, 120, 255, 0.08) 100%);
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+
+        /* 7. 自定义视频控制栏（契合网站主题） */
+        .demo-video::-webkit-media-controls-progress-bar {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+        }
+
+        .demo-video::-webkit-media-controls-play-button,
+        .demo-video::-webkit-media-controls-fullscreen-button {
+            background-color: rgba(139, 110, 247, 0.3);
+            border-radius: 50%;
+        }
+
+        .demo-video::-webkit-media-controls-current-time-display {
+            color: #c8aaff;
+        }
+
+        /* 8. 图库分类标签样式（新增功能配套） */
+        .gallery-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .gallery-tab {
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #e0e6ff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
     </style>
 </head>
 <body>
@@ -264,7 +376,7 @@
         </div>
     </section>
 
-    <!-- 角色图库 -->
+    <!-- 角色图库（新增：分类标签栏） -->
     <section id="gallery" class="gallery-section section-animate">
         <div class="section-header">
             <h2>
@@ -272,15 +384,22 @@
             </h2>
             <div class="section-divider"></div>
         </div>
+        <!-- 新增：图库分类标签栏 -->
+        <div class="gallery-tabs">
+            <button class="gallery-tab active" data-type="all">全部</button>
+            <button class="gallery-tab" data-type="art">立绘</button>
+            <button class="gallery-tab" data-type="battle">战斗</button>
+            <button class="gallery-tab" data-type="daily">日常</button>
+        </div>
         <div class="gallery-container" id="galleryContainer">
-            <img src="1.jpg" alt="图1" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
-            <img src="2.jpg" alt="图2" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
-            <img src="3.jpg" alt="图3" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
-            <img src="4.jpg" alt="图4" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
-            <img src="5.jpg" alt="图5" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
-            <img src="6.jpg" alt="图6" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
-            <img src="7.jpg" alt="图7" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
-            <img src="8.jpg" alt="图8" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover>
+            <img src="1.jpg" alt="图1" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover data-type="art">
+            <img src="2.jpg" alt="图2" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover data-type="art">
+            <img src="3.jpg" alt="图3" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover data-type="battle">
+            <img src="4.jpg" alt="图4" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover data-type="battle">
+            <img src="5.jpg" alt="图5" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover data-type="daily">
+            <img src="6.jpg" alt="图6" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover data-type="daily">
+            <img src="7.jpg" alt="图7" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover data-type="art">
+            <img src="8.jpg" alt="图8" class="gallery-img card-animate" onclick="previewImage(this.src)" data-hover data-type="battle">
         </div>
     </section>
 
@@ -444,6 +563,64 @@
                 cover.style.display = 'flex';
             });
         }
+    </script>
+
+    <!-- 新增：高级感优化交互JS（滚动渐入+图库筛选） -->
+    <script>
+        // ======================================
+        // 网站高级感优化 - 交互逻辑整合
+        // ======================================
+
+        /* 1. 滚动监听：板块渐入动画 */
+        window.addEventListener('scroll', () => {
+          document.querySelectorAll('.section-animate').forEach(section => {
+            const sectionTop = section.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            if (sectionTop < windowHeight * 0.8) {
+              section.classList.add('active');
+            }
+          });
+        });
+
+        /* 2. 页面加载时：触发首屏板块渐入 */
+        window.addEventListener('load', () => {
+          // 首屏板块直接激活
+          document.querySelectorAll('.section-animate')[0].classList.add('active');
+          // 延迟激活其他板块，营造节奏
+          setTimeout(() => {
+            document.querySelectorAll('.section-animate').forEach(section => {
+              section.classList.add('active');
+            });
+          }, 300);
+        });
+
+        /* 3. 图库分类筛选功能 */
+        document.querySelectorAll('.gallery-tab').forEach(tab => {
+          tab.addEventListener('click', () => {
+            // 移除所有标签active状态
+            document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
+            // 给当前标签添加active
+            tab.classList.add('active');
+            // 获取筛选类型
+            const filterType = tab.dataset.type;
+            // 筛选图片
+            document.querySelectorAll('.gallery-img').forEach(img => {
+              if (filterType === 'all' || img.dataset.type === filterType) {
+                // 显示并添加渐入动画
+                img.style.display = 'block';
+                setTimeout(() => {
+                  img.style.opacity = '1';
+                }, 100);
+              } else {
+                // 隐藏
+                img.style.opacity = '0';
+                setTimeout(() => {
+                  img.style.display = 'none';
+                }, 300);
+              }
+            });
+          });
+        });
     </script>
     
     <!-- 最后引入业务JS文件 -->

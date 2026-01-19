@@ -799,3 +799,115 @@
         font-size: 16px;
     }
 }
+/* ======================================
+   网站高级感优化 - 视觉+交互样式整合
+   ====================================== */
+
+/* 1. 全局毛玻璃质感（卡片/弹窗/演示面板通用） */
+.card-animate, .modal-content, .demo-panel {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 8px 32px rgba(70, 40, 200, 0.15) !important;
+  transition: all 0.5s ease !important;
+}
+
+/* 2. 文字排版层次优化（提升可读性+精致感） */
+.section-header h2, .demo-title, .character-title {
+  font-weight: 600;
+  letter-spacing: 1px;
+  line-height: 1.4;
+}
+
+.story-paragraph, .guide-paragraph, .about-info {
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* 3. 统一主题渐变（按钮+标题强化） */
+.btn, .admin-login-btn, .control-btn:hover {
+  background: linear-gradient(135deg, #8b6ef7, #c8aaff) !important;
+  border: none !important;
+  box-shadow: 0 4px 16px rgba(139, 110, 247, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.character-title, .demo-title {
+  background: linear-gradient(135deg, #c8aaff, #8b6ef7) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* 4. 滚动渐入动画（板块进入视口渐显） */
+.section-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section-animate.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 5. 可交互元素微动效（按钮/卡片/标签） */
+.btn:hover, .admin-btn:hover, .video-tab:hover, .gallery-tab:hover, .tab-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 110, 247, 0.4) !important;
+}
+
+.gallery-img:hover, .about-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 32px rgba(70, 40, 200, 0.2) !important;
+}
+
+.video-tab.active, .tab-btn.active, .gallery-tab.active {
+  background: linear-gradient(135deg, #8b6ef7, #c8aaff) !important;
+  color: #fff !important;
+  border-color: #c8aaff !important;
+  box-shadow: 0 4px 12px rgba(139, 110, 247, 0.2) !important;
+}
+
+/* 6. 图片/视频加载占位（避免空白突兀） */
+.gallery-img, .demo-video {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(150, 120, 255, 0.08) 100%);
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+/* 7. 自定义视频控制栏（契合网站主题） */
+.demo-video::-webkit-media-controls-progress-bar {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+.demo-video::-webkit-media-controls-play-button,
+.demo-video::-webkit-media-controls-fullscreen-button {
+  background-color: rgba(139, 110, 247, 0.3);
+  border-radius: 50%;
+}
+
+.demo-video::-webkit-media-controls-current-time-display {
+  color: #c8aaff;
+}
+
+/* 8. 图库分类标签样式（新增功能配套） */
+.gallery-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.gallery-tab {
+  padding: 10px 20px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #e0e6ff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}

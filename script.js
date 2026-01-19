@@ -336,3 +336,57 @@ window.onclick = function(event) {
         closeAdminPage();
     }
 }
+// ======================================
+// 网站高级感优化 - 交互逻辑整合
+// ======================================
+
+/* 1. 滚动监听：板块渐入动画 */
+window.addEventListener('scroll', () => {
+  document.querySelectorAll('.section-animate').forEach(section => {
+    const sectionTop = section.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    if (sectionTop < windowHeight * 0.8) {
+      section.classList.add('active');
+    }
+  });
+});
+
+/* 2. 页面加载时：触发首屏板块渐入 */
+window.addEventListener('load', () => {
+  // 首屏板块直接激活
+  document.querySelectorAll('.section-animate')[0].classList.add('active');
+  // 延迟激活其他板块，营造节奏
+  setTimeout(() => {
+    document.querySelectorAll('.section-animate').forEach(section => {
+      section.classList.add('active');
+    });
+  }, 300);
+});
+
+/* 3. 图库分类筛选功能 */
+document.querySelectorAll('.gallery-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    // 移除所有标签active状态
+    document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
+    // 给当前标签添加active
+    tab.classList.add('active');
+    // 获取筛选类型
+    const filterType = tab.dataset.type;
+    // 筛选图片
+    document.querySelectorAll('.gallery-img').forEach(img => {
+      if (filterType === 'all' || img.dataset.type === filterType) {
+        // 显示并添加渐入动画
+        img.style.display = 'block';
+        setTimeout(() => {
+          img.style.opacity = '1';
+        }, 100);
+      } else {
+        // 隐藏
+        img.style.opacity = '0';
+        setTimeout(() => {
+          img.style.display = 'none';
+        }, 300);
+      }
+    });
+  });
+});
