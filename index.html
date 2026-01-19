@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* 实机演示交互面板 */
+        /* 实机的演示交互面板 */
         .demo-panel {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(150, 120, 255, 0.08) 100%);
             border-radius: 16px;
@@ -26,7 +26,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        /* 视频标签切换面板 */
+        /* 这是一个视频标签切换面板 */
         .video-tabs {
             display: flex;
             justify-content: center;
@@ -51,7 +51,7 @@
         .video-tab:hover:not(.active) {
             background: rgba(255, 255, 255, 0.15);
         }
-        /* 视频容器（默认隐藏，点击标签显示） */
+        /* 视频的容器（默认隐藏，点击标签显示） */
         .video-container {
             display: none;
             position: relative;
@@ -126,7 +126,6 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <!-- 改动1：删除多余的<符号，修复图标标签 -->
                 <i class="fas fa-star"></i>
                 <span>卡提希娅的星光小站</span>
             </div>
@@ -140,7 +139,6 @@
                 <li class="nav-item"><a href="#admin" class="nav-link" data-scroll>管理员后台</a></li>
             </ul>
             <div class="nav-toggle" id="navToggle">
-                <!-- 改动2：删除多余的<符号，修复图标标签 -->
                 <i class="fas fa-bars"></i>
             </div>
         </div>
@@ -149,27 +147,21 @@
     <!-- 控制面板 -->
     <div class="control-panel" id="controlPanel">
         <h3>
-            <!-- 改动3：删除多余的<符号，修复图标标签 -->
             <i class="fas fa-sliders"></i> 网站控制面板
         </h3>
         <button class="control-btn" onclick="switchTheme('purple')" data-hover>
-            <!-- 改动4：删除多余的<符号，修复图标标签 -->
             <i class="fas fa-palette"></i> 切换银紫色主题
         </button>
         <button class="control-btn" onclick="switchTheme('blue')" data-hover>
-            <!-- 改动5：删除多余的<符号，修复图标标签 -->
             <i class="fas fa-snowflake"></i> 切换冰蓝色主题
         </button>
         <button class="control-btn" onclick="toggleStory()" data-hover>
-            <!-- 改动6：删除多余的<符号，修复图标标签 -->
             <i class="fas fa-book"></i> 隐藏/显示故事
         </button>
         <button class="control-btn" onclick="toggleDarkMode()" data-hover>
-            <!-- 改动7：删除多余的<符号，修复图标标签 -->
             <i class="fas fa-moon"></i> 切换深色/浅色模式
         </button>
         <button class="control-btn" onclick="alert('管理员权限：数据已同步！')" data-hover>
-            <!-- 改动8：删除多余的<符号，修复图标标签 -->
             <i class="fas fa-sync-alt"></i> 管理员数据同步
         </button>
     </div>
@@ -182,11 +174,9 @@
             <p class="character-desc" id="characterDesc">于光影中守护的温柔使者</p>
             <div class="home-btns">
                 <a href="#gallery" class="btn" data-hover>
-                    <!-- 改动9：删除多余的<符号，修复图标标签 -->
                     <i class="fas fa-images"></i> 进入图库
                 </a>
                 <a href="#story" class="btn btn-secondary" data-hover>
-                    <!-- 改动10：删除多余的<符号，修复图标标签 -->
                     <i class="fas fa-book"></i> 查看故事
                 </a>
             </div>
@@ -197,23 +187,18 @@
     <section id="about" class="about-section section-animate">
         <div class="section-header">
             <h2>
-                <!-- 改动11：删除多余的<符号，修复图标标签 -->
                 <i class="fas fa-user-circle"></i> 角色设定
             </h2>
             <div class="section-divider"></div>
         </div>
         <div class="about-card card-animate">
             <p class="about-info"><span class="info-label">
-                <!-- 改动12：删除多余的<符号，修复图标标签 -->
                 <i class="fas fa-id-card"></i> 姓名：</span>卡提希娅（Carterthyia）</p>
             <p class="about-info"><span class="info-label">
-                <!-- 改动13：删除多余的<符号，修复图标标签 -->
                 <i class="fas fa-feather-alt"></i> 特质：</span>穿梭于光影之间，拥有温柔的力量</p>
             <p class="about-info"><span class="info-label">
-                <!-- 改动14：删除多余的<符号，修复图标标签 -->
                 <i class="fas fa-sword"></i> 形态：</span>迅刀形态 / 巨剑形态（双形态切换）</p>
             <p class="about-info"><span class="info-label">
-                <!-- 改动15：删除多余的<符号，修复图标标签 -->
                 <i class="fas fa-crown"></i> 称号：</span>芙露德莉斯（黎那汐塔圣女）</p>
         </div>
     </section>
@@ -222,12 +207,10 @@
     <section id="story" class="about-section section-animate">
         <div class="section-header">
             <h2>
-                <!-- 改动16：删除多余的<符号，修复图标标签 -->
                 <i class="fas fa-book-open"></i> 角色故事背景
             </h2>
             <div class="section-divider"></div>
             <button class="toggle-btn" onclick="toggleStory()" data-hover id="storyToggle">
-                <!-- 改动17：删除多余的<符号，修复图标标签 -->
                 <i class="fas fa-chevron-up"></i> 收起故事
             </button>
         </div>
@@ -255,7 +238,6 @@
     <section id="guide" class="about-section section-animate">
         <div class="section-header">
             <h2>
-                <!-- 改动18：删除多余的<符号，修复图标标签 -->
                 <i class="fas fa-gamepad"></i> 游戏攻略
             </h2>
             <div class="section-divider"></div>
@@ -286,7 +268,6 @@
     <section id="gallery" class="gallery-section section-animate">
         <div class="section-header">
             <h2>
-                <!-- 改动19：删除多余的<符号，修复图标标签 -->
                 <i class="fas fa-images"></i> 角色图库
             </h2>
             <div class="section-divider"></div>
@@ -307,7 +288,6 @@
     <section id="demo" class="about-section section-animate">
         <div class="section-header">
             <h2>
-                <!-- 改动20：删除多余的<符号，修复图标标签 -->
                 <i class="fas fa-gamepad"></i> 实机演示
             </h2>
             <div class="section-divider"></div>
@@ -329,7 +309,6 @@
                 </video>
                 <div class="video-cover" onclick="playVideo('videoPlayer1', this)">
                     <div class="play-btn">
-                        <!-- 改动22：删除多余的<符号，修复图标标签 -->
                         <i class="fas fa-play"></i>
                     </div>
                 </div>
@@ -344,7 +323,6 @@
                 </video>
                 <div class="video-cover" onclick="playVideo('videoPlayer2', this)">
                     <div class="play-btn">
-                        <!-- 改动24：删除多余的<符号，修复图标标签 -->
                         <i class="fas fa-play"></i>
                     </div>
                 </div>
@@ -356,14 +334,12 @@
     <section id="admin" class="about-section section-animate">
         <div class="section-header">
             <h2>
-                <!-- 改动25：删除多余的<符号，修复图标标签 -->
                 <i class="fas fa-shield-alt"></i> 管理员后台
             </h2>
             <div class="section-divider"></div>
         </div>
         <div class="admin-card card-animate">
             <a href="#adminLogin" class="admin-link" onclick="showAdminLogin()" data-hover>
-                <!-- 改动26：删除多余的<符号，修复图标标签 -->
                 <i class="fas fa-sign-in-alt"></i> 进入管理员后台登录
             </a>
         </div>
@@ -374,13 +350,11 @@
         <div class="modal-content card-animate" id="modalContent">
             <span class="close-btn" onclick="closeAdminLogin()" data-hover>&times;</span>
             <h2>
-                <!-- 改动27：删除多余的<符号，修复图标标签 -->
                 <i class="fas fa-user-shield"></i> 管理员登录
             </h2>
             <input type="text" id="adminName" placeholder="请输入管理员账号" class="admin-input">
             <input type="password" id="adminPwd" placeholder="请输入管理员密码" class="admin-input">
             <button class="admin-login-btn" onclick="adminLogin()" data-hover>
-                <!-- 改动28：删除多余的<符号，修复图标标签 -->
                 <i class="fas fa-key"></i> 登录
             </button>
         </div>
@@ -390,50 +364,39 @@
     <div id="adminPage" class="admin-page hidden">
         <div class="admin-container card-animate">
             <h2>
-                <!-- 改动29：删除多余的<符号，修复图标标签 -->
                 <i class="fas fa-tachometer-alt"></i> 卡提希娅网站管理员后台
             </h2>
             <div class="admin-function">
                 <h3>
-                    <!-- 改动30：删除多余的<符号，修复图标标签 -->
                     <i class="fas fa-cogs"></i> 功能面板
                 </h3>
                 <button class="admin-btn" onclick="alert('角色数据已更新，网站将在5分钟后同步！')" data-hover>
-                    <!-- 改动31：删除多余的<符号，修复图标标签 -->
                     <i class="fas fa-user-edit"></i> 更新角色数据
                 </button>
                 <button class="admin-btn" onclick="alert('游戏攻略已更新，已推送至前端！')" data-hover>
-                    <!-- 改动32：删除多余的<符号，修复图标标签 -->
                     <i class="fas fa-file-alt"></i> 更新游戏攻略
                 </button>
                 <button class="admin-btn" onclick="alert('角色图库已更新，所有图片已缓存！')" data-hover>
-                    <!-- 改动33：删除多余的<符号，修复图标标签 -->
                     <i class="fas fa-images"></i> 更新角色图库
                 </button>
                 <button class="admin-btn" onclick="closeAdminPage()" data-hover>
-                    <!-- 改动34：删除多余的<符号，修复图标标签 -->
                     <i class="fas fa-sign-out-alt"></i> 退出后台
                 </button>
             </div>
             <div class="admin-data">
                 <h3>
-                    <!-- 改动35：删除多余的<符号，修复图标标签 -->
                     <i class="fas fa-chart-bar"></i> 网站数据预览
                 </h3>
                 <p class="admin-data-item">
-                    <!-- 改动36：删除多余的<符号，修复图标标签 -->
                     <i class="fas fa-eye"></i> 访问量：1258 次
                 </p>
                 <p class="admin-data-item">
-                    <!-- 改动37：删除多余的<符号，修复图标标签 -->
                     <i class="fas fa-picture-o"></i> 图片库数量：8 张
                 </p>
                 <p class="admin-data-item">
-                    <!-- 改动38：删除多余的<符号，修复图标标签 -->
                     <i class="fas fa-calendar"></i> 最后更新时间：2026-01-17
                 </p>
                 <p class="admin-data-item">
-                    <!-- 改动39：删除多余的<符号，修复图标标签 -->
                     <i class="fas fa-user"></i> 管理员：Carterthyia Admin
                 </p>
             </div>
@@ -450,11 +413,13 @@
 
     <!-- 回到顶部 -->
     <button id="backToTop" class="back-to-top hidden" onclick="backToTop()" data-hover>
-        <!-- 改动40：删除多余的<符号，修复图标标签 -->
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- 交互JS -->
+    <!-- 交互JS：优先引入config.js（核心整合点） -->
+    <script src="config.js"></script>
+    
+    <!-- 视频标签切换 & 播放逻辑（原有功能不变） -->
     <script>
         // 视频标签切换
         document.querySelectorAll('.video-tab').forEach(tab => {
@@ -480,6 +445,8 @@
             });
         }
     </script>
+    
+    <!-- 最后引入业务JS文件 -->
     <script src="script.js"></script>
 </body>
 </html>
