@@ -251,11 +251,11 @@ function toggleStory() {
 
     if (isStoryVisible) {
         storyContent.style.display = 'block';
-        storyToggle.innerHTML = '<<i class="fa fa-chevron-up"></</i> 收起故事';
+        storyToggle.innerHTML = '<i class="fa fa-chevron-up"></i> 收起故事';
         storyContent.classList.add('visible');
     } else {
         storyContent.style.display = 'none';
-        storyToggle.innerHTML = '<<i class="fa fa-chevron-down"></</i> 展开故事';
+        storyToggle.innerHTML = '<i class="fa fa-chevron-down"></i> 展开故事';
         storyContent.classList.remove('visible');
     }
 }

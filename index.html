@@ -12,7 +12,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <<i class="fa fa-star"></</i>
+                <i class="fa fa-star"></i>
                 <span>卡提希娅的星光小站</span>
             </div>
             <ul class="nav-menu">
@@ -24,35 +24,36 @@
                 <li class="nav-item"><a href="#demo" class="nav-link">实机演示</a></li>
             </ul>
             <div class="nav-toggle">
-                <<i class="fa fa-bars"></</i>
+                <i class="fa fa-bars"></i>
             </div>
         </div>
     </nav>
 
     <!-- 控制面板 -->
     <div class="control-panel">
-        <h3><<i class="fa fa-sliders"></</i> 个性化设置</h3>
+        <h3><i class="fa fa-sliders"></i> 个性化设置</h3>
         <button class="control-btn" onclick="switchTheme('purple')">
-            <<i class="fa fa-palette"></</i> 银紫色主题
+            <i class="fa fa-palette"></i> 银紫色主题
         </button>
         <button class="control-btn" onclick="switchTheme('blue')">
-            <<i class="fa fa-snowflake-o"></</i> 冰蓝色主题
+            <i class="fa fa-snowflake-o"></i> 冰蓝色主题
         </button>
         <button class="control-btn" onclick="toggleDarkMode()">
-            <<i class="fa fa-moon"></</i> 深色模式
+            <i class="fa fa-moon"></i> 深色模式
         </button>
     </div>
 
     <!-- 回到顶部 -->
     <div class="back-to-top hidden">
-        <<i class="fa fa-arrow-up"></</i>
+        <i class="fa fa-arrow-up"></i>
     </div>
 
-    <!-- 首页 -->
+    <!-- 首页（恢复打字机效果，应用到标题） -->
     <section id="home" class="home-section section-animate">
         <div class="home-container">
             <img src="1.jpg" alt="卡提希娅头像" class="carterthyia-avatar">
-            <h1 class="character-title">卡提希娅（芙露德莉丝）</h1>
+            <!-- 给标题添加typewriter类，实现打字机效果 -->
+            <h1 class="character-title typewriter">卡提希娅（芙露德莉丝）</h1>
             <p class="character-desc">于光影中守护的温柔使者 · 双形态战斗达人</p>
             <div class="home-btns">
                 <a href="#gallery" class="btn">进入角色图库</a>
@@ -64,7 +65,7 @@
     <!-- 角色设定 -->
     <section id="about" class="section-animate">
         <div class="section-header">
-            <h2><<i class="fa fa-user-circle"></</i> 角色设定</h2>
+            <h2><i class="fa fa-user-circle"></i> 角色设定</h2>
             <div class="section-divider"></div>
         </div>
         <div class="card-animate">
@@ -94,12 +95,12 @@
     <!-- 故事背景 -->
     <section id="story" class="section-animate">
         <div class="section-header">
-            <h2><<i class="fa fa-book-open"></</i> 角色故事背景</h2>
+            <h2><i class="fa fa-book-open"></i> 角色故事背景</h2>
             <div class="section-divider"></div>
         </div>
         <div class="card-animate">
             <button id="storyToggle" class="btn" onclick="toggleStory()">
-                <<i class="fa fa-chevron-up"></</i> 收起故事
+                <i class="fa fa-chevron-up"></i> 收起故事
             </button>
             <div id="storyContent" class="story-paragraph">
                 <p class="story-title">【出身与命运的转折】</p>
@@ -122,7 +123,7 @@
     <!-- 游戏攻略 -->
     <section id="guide" class="section-animate">
         <div class="section-header">
-            <h2><<i class="fa fa-gamepad"></</i> 游戏攻略指南</h2>
+            <h2><i class="fa fa-gamepad"></i> 游戏攻略指南</h2>
             <div class="section-divider"></div>
         </div>
         <div class="card-animate">
@@ -184,10 +185,10 @@
         </div>
     </section>
 
-    <!-- 角色图库 -->
+    <!-- 角色图库（横向排列，不竖排） -->
     <section id="gallery" class="section-animate">
         <div class="section-header">
-            <h2><<i class="fa fa-images"></</i> 角色图库</h2>
+            <h2><i class="fa fa-images"></i> 角色图库</h2>
             <div class="section-divider"></div>
         </div>
         <div class="card-animate">
@@ -197,6 +198,7 @@
                 <button class="gallery-tab" data-type="battle">战斗</button>
                 <button class="gallery-tab" data-type="daily">日常</button>
             </div>
+            <!-- 横向排列图库容器，已在style.css中配置flex+横向滚动 -->
             <div class="gallery-container">
                 <img src="1.jpg" alt="卡提希娅立绘1" class="gallery-img" onclick="previewImage(this.src)" data-type="art">
                 <img src="2.jpg" alt="卡提希娅立绘2" class="gallery-img" onclick="previewImage(this.src)" data-type="art">
@@ -210,10 +212,10 @@
         </div>
     </section>
 
-    <!-- 实机演示（适配videos文件夹+111.mp4/12.mp4） -->
+    <!-- 实机演示（修复视频引用，确保小卡/大卡对应不同视频） -->
     <section id="demo" class="section-animate">
         <div class="section-header">
-            <h2><<i class="fa fa-film"></</i> 实机演示视频</h2>
+            <h2><i class="fa fa-film"></i> 实机演示视频</h2>
             <div class="section-divider"></div>
         </div>
         <div class="card-animate">
@@ -222,10 +224,10 @@
                 <button class="gallery-tab" data-type="big" onclick="switchVideo('big')">大卡（芙露德莉丝·巨剑形态）</button>
             </div>
 
-            <!-- 小卡视频：videos/111.mp4 -->
+            <!-- 小卡视频：对应videos/111.mp4（迅刀形态） -->
             <div id="smallVideo" class="video-container">
                 <div class="video-cover" onclick="playVideo('videoPlayer1', this)">
-                    <div class="play-btn"><<i class="fa fa-play"></</i></div>
+                    <div class="play-btn"><i class="fa fa-play"></i></div>
                 </div>
                 <video class="demo-video" id="videoPlayer1" controls muted playsinline preload="metadata" poster="1.jpg">
                     <source src="videos/111.mp4" type="video/mp4">
@@ -233,10 +235,10 @@
                 </video>
             </div>
 
-            <!-- 大卡视频：videos/12.mp4 -->
+            <!-- 大卡视频：对应videos/12.mp4（巨剑形态，确保与小卡不同） -->
             <div id="bigVideo" class="video-container hidden">
                 <div class="video-cover" onclick="playVideo('videoPlayer2', this)">
-                    <div class="play-btn"><<i class="fa fa-play"></</i></div>
+                    <div class="play-btn"><i class="fa fa-play"></i></div>
                 </div>
                 <video class="demo-video" id="videoPlayer2" controls muted playsinline preload="metadata" poster="2.jpg">
                     <source src="videos/12.mp4" type="video/mp4">
