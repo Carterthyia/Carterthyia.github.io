@@ -11,6 +11,10 @@ window.onload = function() {
     initNavbar();
     // 初始化回到顶部按钮
     initBackToTop();
+    // 初始化视频标签切换
+    initVideoTabs();
+    // 初始化图库筛选
+    initGalleryFilter();
 };
 
 // 1. 初始化页面动效（滚动淡入、卡片动效）
@@ -41,9 +45,9 @@ function initAnimations() {
     // 手动触发一次滚动事件，初始化可见元素
     window.dispatchEvent(new Event('scroll'));
 
-    // 头像悬浮动效（确保头像交互正常）
+    // 头像悬浮动效
     const avatar = document.getElementById('avatar');
-    if (avatar) { // 判空，避免头像不存在时报错
+    if (avatar) {
         avatar.addEventListener('mouseenter', function() {
             this.style.transform = 'scale(1.05) rotate(5deg)';
         });
@@ -54,7 +58,7 @@ function initAnimations() {
 
     // 标题文字渐变动效
     const title = document.getElementById('characterTitle');
-    if (title) { // 判空，避免报错
+    if (title) {
         let titleIndex = 0;
         const titleText = title.textContent;
         title.textContent = '';
@@ -129,7 +133,51 @@ function initBackToTop() {
     });
 }
 
-// 4. 主题切换功能（保留原有功能，优化动效）
+// 4. 初始化视频标签切换（修复视频切换逻辑）
+function initVideoTabs() {
+    const videoTabs = document.querySelectorAll('.video-tab');
+    videoTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // 移除所有标签激活状态
+            document.querySelectorAll('.video-tab').forEach(t => t.classList.remove('active'));
+            // 隐藏所有视频容器
+            document.querySelectorAll('.video-container').forEach(v => v.classList.remove('active'));
+            // 激活当前标签和对应视频
+            tab.classList.add('active');
+            const targetVideo = tab.dataset.target;
+            if (targetVideo) {
+                document.getElementById(targetVideo).classList.add('active');
+            }
+        });
+    });
+}
+
+// 5. 初始化图库筛选功能
+function initGalleryFilter() {
+    const galleryTabs = document.querySelectorAll('.gallery-tab');
+    galleryTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            galleryTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            const filterType = tab.dataset.type;
+            document.querySelectorAll('.gallery-img').forEach(img => {
+                if (filterType === 'all' || img.dataset.type === filterType) {
+                    img.style.display = 'block';
+                    setTimeout(() => {
+                        img.style.opacity = '1';
+                    }, 100);
+                } else {
+                    img.style.opacity = '0';
+                    setTimeout(() => {
+                        img.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+    });
+}
+
+// 6. 主题切换功能
 function switchTheme(theme) {
     const root = document.documentElement;
     const avatar = document.getElementById('avatar');
@@ -157,18 +205,17 @@ function switchTheme(theme) {
     alert(`已切换为${theme === 'purple' ? '银紫色' : '冰蓝色'}主题！`);
 }
 
-// 5. 故事隐藏/显示功能（优化折叠动画）
+// 7. 故事隐藏/显示功能
 function toggleStory() {
     const storyContent = document.getElementById('storyContent');
     const storyToggle = document.getElementById('storyToggle');
-    if (!storyContent || !storyToggle) return; // 判空避免报错
+    if (!storyContent || !storyToggle) return;
 
     isStoryVisible = !isStoryVisible;
 
     if (isStoryVisible) {
         storyContent.style.display = 'block';
         storyToggle.innerHTML = '<i class="fas fa-chevron-up"></i> 收起故事';
-        // 淡入动画
         storyContent.style.opacity = '0';
         storyContent.style.transform = 'translateY(20px)';
         setTimeout(function() {
@@ -176,7 +223,6 @@ function toggleStory() {
             storyContent.style.transform = 'translateY(0)';
         }, 10);
     } else {
-        // 淡出动画
         storyContent.style.opacity = '0';
         storyContent.style.transform = 'translateY(20px)';
         setTimeout(function() {
@@ -186,7 +232,7 @@ function toggleStory() {
     }
 }
 
-// 6. 深色模式切换功能（新增）
+// 8. 深色模式切换功能
 function toggleDarkMode() {
     const body = document.body;
     const backToTopBtn = document.getElementById('backToTop');
@@ -210,7 +256,7 @@ function toggleDarkMode() {
     alert(`已切换为${isDarkMode ? '深色' : '浅色'}模式！`);
 }
 
-// 7. 攻略标签切换功能（新增）
+// 9. 攻略标签切换功能
 function switchGuideTab(tab) {
     // 隐藏所有攻略内容
     const guideContents = document.querySelectorAll('.guide-content');
@@ -235,20 +281,19 @@ function switchGuideTab(tab) {
     window.dispatchEvent(new Event('scroll'));
 }
 
-// 8. 图片预览功能（新增）
+// 10. 图片预览功能
 function previewImage(src) {
     const previewModal = document.getElementById('imagePreviewModal');
     const previewImage = document.getElementById('previewImage');
-    if (!previewModal || !previewImage) return; // 判空避免报错
+    if (!previewModal || !previewImage) return;
 
     previewImage.src = src;
     previewModal.classList.remove('modal-hidden');
-
     // 禁止页面滚动
     document.body.style.overflow = 'hidden';
 }
 
-// 9. 关闭图片预览（新增）
+// 11. 关闭图片预览
 function closeImagePreview() {
     const previewModal = document.getElementById('imagePreviewModal');
     if (!previewModal) return;
@@ -257,10 +302,62 @@ function closeImagePreview() {
     document.body.style.overflow = 'auto';
 }
 
-// 10. 回到顶部功能
+// 12. 回到顶部功能
 function backToTop() {
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
     });
+}
+
+// 13. 视频播放核心修复函数（健壮兼容，解决播放失败问题）
+function playVideo(playerId, coverElement) {
+    // 获取视频元素
+    const videoElement = document.getElementById(playerId);
+    if (!videoElement) {
+        console.error("未找到视频播放器：", playerId);
+        alert("视频播放器初始化失败，请刷新页面重试");
+        return;
+    }
+    if (!coverElement) {
+        console.error("未找到视频封面元素");
+        return;
+    }
+
+    // 尝试播放视频
+    try {
+        // 先显示视频（避免封面遮挡）
+        videoElement.style.display = "block";
+        // 播放视频（处理 Promise 兼容）
+        const playPromise = videoElement.play();
+        if (playPromise) {
+            playPromise.then(() => {
+                // 播放成功，隐藏封面
+                coverElement.style.display = "none";
+            }).catch((error) => {
+                console.error("视频播放被浏览器阻止：", error);
+                coverElement.style.display = "none";
+                alert("视频自动播放被阻止，请手动点击视频控件播放（已隐藏封面）");
+            });
+        } else {
+            // 低版本浏览器，直接隐藏封面
+            coverElement.style.display = "none";
+        }
+
+        // 视频播放结束，重置并显示封面
+        videoElement.addEventListener('ended', () => {
+            coverElement.style.display = "flex";
+            videoElement.currentTime = 0; // 重置到视频开头
+        });
+
+        // 视频暂停时也显示封面（可选优化）
+        videoElement.addEventListener('pause', () => {
+            if (videoElement.currentTime > 0 && !videoElement.ended) {
+                coverElement.style.display = "flex";
+            }
+        });
+    } catch (error) {
+        console.error("播放视频时发生异常：", error);
+        alert("视频播放失败，请检查视频文件是否完好且编码为 H.264/AAC");
+    }
 }
