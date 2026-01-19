@@ -1,127 +1,269 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>卡提希娅的星光小站</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>卡提希娅的星光小站</title>
+    <!-- 1. 引入高级样式表 -->
+    <link rel="stylesheet" href="style.css">
+    <!-- 2. 引入稳定Font Awesome CDN（保证图标正常显示） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-  <!-- 导航栏 -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <div class="nav-logo"><i class="fa fa-star"></i> 卡提希娅的星光小站</div>
-      <ul class="nav-menu">
-        <li><a href="#home">首页</a></li>
-        <li><a href="#about">角色设定</a></li>
-        <li><a href="#story">故事背景</a></li>
-        <li><a href="#guide">游戏攻略</a></li>
-        <li><a href="#gallery">角色图库</a></li>
-        <li><a href="#demo">实机演示</a></li>
-        <li><a href="admin.html" class="admin-link">后台登录</a></li>
-      </ul>
-      <div class="nav-toggle"><i class="fa fa-bars"></i></div>
-    </div>
-  </nav>
-
-  <!-- 首页 -->
-  <section id="home" class="home-section">
-    <div class="home-container">
-      <img src="1.jpg" class="carterthyia-avatar" alt="头像">
-      <h1 class="character-title">卡提希娅（芙露德莉丝）</h1>
-      <p class="character-desc">光影中的温柔使者 · 双形态战斗达人</p>
-      <div class="home-btns">
-        <a href="#gallery" class="btn">角色图库</a>
-        <a href="#demo" class="btn btn-secondary">实机演示</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 角色设定 -->
-  <section id="about" class="content-section section-animate">
-    <div class="section-header"><h2><i class="fa fa-user-circle"></i> 角色设定</h2></div>
-    <div class="card card-animate">
-      <p><strong>姓名：</strong>卡提希娅（Carterthyia）</p>
-      <p><strong>特质：</strong>穿梭于光影之间，温柔又坚毅</p>
-      <p><strong>形态：</strong>迅刀 / 巨剑（芙露德莉丝）</p>
-      <p><strong>称号：</strong>黎那汐塔圣女 · 岁主共鸣者</p>
-      <p><strong>核心技能：</strong>气刃回旋、风轨突袭、苍穹崩裂</p>
-    </div>
-  </section>
-
-  <!-- 故事背景 -->
-  <section id="story" class="content-section section-animate">
-    <div class="section-header"><h2><i class="fa fa-book"></i> 故事背景</h2></div>
-    <div class="card card-animate story-content">
-      <p><strong>出身与命运：</strong>卡提希娅原本是埃格拉小镇的少女，顽皮又热爱生活……</p>
-      <p><strong>双形态的秘密：</strong>作为首位常态与觉醒双形态角色，卡提希娅可自由切换迅刀与巨剑形态……</p>
-      <p><strong>现况与未来：</strong>守护身边的人，一边探寻鸣式与神明的秘密……</p>
-    </div>
-  </section>
-
-  <!-- 游戏攻略 -->
-  <section id="guide" class="content-section section-animate">
-    <div class="section-header"><h2><i class="fa fa-gamepad"></i> 游戏攻略</h2></div>
-    <div class="card card-animate">
-      <div class="guide-tabs">
-        <button class="tab-btn active" data-tab="core">核心机制</button>
-        <button class="tab-btn" data-tab="weapon">武器选择</button>
-        <button class="tab-btn" data-tab="team">配队推荐</button>
-      </div>
-      <div id="coreContent" class="guide-content visible">
-        <p>卡提希娅是风蚀体系主C，输出核心为「风蚀效应」与「苍穹崩裂」爆发。</p>
-      </div>
-      <div id="weaponContent" class="guide-content hidden">
-        <p>毕业武器：不屈命定之冠。平替：裁春、镇海迅刀。</p>
-      </div>
-      <div id="teamContent" class="guide-content hidden">
-        <p>推荐队伍：卡提希娅 + 夏空 + 千咲（高配）；卡提 + 气动主 + 散华（平民）。</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 图库 -->
-  <section id="gallery" class="content-section section-animate">
-    <div class="section-header"><h2><i class="fa fa-image"></i> 角色图库</h2></div>
-    <div class="gallery-grid card-animate">
-      <img src="1.jpg" alt="立绘1" onclick="previewImage(this.src)">
-      <img src="2.jpg" alt="立绘2" onclick="previewImage(this.src)">
-      <img src="3.jpg" alt="战斗1" onclick="previewImage(this.src)">
-      <img src="4.jpg" alt="战斗2" onclick="previewImage(this.src)">
-    </div>
-  </section>
-
-  <!-- 实机演示 -->
-  <section id="demo" class="content-section section-animate">
-    <div class="section-header"><h2><i class="fa fa-film"></i> 实机演示</h2></div>
-    <div class="demo-panel card-animate">
-      <h3 class="demo-title">卡提希娅双形态战斗演示</h3>
-      <div class="video-tabs">
-        <div class="video-tab active" data-target="video1">迅刀形态</div>
-        <div class="video-tab" data-target="video2">巨剑形态</div>
-      </div>
-
-      <div class="video-container active" id="video1">
-        <div class="video-cover" onclick="playVideo('videoPlayer1', this)">
-          <div class="play-btn"><i class="fa fa-play"></i></div>
+    <!-- 导航栏（高级效果，固定+毛玻璃） -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fa fa-star"></i>
+                <span>卡提希娅的星光小站</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">首页</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">角色设定</a></li>
+                <li class="nav-item"><a href="#story" class="nav-link">故事背景</a></li>
+                <li class="nav-item"><a href="#guide" class="nav-link">游戏攻略</a></li>
+                <li class="nav-item"><a href="#gallery" class="nav-link">角色图库</a></li>
+                <li class="nav-item"><a href="#demo" class="nav-link">实机演示</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <i class="fa fa-bars"></i>
+            </div>
         </div>
-        <video id="videoPlayer1" class="demo-video" controls muted playsinline preload="metadata" poster="1.jpg">
-          <source src="videos/111.mp4" type="video/mp4">
-        </video>
-      </div>
+    </nav>
 
-      <div class="video-container" id="video2">
-        <div class="video-cover" onclick="playVideo('videoPlayer2', this)">
-          <div class="play-btn"><i class="fa fa-play"></i></div>
-        </div>
-        <video id="videoPlayer2" class="demo-video" controls muted playsinline preload="metadata" poster="2.jpg">
-          <source src="videos/12.mp4" type="video/mp4">
-        </video>
-      </div>
+    <!-- 控制面板（主题切换，高级毛玻璃效果） -->
+    <div class="control-panel">
+        <h3><i class="fa fa-sliders"></i> 个性化设置</h3>
+        <button class="control-btn" onclick="switchTheme('purple')">
+            <i class="fa fa-palette"></i> 银紫色主题
+        </button>
+        <button class="control-btn" onclick="switchTheme('blue')">
+            <i class="fa fa-snowflake-o"></i> 冰蓝色主题
+        </button>
+        <button class="control-btn" onclick="toggleDarkMode()">
+            <i class="fa fa-moon"></i> 深色模式
+        </button>
     </div>
-  </section>
 
-  <script src="script.js"></script>
+    <!-- 回到顶部按钮（高级动效） -->
+    <div class="back-to-top hidden">
+        <i class="fa fa-arrow-up"></i>
+    </div>
+
+    <!-- 首页（全屏+头像动效，高级效果） -->
+    <section id="home" class="home-section section-animate">
+        <div class="home-container">
+            <img src="1.jpg" alt="卡提希娅头像" class="carterthyia-avatar">
+            <h1 class="character-title">卡提希娅（芙露德莉丝）</h1>
+            <p class="character-desc">于光影中守护的温柔使者 · 双形态战斗达人</p>
+            <div class="home-btns">
+                <a href="#gallery" class="btn">进入角色图库</a>
+                <a href="#demo" class="btn btn-secondary">查看实机演示</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 角色设定（完整文字+高级卡片效果） -->
+    <section id="about" class="section-animate">
+        <div class="section-header">
+            <h2><i class="fa fa-user-circle"></i> 角色设定</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="card-animate">
+            <div class="about-info">
+                <span class="info-label">姓名：</span>
+                <span>卡提希娅（Carterthyia）</span>
+            </div>
+            <div class="about-info">
+                <span class="info-label">特质：</span>
+                <span>穿梭于光影之间，拥有温柔的力量，兼具顽皮与沉稳</span>
+            </div>
+            <div class="about-info">
+                <span class="info-label">形态：</span>
+                <span>迅刀形态（小卡） / 巨剑形态（大卡·芙露德莉丝）</span>
+            </div>
+            <div class="about-info">
+                <span class="info-label">称号：</span>
+                <span>芙露德莉斯（黎那汐塔圣女、岁主共鸣者）</span>
+            </div>
+            <div class="about-info">
+                <span class="info-label">核心技能：</span>
+                <span>气刃回旋、风轨突袭、终结技「苍穹崩裂」（真实伤害）</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 故事背景（完整文字+展开/收起，高级卡片效果） -->
+    <section id="story" class="section-animate">
+        <div class="section-header">
+            <h2><i class="fa fa-book-open"></i> 角色故事背景</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="card-animate">
+            <button id="storyToggle" class="btn" onclick="toggleStory()">
+                <i class="fa fa-chevron-up"></i> 收起故事
+            </button>
+            <div id="storyContent" class="story-paragraph">
+                <p class="story-title">【出身与命运的转折】</p>
+                <p>卡提希娅原本是埃格拉小镇的普通少女，性格顽皮自由，热爱生活，喜欢喝酒与恶作剧，对小镇外的世界充满好奇。在一次小镇的岁主感恩礼祭典上，她意外扰乱了仪式流程，被隐海修会施以惩罚，却也正是这次“意外”，让她的命运与神明、鸣式紧密相连。</p>
+                <p>祭典上的异常波动，让她体内的潜在力量被唤醒，逐渐受到命运的选中。此后，她开始经历一系列离奇的遭遇，身边的人和事都在悄然改变，原本平静的生活被打破，不得不踏上一段未知的旅程。</p>
+
+                <p class="story-title">【芙露德莉丝的名号】</p>
+                <p>在旅程中，她偶然与鸣式利维亚坦产生共鸣，获得了强大的力量，同时被赋予了“芙露德莉丝”的名号，被黎那汐塔的人们视为圣女和岁主共鸣者。这份荣誉让她获得了众人的敬仰，但也带来了沉重的责任。</p>
+                <p>值得一提的是，她的“圣女”身份并非真正由神明选定，而是由鸣式创造和赋予力量的共鸣者，这份力量既给了她保护他人的能力，也隐藏着不为人知的隐患，她在荣耀与迷茫中不断寻找自我。</p>
+
+                <p class="story-title">【双形态的秘密】</p>
+                <p>作为首位常态与觉醒双形态角色，卡提希娅可以自由切换迅刀与巨剑形态。迅刀形态（小卡）保留了她原本的顽皮与敏捷，作战风格灵动飘逸，擅长突袭与收割；巨剑形态（大卡·芙露德莉丝）则展现出沉稳与威严，力量大幅提升，兼具强大的防御能力与范围性AOE伤害，是应对高难副本的核心战力。</p>
+
+                <p class="story-title">【现况与未来】</p>
+                <p>如今的卡提希娅，早已不是那个小镇上的顽皮少女，她在一次次战斗与抉择中成长，逐渐明白自己的使命。她一边守护着身边的人，一边探寻着鸣式与神明的秘密，未来的旅程仍充满未知，但她始终带着那份温柔与勇气，砥砺前行。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 游戏攻略（完整内容+标签切换，高级卡片效果） -->
+    <section id="guide" class="section-animate">
+        <div class="section-header">
+            <h2><i class="fa fa-gamepad"></i> 游戏攻略指南</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="card-animate">
+            <div class="guide-tabs">
+                <button class="tab-btn" data-tab="core" onclick="switchGuideTab('core')">核心玩法</button>
+                <button class="tab-btn" data-tab="weapon" onclick="switchGuideTab('weapon')">武器选择</button>
+                <button class="tab-btn" data-tab="team" onclick="switchGuideTab('team')">配队推荐</button>
+                <button class="tab-btn" data-tab="artifact" onclick="switchGuideTab('artifact')">声骸搭配</button>
+            </div>
+
+            <!-- 核心玩法 -->
+            <div id="coreContent" class="guide-content guide-paragraph">
+                <p class="story-title">一、定位与核心机制</p>
+                <p>卡提希娅定位为气动主C，在V3.0版本中，逆境深塔榜单排名T0，冥歌海墟榜单排名T1，是当前版本异常体系中风蚀效应的核心输出角色，强度在线，新老漂泊者均可优先考虑抽取。</p>
+                <p>她的输出核心依赖「风蚀效应」，所有技能都会为目标叠加风蚀层数，层数越高，造成的伤害越高，终结技「苍穹崩裂」会引爆目标身上的所有风蚀层数，造成巨额真实伤害，是爆发输出的关键。</p>
+
+                <p class="story-title">二、输出循环技巧</p>
+                <p>1. 常规循环：普攻连段 → 气刃回旋（叠加风蚀） → 风轨突袭（位移+补层） → 普攻收尾；</p>
+                <p>2. 爆发循环：开启大招 → 切换巨剑形态 → 风蚀叠加至满层 → 释放「苍穹崩裂」 → 收割残血目标；</p>
+                <p>3. 注意事项：尽量保持目标身上的风蚀层数不中断，0-1链卡提需依赖夏空辅助挂层，2链及以上可自主维持层数。</p>
+            </div>
+
+            <!-- 武器选择 -->
+            <div id="weaponContent" class="guide-content guide-paragraph hidden">
+                <p class="story-title">一、首选武器（毕业专武）</p>
+                <p>不屈命定之冠：卡提希娅专属武器，无下位替代，刚需抽取。该武器大幅提升风蚀效应伤害，同时增加自身生命值（卡提核心属性），开启大招后额外获得暴击率加成，完美契合她的输出机制。</p>
+
+                <p class="story-title">二、平民替代武器</p>
+                <p>1. 裁春（椿专属武器）：提升普攻伤害与暴击伤害，适合平民玩家过渡，性价比高，容易养成；</p>
+                <p>2. 戍关迅刀·镇海：三星武器，容易获取，基础属性优秀，适合新手前期过渡，后期可替换为高阶武器；</p>
+                <p>3. 禁忌之锋：四星武器，提升异常状态伤害，可作为过渡选择，效果略逊于裁春。</p>
+
+                <p class="story-title">三、武器养成建议</p>
+                <p>优先将武器等级拉满，副词条优先选择「生命值」「暴击率」「暴击伤害」，其次是「风蚀效应伤害加成」，最大化卡提希娅的输出能力。</p>
+            </div>
+
+            <!-- 配队推荐 -->
+            <div id="teamContent" class="guide-content guide-paragraph hidden">
+                <p class="story-title">一、最优配队（输出最大化）</p>
+                <p>卡提希娅 + 夏空 + 千咲：风蚀体系拉满，夏空负责挂风蚀、提供辅助加成，千咲负责治疗与续航，同时提供一定的输出增益，该配队适合高难副本，输出与生存兼备。</p>
+
+                <p class="story-title">二、平民配队（易获取，成型快）</p>
+                <p>1. 卡提希娅 + 气动主 + 散华：气动主提供风元素加成，散华负责辅助与控制，容易获取，养成成本低，适合新手玩家；</p>
+                <p>2. 卡提希娅 + 安比 + 科希：爆发能力强，安比负责破甲，科希负责补伤害，适合快速清理普通副本。</p>
+
+                <p class="story-title">三、深渊配队（应对高难，容错率高）</p>
+                <p>卡提希娅 + 守岸人 + 千咲：守岸人提供强大的辅助增益与控制能力，千咲保证续航，卡提希娅负责核心输出，该配队可应对绝大多数高难副本，容错率极高。</p>
+            </div>
+
+            <!-- 声骸搭配 -->
+            <div id="artifactContent" class="guide-content guide-paragraph hidden">
+                <p class="story-title">一、毕业套装</p>
+                <p>愿戴荣光之旅五件套：卡提希娅的核心声骸套装，最优选择。套装效果大幅提升风蚀效应伤害与生命值，完美契合卡提的输出机制与属性需求，搭配44111词条，首位声骸装配芙露德莉丝专属声骸，输出最大化。</p>
+
+                <p class="story-title">二、过渡套装</p>
+                <p>1. 风之低语四件套 + 生命增幅二件套：提升风元素伤害与生命值，适合前期过渡，容易获取；</p>
+                <p>2. 异常猎手五件套：提升所有异常状态伤害，可作为过渡选择，效果略逊于愿戴荣光之旅。</p>
+
+                <p class="story-title">三、词条选择建议</p>
+                <p>主词条：生命值、风蚀效应伤害、普攻伤害；</p>
+                <p>副词条：优先生命值，其次是暴击率、暴击伤害、风元素伤害加成，尽量避免无用词条，最大化属性收益。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 角色图库（网格布局+预览，高级效果） -->
+    <section id="gallery" class="section-animate">
+        <div class="section-header">
+            <h2><i class="fa fa-images"></i> 角色图库</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="card-animate">
+            <div class="gallery-tabs">
+                <button class="gallery-tab active" data-type="all">全部</button>
+                <button class="gallery-tab" data-type="art">立绘</button>
+                <button class="gallery-tab" data-type="battle">战斗</button>
+                <button class="gallery-tab" data-type="daily">日常</button>
+            </div>
+            <div class="gallery-container">
+                <img src="1.jpg" alt="卡提希娅立绘1" class="gallery-img" onclick="previewImage(this.src)" data-type="art">
+                <img src="2.jpg" alt="卡提希娅立绘2" class="gallery-img" onclick="previewImage(this.src)" data-type="art">
+                <img src="3.jpg" alt="卡提希娅日常1" class="gallery-img" onclick="previewImage(this.src)" data-type="daily">
+                <img src="4.jpg" alt="卡提希娅战斗1" class="gallery-img" onclick="previewImage(this.src)" data-type="battle">
+                <img src="5.jpg" alt="卡提希娅战斗2" class="gallery-img" onclick="previewImage(this.src)" data-type="battle">
+                <img src="6.jpg" alt="卡提希娅日常2" class="gallery-img" onclick="previewImage(this.src)" data-type="daily">
+                <img src="7.jpg" alt="卡提希娅立绘3" class="gallery-img" onclick="previewImage(this.src)" data-type="art">
+                <img src="8.jpg" alt="卡提希娅战斗3" class="gallery-img" onclick="previewImage(this.src)" data-type="battle">
+            </div>
+        </div>
+    </section>
+
+    <!-- 实机演示（视频正常播放+高级交互，核心修复） -->
+    <section id="demo" class="section-animate">
+        <div class="section-header">
+            <h2><i class="fa fa-film"></i> 实机演示视频</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="demo-panel">
+            <h3 class="demo-title">卡提希娅双形态战斗演示</h3>
+            <div class="video-tabs">
+                <div class="video-tab active" data-target="video1">小卡（迅刀形态）</div>
+                <div class="video-tab" data-target="video2">大卡（芙露德莉丝·巨剑形态）</div>
+            </div>
+
+            <!-- 小卡视频（高级封面+正常播放，src由config.js配置） -->
+            <div class="video-container active" id="video1">
+                <div class="video-cover" onclick="playVideo('videoPlayer1', this)">
+                    <div class="play-btn"><i class="fa fa-play"></i></div>
+                </div>
+                <video class="demo-video" id="videoPlayer1" controls muted playsinline preload="metadata" poster="1.jpg">
+                    <source src="111.webm" type="video/webm">
+                    你的浏览器不支持HTML5视频播放，请升级至Chrome/Edge最新版本
+                </video>
+            </div>
+
+            <!-- 大卡视频（高级封面+正常播放，src由config.js配置） -->
+            <div class="video-container" id="video2">
+                <div class="video-cover" onclick="playVideo('videoPlayer2', this)">
+                    <div class="play-btn"><i class="fa fa-play"></i></div>
+                </div>
+                <video class="demo-video" id="videoPlayer2" controls muted playsinline preload="metadata" poster="2.jpg">
+                    <source src="12.webm" type="video/webm">
+                    你的浏览器不支持HTML5视频播放，请升级至Chrome/Edge最新版本
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- 图片预览弹窗（高级毛玻璃效果） -->
+    <div id="imagePreviewModal" class="modal-hidden" onclick="closeImagePreview()">
+        <div class="preview-content">
+            <span class="preview-close" onclick="closeImagePreview()">&times;</span>
+            <img src="" alt="角色预览图" id="previewImage">
+        </div>
+    </div>
+
+    <!-- 3. 先引入config.js（全局配置，必须在script.js之前） -->
+    <script src="config.js"></script>
+    <!-- 4. 再引入交互脚本（依赖config.js） -->
+    <script src="script.js"></script>
 </body>
 </html>
