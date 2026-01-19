@@ -48,11 +48,10 @@
         <i class="fa fa-arrow-up"></i>
     </div>
 
-    <!-- 首页（恢复打字机效果，应用到标题） -->
+    <!-- 首页（打字机标题） -->
     <section id="home" class="home-section section-animate">
         <div class="home-container">
             <img src="1.jpg" alt="卡提希娅头像" class="carterthyia-avatar">
-            <!-- 给标题添加typewriter类，实现打字机效果 -->
             <h1 class="character-title typewriter">卡提希娅（芙露德莉丝）</h1>
             <p class="character-desc">于光影中守护的温柔使者 · 双形态战斗达人</p>
             <div class="home-btns">
@@ -62,7 +61,7 @@
         </div>
     </section>
 
-    <!-- 角色设定 -->
+    <!-- 角色设定/故事背景/游戏攻略 内容不变 -->
     <section id="about" class="section-animate">
         <div class="section-header">
             <h2><i class="fa fa-user-circle"></i> 角色设定</h2>
@@ -92,7 +91,6 @@
         </div>
     </section>
 
-    <!-- 故事背景 -->
     <section id="story" class="section-animate">
         <div class="section-header">
             <h2><i class="fa fa-book-open"></i> 角色故事背景</h2>
@@ -120,7 +118,6 @@
         </div>
     </section>
 
-    <!-- 游戏攻略 -->
     <section id="guide" class="section-animate">
         <div class="section-header">
             <h2><i class="fa fa-gamepad"></i> 游戏攻略指南</h2>
@@ -128,7 +125,7 @@
         </div>
         <div class="card-animate">
             <div class="guide-tabs">
-                <button class="tab-btn" data-tab="core" onclick="switchGuideTab('core')">核心玩法</button>
+                <button class="tab-btn active" data-tab="core" onclick="switchGuideTab('core')">核心玩法</button>
                 <button class="tab-btn" data-tab="weapon" onclick="switchGuideTab('weapon')">武器选择</button>
                 <button class="tab-btn" data-tab="team" onclick="switchGuideTab('team')">配队推荐</button>
                 <button class="tab-btn" data-tab="artifact" onclick="switchGuideTab('artifact')">声骸搭配</button>
@@ -185,7 +182,7 @@
         </div>
     </section>
 
-    <!-- 角色图库（横向排列，不竖排） -->
+    <!-- 角色图库（横向排列） -->
     <section id="gallery" class="section-animate">
         <div class="section-header">
             <h2><i class="fa fa-images"></i> 角色图库</h2>
@@ -198,7 +195,6 @@
                 <button class="gallery-tab" data-type="battle">战斗</button>
                 <button class="gallery-tab" data-type="daily">日常</button>
             </div>
-            <!-- 横向排列图库容器，已在style.css中配置flex+横向滚动 -->
             <div class="gallery-container">
                 <img src="1.jpg" alt="卡提希娅立绘1" class="gallery-img" onclick="previewImage(this.src)" data-type="art">
                 <img src="2.jpg" alt="卡提希娅立绘2" class="gallery-img" onclick="previewImage(this.src)" data-type="art">
@@ -212,7 +208,7 @@
         </div>
     </section>
 
-    <!-- 实机演示（修复视频引用，确保小卡/大卡对应不同视频） -->
+    <!-- 实机演示（核心修复：视频路径强制写死，杜绝重复） -->
     <section id="demo" class="section-animate">
         <div class="section-header">
             <h2><i class="fa fa-film"></i> 实机演示视频</h2>
@@ -224,7 +220,7 @@
                 <button class="gallery-tab" data-type="big" onclick="switchVideo('big')">大卡（芙露德莉丝·巨剑形态）</button>
             </div>
 
-            <!-- 小卡视频：对应videos/111.mp4（迅刀形态） -->
+            <!-- 小卡视频：强制指定 videos/111.mp4 -->
             <div id="smallVideo" class="video-container">
                 <div class="video-cover" onclick="playVideo('videoPlayer1', this)">
                     <div class="play-btn"><i class="fa fa-play"></i></div>
@@ -235,7 +231,7 @@
                 </video>
             </div>
 
-            <!-- 大卡视频：对应videos/12.mp4（巨剑形态，确保与小卡不同） -->
+            <!-- 大卡视频：强制指定 videos/12.mp4 -->
             <div id="bigVideo" class="video-container hidden">
                 <div class="video-cover" onclick="playVideo('videoPlayer2', this)">
                     <div class="play-btn"><i class="fa fa-play"></i></div>

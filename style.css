@@ -1,29 +1,28 @@
-/* 全局样式重置 + 高级基础配置（移除backdrop-filter毛玻璃特效） */
+/* 全局样式重置 + 强制文字颜色（解决浅色模式不可见） */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "微软雅黑", "PingFang SC", "Microsoft YaHei", sans-serif;
     scroll-behavior: smooth;
+    color: #333333 !important; /* 强制浅色模式文字颜色，最高优先级 */
 }
 
 :root {
-    /* 主题配色（银紫色/冰蓝色，支持切换） */
+    /* 主题配色（银紫色/冰蓝色） */
     --primary-color-purple: #9c7ee6;
     --secondary-color-purple: #b8a3f5;
-    --bg-color-purple: rgba(156, 126, 230, 0.05); /* 浅色模式背景更柔和 */
-    /* 移除毛玻璃，改为纯色不透明背景 */
+    --bg-color-purple: rgba(156, 126, 230, 0.05);
     --card-bg-purple: #ffffff;
     --shadow-purple: 0 8px 32px rgba(156, 126, 230, 0.2);
 
     --primary-color-blue: #6ec6ff;
     --secondary-color-blue: #99d1ff;
-    --bg-color-blue: rgba(110, 198, 255, 0.05); /* 浅色模式背景更柔和 */
-    /* 移除毛玻璃，改为纯色不透明背景 */
+    --bg-color-blue: rgba(110, 198, 255, 0.05);
     --card-bg-blue: #ffffff;
     --shadow-blue: 0 8px 32px rgba(110, 198, 255, 0.2);
 
-    /* 默认银紫色主题（读取config.js中的defaultTheme） */
+    /* 默认主题变量 */
     --primary-color: var(--primary-color-purple);
     --secondary-color: var(--secondary-color-purple);
     --bg-color: var(--bg-color-purple);
@@ -31,20 +30,13 @@
     --card-shadow: var(--shadow-purple);
     --card-shadow-hover: 0 12px 40px rgba(156, 126, 230, 0.3);
 
-    /* 通用样式（修复浅色模式文字显示，提高对比度） */
-    --text-color: #333333; /* 浅色模式文字加深，更清晰 */
-    --text-light-color: #666666; /* 浅色模式辅助文字加深 */
     --white-color: #fff;
     --transition: all 0.3s ease-in-out;
     --border-radius: 12px;
-    /* 移除毛玻璃变量，不再使用 */
 }
 
-/* 深色模式样式（保留高级效果，移除毛玻璃，改为纯色不透明背景） */
+/* 深色模式单独配置（文字强制白色） */
 .dark-mode {
-    --text-color: #f5f5f5;
-    --text-light-color: #ccc;
-    /* 移除毛玻璃，改为深色纯色不透明背景 */
     --card-bg: #2d2d2d;
     --shadow-purple: 0 8px 32px rgba(0, 0, 0, 0.3);
     --shadow-blue: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -52,48 +44,33 @@
     --bg-color: #1a1a1a;
     background-color: #1a1a1a;
 }
+/* 深色模式文字强制白色 */
+.dark-mode * {
+    color: #f5f5f5 !important;
+}
 
-/* 打字机效果样式（恢复并优化） */
+/* 打字机效果 */
 .typewriter {
-    overflow: hidden; /* 隐藏溢出内容 */
-    border-right: 2px solid var(--primary-color); /* 光标效果 */
-    white-space: nowrap; /* 不换行 */
-    margin: 0 auto; /* 居中 */
-    letter-spacing: 0.1em; /* 字符间距 */
-    animation: 
-        typing 3.5s steps(40, end),
-        blink-caret 0.75s step-end infinite;
+    overflow: hidden;
+    border-right: 2px solid var(--primary-color) !important;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: 0.1em;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
 }
+@keyframes typing { from { width: 0 } to { width: 100% } }
+@keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--primary-color) } }
 
-/* 打字机动画：文字逐字显示 */
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-}
+/* 隐藏类 */
+.hidden { display: none !important; }
+.modal-hidden { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
 
-/* 光标闪烁动画 */
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: var(--primary-color) }
-}
-
-/* 隐藏类（通用，无冲突） */
-.hidden {
-    display: none !important;
-}
-
-.modal-hidden {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-
-/* 高级按钮样式（保留渐变、hover动效，无修改） */
+/* 按钮样式（强制按钮文字白色） */
 .btn {
     display: inline-block;
     padding: 12px 24px;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: var(--white-color);
+    color: #fff !important; /* 按钮文字强制白色 */
     text-decoration: none;
     border-radius: var(--border-radius);
     border: none;
@@ -104,536 +81,169 @@
     margin: 0 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
-
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
-
 .btn-secondary {
     background: transparent;
-    color: var(--primary-color);
+    color: var(--primary-color) !important;
     border: 2px solid var(--primary-color);
     box-shadow: none;
 }
+.btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); }
 
-.btn-secondary:hover {
-    background: var(--bg-color);
-}
-
-/* 导航栏（固定+滚动动效，移除毛玻璃，改为纯色背景） */
+/* 导航栏 */
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 999;
-    /* 移除backdrop-filter，保留纯色背景 */
-    background: var(--card-bg);
-    box-shadow: var(--card-shadow);
-    transition: var(--transition);
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 999;
+    background: var(--card-bg); box-shadow: var(--card-shadow); transition: var(--transition);
 }
-
-.navbar.scrolled {
-    padding: 10px 0;
-    box-shadow: var(--card-shadow-hover);
-}
-
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--primary-color);
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-}
-
-.nav-item .nav-link {
-    color: var(--text-color);
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 500;
-    transition: var(--transition);
-    position: relative;
-}
-
-.nav-item .nav-link:hover {
-    color: var(--primary-color);
-}
-
+.navbar.scrolled { padding: 10px 0; box-shadow: var(--card-shadow-hover); }
+.nav-container { max-width: 1200px; margin: 0 auto; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+.nav-logo { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: bold; }
+.nav-logo i { color: var(--primary-color) !important; }
+.nav-menu { display: flex; list-style: none; gap: 30px; }
+.nav-item .nav-link { text-decoration: none; font-size: 15px; font-weight: 500; transition: var(--transition); position: relative; }
+.nav-item .nav-link:hover { color: var(--primary-color) !important; }
 .nav-item .nav-link::after {
-    content: "";
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--primary-color);
-    transition: var(--transition);
+    content: ""; position: absolute; bottom: -5px; left: 0;
+    width: 0; height: 2px; background-color: var(--primary-color); transition: var(--transition);
 }
+.nav-item .nav-link:hover::after { width: 100%; }
 
-.nav-item .nav-link:hover::after {
-    width: 100%;
-}
-
-/* 控制面板（固定右侧，移除毛玻璃，改为纯色背景） */
+/* 控制面板 */
 .control-panel {
-    position: fixed;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-    /* 移除backdrop-filter，保留纯色背景 */
-    background: var(--card-bg);
-    border-radius: var(--border-radius);
-    box-shadow: var(--card-shadow);
-    padding: 20px;
-    z-index: 998;
-    transition: var(--transition);
+    position: fixed; top: 50%; right: 20px; transform: translateY(-50%);
+    background: var(--card-bg); border-radius: var(--border-radius); box-shadow: var(--card-shadow);
+    padding: 20px; z-index: 998; transition: var(--transition);
 }
-
-.control-panel:hover {
-    box-shadow: var(--card-shadow-hover);
-}
-
-.control-panel h3 {
-    color: var(--primary-color);
-    font-size: 16px;
-    margin-bottom: 20px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
-
+.control-panel h3 { font-size: 16px; margin-bottom: 20px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.control-panel h3 i { color: var(--primary-color) !important; }
 .control-btn {
-    display: block;
-    width: 100%;
-    padding: 12px 10px;
-    margin-bottom: 15px;
-    background: var(--bg-color);
-    color: var(--text-color);
-    border: 1px solid var(--primary-color);
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    transition: var(--transition);
-    font-size: 13px;
-    text-align: center;
+    display: block; width: 100%; padding: 12px 10px; margin-bottom: 15px;
+    background: var(--bg-color); border: 1px solid var(--primary-color); border-radius: var(--border-radius);
+    cursor: pointer; transition: var(--transition); font-size: 13px; text-align: center;
 }
+.control-btn:hover { background: var(--primary-color); color: #fff !important; }
 
-.control-btn:hover {
-    background: var(--primary-color);
-    color: var(--white-color);
-}
-
-/* 板块动效（滚动淡入，保留高级动效，无修改） */
+/* 板块动效 */
 .section-animate {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-    padding: 100px 20px;
-    max-width: 1200px; /* 加宽容器，适配横向图库 */
-    margin: 0 auto;
+    opacity: 0; transform: translateY(50px); transition: opacity 0.8s ease, transform 0.8s ease;
+    padding: 100px 20px; max-width: 1200px; margin: 0 auto;
 }
+.section-animate.visible { opacity: 1; transform: translateY(0); }
+.section-header { text-align: center; margin-bottom: 40px; }
+.section-header h2 { font-size: 26px; margin-bottom: 15px; display: inline-flex; align-items: center; gap: 10px; }
+.section-header h2 i { color: var(--primary-color) !important; }
+.section-divider { width: 80px; height: 3px; background-color: var(--primary-color); margin: 0 auto; border-radius: 3px; }
 
-.section-animate.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.section-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.section-header h2 {
-    color: var(--text-color);
-    font-size: 26px;
-    margin-bottom: 15px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.section-divider {
-    width: 80px;
-    height: 3px;
-    background-color: var(--primary-color);
-    margin: 0 auto;
-    border-radius: 3px;
-}
-
-/* 卡片样式（移除毛玻璃，改为纯色背景，保留阴影+hover动效） */
+/* 卡片样式 */
 .card-animate {
-    opacity: 0;
-    transform: scale(0.95);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    /* 移除backdrop-filter，保留纯色背景 */
-    background: var(--card-bg);
-    border-radius: var(--border-radius);
-    box-shadow: var(--card-shadow);
-    padding: 30px;
-    margin-bottom: 30px;
+    opacity: 0; transform: scale(0.95); transition: opacity 0.6s ease, transform 0.6s ease;
+    background: var(--card-bg); border-radius: var(--border-radius); box-shadow: var(--card-shadow);
+    padding: 30px; margin-bottom: 30px;
 }
+.card-animate.visible { opacity: 1; transform: scale(1); }
+.card-animate:hover { box-shadow: var(--card-shadow-hover); transform: translateY(-5px); }
 
-.card-animate.visible {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.card-animate:hover {
-    box-shadow: var(--card-shadow-hover);
-    transform: translateY(-5px);
-}
-
-/* 首页样式（全屏+头像动效，保留高级感，恢复打字机效果） */
-.home-section {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg-color);
-    padding: 0 20px;
-}
-
-.home-container {
-    text-align: center;
-}
-
+/* 首页样式 */
+.home-section { height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--bg-color); padding: 0 20px; }
+.home-container { text-align: center; }
 .carterthyia-avatar {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid var(--primary-color);
-    margin-bottom: 25px;
-    box-shadow: var(--card-shadow);
-    transition: var(--transition);
-    cursor: pointer;
+    width: 180px; height: 180px; border-radius: 50%; object-fit: cover;
+    border: 5px solid var(--primary-color); margin-bottom: 25px;
+    box-shadow: var(--card-shadow); transition: var(--transition); cursor: pointer;
 }
+.carterthyia-avatar:hover { transform: scale(1.05) rotate(5deg); box-shadow: var(--card-shadow-hover); }
+.character-title { font-size: 36px; margin-bottom: 15px; letter-spacing: 2px; }
+.character-desc { font-size: 18px; margin-bottom: 35px; letter-spacing: 1px; color: #666 !important; }
 
-.carterthyia-avatar:hover {
-    transform: scale(1.05) rotate(5deg);
-    box-shadow: var(--card-shadow-hover);
-}
+/* 文字内容样式（强制区分主次文字） */
+.about-info { font-size: 16px; margin-bottom: 20px; display: flex; align-items: flex-start; gap: 10px; }
+.info-label { color: var(--primary-color) !important; font-weight: bold; }
+.story-title { color: var(--primary-color) !important; font-size: 18px; margin-bottom: 15px; font-weight: 500; }
+.story-paragraph, .guide-paragraph { font-size: 16px; line-height: 1.8; margin-bottom: 20px; }
 
-.character-title {
-    color: var(--text-color);
-    font-size: 36px;
-    margin-bottom: 15px;
-    letter-spacing: 2px;
-}
-
-.character-desc {
-    color: var(--text-light-color);
-    font-size: 18px;
-    margin-bottom: 35px;
-    letter-spacing: 1px;
-}
-
-/* 文字内容样式（修复浅色模式显示，保证清晰） */
-.about-info {
-    color: var(--text-color);
-    font-size: 16px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-}
-
-.info-label {
-    color: var(--primary-color);
-    font-weight: bold;
-}
-
-.story-title {
-    color: var(--primary-color);
-    font-size: 18px;
-    margin-bottom: 15px;
-    font-weight: 500;
-}
-
-.story-paragraph, .guide-paragraph {
-    color: var(--text-color);
-    font-size: 16px;
-    line-height: 1.8;
-    margin-bottom: 20px;
-}
-
-/* 统一标签样式（图库+实机演示共用，保证排版一致） */
-.gallery-tabs {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
+/* 标签样式 */
+.gallery-tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
 .gallery-tab {
-    padding: 10px 20px;
-    background: var(--bg-color);
-    color: var(--text-color);
-    border: 1px solid var(--primary-color);
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    transition: var(--transition);
+    padding: 10px 20px; background: var(--bg-color); border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius); cursor: pointer; transition: var(--transition);
 }
-
-.gallery-tab.active {
-    background: var(--primary-color);
-    color: var(--white-color);
-}
-
-/* 攻略标签样式（单独保留，不影响统一排版） */
-.guide-tabs {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
+.gallery-tab.active { background: var(--primary-color); color: #fff !important; }
+.guide-tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
 .tab-btn {
-    padding: 10px 20px;
-    background: var(--bg-color);
-    color: var(--text-color);
-    border: 1px solid var(--primary-color);
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    transition: var(--transition);
+    padding: 10px 20px; background: var(--bg-color); border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius); cursor: pointer; transition: var(--transition);
 }
+.tab-btn.active { background: var(--primary-color); color: #fff !important; }
 
-.tab-btn.active {
-    background: var(--primary-color);
-    color: var(--white-color);
-}
-
-/* 图库样式（核心修改：横向排列+自适应滚动，不竖排） */
+/* 图库横向排列 */
 .gallery-container {
-    display: flex; /* 改为flex横向排列 */
-    gap: 20px; /* 图片间距 */
-    padding: 10px 0;
-    overflow-x: auto; /* 横向滚动，不换行 */
-    scrollbar-width: thin; /* 美化滚动条（Firefox） */
-    scrollbar-color: var(--primary-color) var(--bg-color); /* 滚动条颜色 */
-    /* 隐藏顶部/底部多余边距 */
-    margin: 0 -10px;
-    padding: 10px;
+    display: flex; gap: 20px; padding: 10px 0; overflow-x: auto;
+    scrollbar-width: thin; scrollbar-color: var(--primary-color) var(--bg-color);
+    margin: 0 -10px; padding: 10px;
 }
-
-/* 美化滚动条（Chrome/Safari/Edge） */
-.gallery-container::-webkit-scrollbar {
-    height: 8px; /* 横向滚动条高度 */
-}
-
-.gallery-container::-webkit-scrollbar-track {
-    background: var(--bg-color);
-    border-radius: 4px;
-}
-
-.gallery-container::-webkit-scrollbar-thumb {
-    background-color: var(--primary-color);
-    border-radius: 4px;
-}
-
+.gallery-container::-webkit-scrollbar { height: 8px; }
+.gallery-container::-webkit-scrollbar-track { background: var(--bg-color); border-radius: 4px; }
+.gallery-container::-webkit-scrollbar-thumb { background-color: var(--primary-color); border-radius: 4px; }
 .gallery-img {
-    flex: 0 0 auto; /* 固定宽度，不拉伸 */
-    width: 280px; /* 统一图片宽度，保证美观 */
-    height: 380px; /* 统一图片高度，保证美观 */
-    object-fit: cover; /* 保持图片比例，裁剪溢出 */
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    transition: var(--transition);
+    flex: 0 0 auto; width: 280px; height: 380px; object-fit: cover;
+    border-radius: var(--border-radius); cursor: pointer; transition: var(--transition);
     box-shadow: var(--card-shadow);
 }
+.gallery-img:hover { transform: scale(1.03); box-shadow: var(--card-shadow-hover); }
 
-.gallery-img:hover {
-    transform: scale(1.03); /* hover轻微放大 */
-    box-shadow: var(--card-shadow-hover);
-}
-
-/* 视频样式（统一排版+修复视频引用，移除毛玻璃） */
+/* 视频样式 */
 .video-container {
-    position: relative;
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    box-shadow: var(--card-shadow);
-    margin: 0 auto;
-    max-width: 800px;
+    position: relative; border-radius: var(--border-radius); overflow: hidden;
+    box-shadow: var(--card-shadow); margin: 0 auto; max-width: 800px;
 }
-
-.demo-video {
-    width: 100%;
-    aspect-ratio: 16/9;
-    background: var(--bg-color);
-}
-
+.demo-video { width: 100%; aspect-ratio: 16/9; background: var(--bg-color); }
 .video-cover {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), transparent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-    z-index: 10;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: opacity 0.3s ease; z-index: 10;
 }
-
-.video-cover:hover {
-    opacity: 0.9;
-}
-
 .play-btn {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    /* 移除播放按钮毛玻璃，改为半透明纯色 */
-    background: rgba(255, 255, 255, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    color: var(--white-color);
-    transition: transform 0.3s ease;
+    width: 80px; height: 80px; border-radius: 50%; background: rgba(255, 255, 255, 0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; color: #fff !important; transition: transform 0.3s ease;
 }
+.play-btn:hover { transform: scale(1.1); }
 
-.play-btn:hover {
-    transform: scale(1.1);
-}
-
-/* 图片预览弹窗（移除毛玻璃，改为纯色背景，保留高级感） */
+/* 图片预览弹窗 */
 #imagePreviewModal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* 移除backdrop-filter，改为纯色半透明背景 */
-    background: rgba(0, 0, 0, 0.9);
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.9); z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
 }
-
-.preview-content {
-    position: relative;
-    max-width: 90%;
-    max-height: 90%;
-}
-
-#previewImage {
-    width: 100%;
-    height: auto;
-    border-radius: var(--border-radius);
-    box-shadow: var(--card-shadow-hover);
-}
-
+.preview-content { position: relative; max-width: 90%; max-height: 90%; }
+#previewImage { width: 100%; height: auto; border-radius: var(--border-radius); box-shadow: var(--card-shadow-hover); }
 .preview-close {
-    position: absolute;
-    top: -40px;
-    right: 0;
-    color: var(--white-color);
-    font-size: 30px;
-    cursor: pointer;
-    transition: var(--transition);
+    position: absolute; top: -40px; right: 0; font-size: 30px;
+    cursor: pointer; transition: var(--transition); color: #fff !important;
 }
+.preview-close:hover { color: var(--primary-color) !important; transform: rotate(90deg); }
 
-.preview-close:hover {
-    color: var(--primary-color);
-    transform: rotate(90deg);
-}
-
-/* 回到顶部按钮（固定+hover动效，保留高级感，无修改） */
+/* 回到顶部 */
 .back-to-top {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background: var(--primary-color);
-    color: var(--white-color);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: var(--card-shadow);
-    transition: var(--transition);
+    position: fixed; bottom: 30px; right: 30px;
+    background: var(--primary-color); color: #fff !important;
+    width: 50px; height: 50px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; box-shadow: var(--card-shadow); transition: var(--transition);
     z-index: 997;
 }
+.back-to-top:hover { transform: translateY(-5px); box-shadow: var(--card-shadow-hover); }
 
-.back-to-top:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--card-shadow-hover);
-}
-
-/* 移动端适配（优化横向图库+打字机效果） */
+/* 移动端适配 */
 @media (max-width: 768px) {
     .nav-menu {
-        flex-direction: column;
-        gap: 15px;
-        position: fixed;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        /* 移除毛玻璃，改为纯色背景 */
-        background: var(--card-bg);
-        padding: 20px 0;
-        box-shadow: var(--card-shadow);
-        transform: translateY(-150%);
-        opacity: 0;
-        pointer-events: none;
-        transition: var(--transition);
+        flex-direction: column; gap: 15px; position: fixed; top: 70px; left: 0; width: 100%;
+        background: var(--card-bg); padding: 20px 0; box-shadow: var(--card-shadow);
+        transform: translateY(-150%); opacity: 0; pointer-events: none; transition: var(--transition);
     }
-
-    .nav-menu.active {
-        transform: translateY(0);
-        opacity: 1;
-        pointer-events: all;
-    }
-
-    .character-title {
-        font-size: 28px;
-    }
-
-    /* 移动端图库横向滚动适配 */
-    .gallery-img {
-        width: 220px;
-        height: 300px;
-    }
-
-    .gallery-tabs {
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .play-btn {
-        width: 60px;
-        height: 60px;
-        font-size: 22px;
-    }
-
-    /* 移动端打字机效果适配 */
-    .typewriter {
-        font-size: 24px;
-        border-right: 1px solid var(--primary-color);
-    }
+    .nav-menu.active { transform: translateY(0); opacity: 1; pointer-events: all; }
+    .character-title { font-size: 28px; }
+    .gallery-img { width: 220px; height: 300px; }
+    .play-btn { width: 60px; height: 60px; font-size: 22px; }
+    .typewriter { font-size: 24px; border-right: 1px solid var(--primary-color) !important; }
 }
