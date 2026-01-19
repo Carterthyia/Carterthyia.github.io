@@ -1,84 +1,147 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>卡提希娅 - 全功能版修正版</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>卡提希娅的星光小站</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
+  />
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <i class="fa fa-star"></i>
-                <span>卡提希娅的星光小站</span>
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="#home" class="nav-link">首页</a></li>
-                <li class="nav-item"><a href="#about" class="nav-link">角色设定</a></li>
-                <li class="nav-item"><a href="#story" class="nav-link">故事背景</a></li>
-                <li class="nav-item"><a href="#guide" class="nav-link">游戏攻略</a></li>
-                <li class="nav-item"><a href="#gallery" class="nav-link">角色图库</a></li>
-                <li class="nav-item"><a href="#demo" class="nav-link">实机演示</a></li>
-            </ul>
-            <div class="nav-toggle">
-                <i class="fa fa-bars"></i>
-            </div>
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <i class="fa fa-star"></i><span>卡提希娅的星光小站</span>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="#home" class="nav-link">首页</a></li>
+        <li><a href="#about" class="nav-link">角色设定</a></li>
+        <li><a href="#story" class="nav-link">故事背景</a></li>
+        <li><a href="#guide" class="nav-link">游戏攻略</a></li>
+        <li><a href="#gallery" class="nav-link">角色图库</a></li>
+        <li><a href="#demo" class="nav-link">实机演示</a></li>
+      </ul>
+      <div class="nav-toggle"><i class="fa fa-bars"></i></div>
+    </div>
+  </nav>
+
+  <!-- 首页 -->
+  <section id="home" class="home-section section-animate">
+    <div class="home-container">
+      <img src="1.jpg" alt="卡提希娅头像" class="carterthyia-avatar" />
+      <h1 class="character-title">卡提希娅（芙露德莉丝）</h1>
+      <p class="character-desc">于光影中守护的温柔使者 · 双形态战斗达人</p>
+      <div class="home-btns">
+        <a href="#gallery" class="btn">角色图库</a>
+        <a href="#demo" class="btn btn-secondary">实机演示</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 角色设定 -->
+  <section id="about" class="section-animate">
+    <div class="section-header">
+      <h2><i class="fa fa-user-circle"></i> 角色设定</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="card-animate visible">
+      <div class="about-info"><span class="info-label">姓名：</span>卡提希娅（Carterthyia）</div>
+      <div class="about-info"><span class="info-label">特质：</span>穿梭于光影之间，兼具顽皮与沉稳</div>
+      <div class="about-info"><span class="info-label">形态：</span>迅刀（小卡） / 巨剑（芙露德莉丝）</div>
+      <div class="about-info"><span class="info-label">称号：</span>黎那汐塔圣女、岁主共鸣者</div>
+      <div class="about-info"><span class="info-label">核心技能：</span>气刃回旋、风轨突袭、苍穹崩裂</div>
+    </div>
+  </section>
+
+  <!-- 故事背景 -->
+  <section id="story" class="section-animate">
+    <div class="section-header">
+      <h2><i class="fa fa-book"></i> 故事背景</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="card-animate visible story-content">
+      <p class="story-title">【出身与命运】</p>
+      <p>卡提希娅原本是埃格拉小镇的少女……（此处省略长文，可保留原文字）</p>
+      <p class="story-title">【双形态的秘密】</p>
+      <p>作为首位常态与觉醒双形态角色，卡提希娅可自由切换形态……</p>
+    </div>
+  </section>
+
+  <!-- 游戏攻略 -->
+  <section id="guide" class="section-animate">
+    <div class="section-header">
+      <h2><i class="fa fa-gamepad"></i> 游戏攻略</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="card-animate visible">
+      <div class="guide-tabs">
+        <button class="tab-btn active" data-tab="core" onclick="switchGuideTab('core')">核心机制</button>
+        <button class="tab-btn" data-tab="weapon" onclick="switchGuideTab('weapon')">武器选择</button>
+        <button class="tab-btn" data-tab="team" onclick="switchGuideTab('team')">配队推荐</button>
+      </div>
+      <div id="coreContent" class="guide-content visible">
+        <p>卡提希娅是风蚀体系主C，输出核心为「风蚀效应」……</p>
+      </div>
+      <div id="weaponContent" class="guide-content hidden">
+        <p>毕业武器为不屈命定之冠，平替可选裁春或镇海迅刀……</p>
+      </div>
+      <div id="teamContent" class="guide-content hidden">
+        <p>推荐队伍：卡提希娅 + 夏空 + 千咲（高配）或卡提 + 气动主 + 散华（平民）</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 图库 -->
+  <section id="gallery" class="section-animate">
+    <div class="section-header">
+      <h2><i class="fa fa-image"></i> 角色图库</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="card-animate visible gallery-container">
+      <img src="1.jpg" alt="立绘1" class="gallery-img" onclick="previewImage(this.src)" />
+      <img src="2.jpg" alt="立绘2" class="gallery-img" onclick="previewImage(this.src)" />
+      <img src="3.jpg" alt="战斗1" class="gallery-img" onclick="previewImage(this.src)" />
+      <img src="4.jpg" alt="日常1" class="gallery-img" onclick="previewImage(this.src)" />
+    </div>
+  </section>
+
+  <!-- 实机演示（视频独立板块） -->
+  <section id="demo" class="section-animate">
+    <div class="section-header">
+      <h2><i class="fa fa-film"></i> 实机演示</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="demo-panel">
+      <h3 class="demo-title">卡提希娅双形态战斗演示</h3>
+      <div class="video-tabs">
+        <div class="video-tab active" data-target="video1">迅刀形态</div>
+        <div class="video-tab" data-target="video2">巨剑形态</div>
+      </div>
+
+      <div class="video-container active" id="video1">
+        <div class="video-cover" onclick="playVideo('videoPlayer1', this)">
+          <div class="play-btn"><i class="fa fa-play"></i></div>
         </div>
-    </nav>
+        <video class="demo-video" id="videoPlayer1" controls muted playsinline preload="metadata" poster="1.jpg">
+          <source src="videos/111.mp4" type="video/mp4" />
+        </video>
+      </div>
 
-    <!-- 首页 -->
-    <section id="home" class="home-section section-animate">
-        <div class="home-container">
-            <img src="1.jpg" alt="卡提希娅头像" class="carterthyia-avatar">
-            <h1 class="character-title">卡提希娅（芙露德莉丝）</h1>
-            <p class="character-desc">于光影中守护的温柔使者 · 双形态战斗达人</p>
-            <div class="home-btns">
-                <a href="#gallery" class="btn">进入角色图库</a>
-                <a href="#demo" class="btn btn-secondary">查看实机演示</a>
-            </div>
+      <div class="video-container" id="video2">
+        <div class="video-cover" onclick="playVideo('videoPlayer2', this)">
+          <div class="play-btn"><i class="fa fa-play"></i></div>
         </div>
-    </section>
+        <video class="demo-video" id="videoPlayer2" controls muted playsinline preload="metadata" poster="2.jpg">
+          <source src="videos/12.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  </section>
 
-    <!-- 实机演示 -->
-    <section id="demo" class="section-animate">
-        <div class="section-header">
-            <h2><i class="fa fa-film"></i> 实机演示视频</h2>
-            <div class="section-divider"></div>
-        </div>
-        <div class="demo-panel">
-            <h3 class="demo-title">卡提希娅双形态战斗演示</h3>
-            <div class="video-tabs">
-                <div class="video-tab active" data-target="video1">小卡（迅刀形态）</div>
-                <div class="video-tab" data-target="video2">大卡（芙露德莉丝形态）</div>
-            </div>
-
-            <!-- 小卡视频 -->
-            <div class="video-container active" id="video1">
-                <div class="video-cover" onclick="playVideo('videoPlayer1', this)">
-                    <div class="play-btn"><i class="fa fa-play"></i></div>
-                </div>
-                <video class="demo-video" id="videoPlayer1" controls muted playsinline preload="metadata" poster="1.jpg">
-                    <source src="videos/111.mp4" type="video/mp4">
-                    你的浏览器不支持HTML5视频播放，请升级至Chrome/Edge最新版本
-                </video>
-            </div>
-
-            <!-- 大卡视频 -->
-            <div class="video-container" id="video2">
-                <div class="video-cover" onclick="playVideo('videoPlayer2', this)">
-                    <div class="play-btn"><i class="fa fa-play"></i></div>
-                </div>
-                <video class="demo-video" id="videoPlayer2" controls muted playsinline preload="metadata" poster="2.jpg">
-                    <source src="videos/12.mp4" type="video/mp4">
-                    你的浏览器不支持HTML5视频播放，请升级至Chrome/Edge最新版本
-                </video>
-            </div>
-        </div>
-    </section>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
