@@ -8,6 +8,7 @@
     <link rel="icon" href="/favicon/13.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/favicon/13.ico" type="image/x-icon">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/1.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
 </head>
@@ -122,70 +123,130 @@
         </div>
     </section>
 
-    <section id="guide" class="section-animate">
-        <div class="section-header">
-            <h2><i class="fa fa-gamepad"></i> 游戏攻略指南</h2>
-            <div class="section-divider"></div>
+   <!-- 游戏攻略指南 完整修复版 -->
+<section id="guide" class="section-animate">
+    <div class="section-header">
+        <h2><i class="fa fa-gamepad"></i> 游戏攻略指南</h2>
+        <div class="section-divider"></div>
+    </div>
+    <div class="card-animate">
+        <div class="guide-tabs">
+            <button class="tab-btn active" data-tab="core" onclick="switchGuideTab('core')">核心玩法</button>
+            <button class="tab-btn" data-tab="weapon" onclick="switchGuideTab('weapon')">武器选择</button>
+            <button class="tab-btn" data-tab="team" onclick="switchGuideTab('team')">配队推荐</button>
+            <button class="tab-btn" data-tab="artifact" onclick="switchGuideTab('artifact')">声骸搭配</button>
         </div>
-        <div class="card-animate">
-            <div class="guide-tabs">
-                <button class="tab-btn active" data-tab="core" onclick="switchGuideTab('core')">核心玩法</button>
-                <button class="tab-btn" data-tab="weapon" onclick="switchGuideTab('weapon')">武器选择</button>
-                <button class="tab-btn" data-tab="team" onclick="switchGuideTab('team')">配队推荐</button>
-                <button class="tab-btn" data-tab="artifact" onclick="switchGuideTab('artifact')">声骸搭配</button>
+
+        <!-- 核心玩法 -->
+        <div id="coreContent" class="guide-content guide-paragraph">
+            <p class="story-title">一、定位与核心机制</p>
+            <p>卡提希娅定位为气动主C，在V3.0版本中，逆境深塔榜单排名T0，冥歌海墟榜单排名T1，是当前版本异常体系中风蚀效应的核心输出角色，强度在线，新老漂泊者均可优先考虑抽取。</p>
+            <p>她的输出核心依赖「风蚀效应」，所有技能都会为目标叠加风蚀层数，层数越高，造成的伤害越高，终结技「苍穹崩裂」会引爆目标身上的所有风蚀层数，造成巨额真实伤害，是爆发输出的关键。</p>
+
+            <p class="story-title">二、输出循环技巧</p>
+            <p>1. 常规循环：普攻连段 → 气刃回旋（叠加风蚀） → 风轨突袭（位移+补层） → 普攻收尾；</p>
+            <p>2. 爆发循环：开启大招 → 切换巨剑形态 → 风蚀叠加至满层 → 释放「苍穹崩裂」 → 收割残血目标；</p>
+            <p>3. 注意事项：尽量保持目标身上的风蚀层数不中断，0-1链卡提需依赖夏空辅助挂层，2链及以上可自主维持层数。</p>
+        </div>
+
+        <!-- 武器选择（带图片） -->
+        <div id="weaponContent" class="guide-content guide-paragraph hidden">
+            <p class="story-title">一、首选武器（毕业专武）</p>
+            <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
+                <div style="width: 180px; flex-shrink: 0;">
+                    <img src="/equipment/Part_1.jpg" alt="不屈命定之冠" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                </div>
+                <div style="flex: 1; line-height: 1.6;">
+                    <p>不屈命定之冠：卡提希娅专属武器，无下位替代，刚需抽取。该武器大幅提升风蚀效应伤害，同时增加自身生命值（卡提核心属性），开启大招后额外获得暴击率加成，完美契合她的输出机制。</p>
+                </div>
             </div>
 
-            <div id="coreContent" class="guide-content guide-paragraph">
-                <p class="story-title">一、定位与核心机制</p>
-                <p>卡提希娅定位为气动主C，在V3.0版本中，逆境深塔榜单排名T0，冥歌海墟榜单排名T1，是当前版本异常体系中风蚀效应的核心输出角色，强度在线，新老漂泊者均可优先考虑抽取。</p>
-                <p>她的输出核心依赖「风蚀效应」，所有技能都会为目标叠加风蚀层数，层数越高，造成的伤害越高，终结技「苍穹崩裂」会引爆目标身上的所有风蚀层数，造成巨额真实伤害，是爆发输出的关键。</p>
-
-                <p class="story-title">二、输出循环技巧</p>
-                <p>1. 常规循环：普攻连段 → 气刃回旋（叠加风蚀） → 风轨突袭（位移+补层） → 普攻收尾；</p>
-                <p>2. 爆发循环：开启大招 → 切换巨剑形态 → 风蚀叠加至满层 → 释放「苍穹崩裂」 → 收割残血目标；</p>
-                <p>3. 注意事项：尽量保持目标身上的风蚀层数不中断，0-1链卡提需依赖夏空辅助挂层，2链及以上可自主维持层数。</p>
+            <p class="story-title">二、平民替代武器</p>
+            <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
+                <div style="width: 180px; flex-shrink: 0;">
+                    <img src="/equipment/Part_2.jpg" alt="裁春" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                </div>
+                <div style="flex: 1; line-height: 1.6;">
+                    <p>1. 裁春（椿专属武器）：提升普攻伤害与暴击伤害，适合平民玩家过渡，性价比高，容易养成；</p>
+                </div>
+            </div>
+            <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
+                <div style="width: 180px; flex-shrink: 0;">
+                    <img src="/equipment/Part_3.jpg" alt="戍关迅刀·镇海" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                </div>
+                <div style="flex: 1; line-height: 1.6;">
+                    <p>2. 戍关迅刀·镇海：三星武器，容易获取，基础属性优秀，适合新手前期过渡，后期可替换为高阶武器；</p>
+                </div>
+            </div>
+            <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
+                <div style="width: 180px; flex-shrink: 0;">
+                    <img src="/equipment/Part2_1.jpg" alt="千古洑流" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                </div>
+                <div style="flex: 1; line-height: 1.6;">
+                    <p>3. 千古洑流平民神器 获取方式常驻武器池 面板较为优秀，主要词条为暴击率和攻击，武器效果为充能效果，能大幅提升共鸣效果和暴击率。</p>
+                </div>
             </div>
 
-            <div id="weaponContent" class="guide-content guide-paragraph hidden">
-                <p class="story-title">一、首选武器（毕业专武）</p>
-                <p>不屈命定之冠：卡提希娅专属武器，无下位替代，刚需抽取。该武器大幅提升风蚀效应伤害，同时增加自身生命值（卡提核心属性），开启大招后额外获得暴击率加成，完美契合她的输出机制。</p>
+            <p class="story-title">三、武器养成建议</p>
+            <p>优先将武器等级拉满，副词条优先选择「生命值」「暴击率」「暴击伤害」，其次是「风蚀效应伤害加成」，最大化卡提希娅的输出能力。</p>
+        </div>
 
-                <p class="story-title">二、平民替代武器</p>
-                <p>1. 裁春（椿专属武器）：提升普攻伤害与暴击伤害，适合平民玩家过渡，性价比高，容易养成；</p>
-                <p>2. 戍关迅刀·镇海：三星武器，容易获取，基础属性优秀，适合新手前期过渡，后期可替换为高阶武器；</p>
-                <p>3. 禁忌之锋：四星武器，提升异常状态伤害，可作为过渡选择，效果略逊于裁春。</p>
-
-                <p class="story-title">三、武器养成建议</p>
-                <p>优先将武器等级拉满，副词条优先选择「生命值」「暴击率」「暴击伤害」，其次是「风蚀效应伤害加成」，最大化卡提希娅的输出能力。</p>
+        <!-- 配队推荐（带图片） -->
+        <div id="teamContent" class="guide-content guide-paragraph hidden">
+            <p class="story-title">一、最优配队（输出最大化）</p>
+            <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
+                <div style="width: 180px; flex-shrink: 0;">
+                    <img src="/equipment/Part2_2.jpg" alt="最优配队：卡提希娅+夏空+千咲" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                </div>
+                <div style="flex: 1; line-height: 1.6;">
+                    <p>卡提希娅 + 夏空 + 千咲：风蚀体系拉满，夏空负责挂风蚀、提供辅助加成，千咲负责治疗与续航，同时提供一定的输出增益，该配队适合高难副本，输出与生存兼备。</p>
+                </div>
             </div>
 
-            <div id="teamContent" class="guide-content guide-paragraph hidden">
-                <p class="story-title">一、最优配队（输出最大化）</p>
-                <p>卡提希娅 + 夏空 + 千咲：风蚀体系拉满，夏空负责挂风蚀、提供辅助加成，千咲负责治疗与续航，同时提供一定的输出增益，该配队适合高难副本，输出与生存兼备。</p>
-
-                <p class="story-title">二、平民配队（易获取，成型快）</p>
-                <p>1. 卡提希娅 + 气动主 + 散华：气动主提供风元素加成，散华负责辅助与控制，容易获取，养成成本低，适合新手玩家；</p>
-                <p>2. 卡提希娅 + 安比 + 科希：爆发能力强，安比负责破甲，科希负责补伤害，适合快速清理普通副本。</p>
-
-                <p class="story-title">三、深渊配队（应对高难，容错率高）</p>
-                <p>卡提希娅 + 守岸人 + 千咲：守岸人提供强大的辅助增益与控制能力，千咲保证续航，卡提希娅负责核心输出，该配队可应对绝大多数高难副本，容错率极高。</p>
+            <p class="story-title">二、平民配队（易获取，成型快）</p>
+            <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
+                <div style="width: 180px; flex-shrink: 0;">
+                    <img src="/equipment/Part2_4.jpg" alt="平民配队：卡提希娅+气动主+散华" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                </div>
+                <div style="flex: 1; line-height: 1.6;">
+                    <p>1. 卡提希娅 + 气动主 + 散华：气动主提供风元素加成，散华负责辅助与控制，容易获取，养成成本低，适合新手玩家；</p>
+                </div>
+            </div>
+            <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
+                <div style="width: 180px; flex-shrink: 0;">
+                    <img src="/equipment/Part3_3.jpg" alt="平民配队：卡提希娅+秧秧+白芷" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                </div>
+                <div style="flex: 1; line-height: 1.6;">
+                    <p>2. 卡提希娅 + 秧秧 + 白芷：爆這支隊伍以「低成本高效運轉」為核心設計，透過風屬性傷害與能量回復機制，確保主輸出卡提希婭能穩定施展連段，同時白芷提供生存保障。對資源有限的玩家而言，此組合不僅能應對多數戰鬥情境，更是極具性價比的選擇。</p>
+                </div>
             </div>
 
-            <div id="artifactContent" class="guide-content guide-paragraph hidden">
-                <p class="story-title">一、毕业套装</p>
-                <p>愿戴荣光之旅五件套：卡提希娅的核心声骸套装，最优选择。套装效果大幅提升风蚀效应伤害与生命值，完美契合卡提的输出机制与属性需求，搭配44111词条，首位声骸装配芙露德莉丝专属声骸，输出最大化。</p>
-
-                <p class="story-title">二、过渡套装</p>
-                <p>1. 风之低语四件套 + 生命增幅二件套：提升风元素伤害与生命值，适合前期过渡，容易获取；</p>
-                <p>2. 异常猎手五件套：提升所有异常状态伤害，可作为过渡选择，效果略逊于愿戴荣光之旅。</p>
-
-                <p class="story-title">三、词条选择建议</p>
-                <p>主词条：生命值、风蚀效应伤害、普攻伤害；</p>
-                <p>副词条：优先生命值，其次是暴击率、暴击伤害、风元素伤害加成，尽量避免无用词条，最大化属性收益。</p>
+            <p class="story-title">三、深渊配队（应对高难，容错率高）</p>
+            <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
+                <div style="width: 180px; flex-shrink: 0;">
+                    <img src="/equipment/Part2_2.jpg" alt="深渊配队：卡提希娅+守岸人+散华" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                </div>
+                <div style="flex: 1; line-height: 1.6;">
+                    <p>卡提希娅 + 守岸人 + 散华：守岸人提供强大的辅助增益与控制能力，散华保证延奏，卡提希娅负责核心输出，该配队可应对绝大多数高难副本，容错率极高。</p>
+                </div>
             </div>
         </div>
-    </section>
 
+        <!-- 声骸搭配 -->
+        <div id="artifactContent" class="guide-content guide-paragraph hidden">
+            <p class="story-title">一、毕业套装</p>
+            <p>愿戴荣光之旅五件套：卡提希娅的核心声骸套装，最优选择。套装效果大幅提升风蚀效应伤害与生命值，完美契合卡提的输出机制与属性需求，搭配44111词条，首位声骸装配芙露德莉丝专属声骸，输出最大化。</p>
+
+            <p class="story-title">二、过渡套装</p>
+            <p>1. 风之低语四件套 + 生命增幅二件套：提升风元素伤害与生命值，适合前期过渡，容易获取；</p>
+            <p>2. 异常猎手五件套：提升所有异常状态伤害，可作为过渡选择，效果略逊于愿戴荣光之旅。</p>
+
+            <p class="story-title">三、词条选择建议</p>
+            <p>主词条：暴击率/暴击伤害，其次生命值、风蚀效应伤害、普攻伤害；</p>
+            <p>副词条：优先暴击率和暴击伤害，其次是大生命、共鸣解放伤害加成、风元素伤害加成，尽量避免无用词条，最大化属性收益。</p>
+        </div>
+    </div>
+</section>
     <!-- 角色图库（横向排列） -->
     <section id="gallery" class="section-animate">
         <div class="section-header">
@@ -224,7 +285,7 @@
         </div>
     </section>
 
-    <!-- 实机演示（核心修复：视频路径强制写死，杜绝重复） -->
+    <!-- 实机演示（视频路径写死，杜绝重复） -->
     <section id="demo" class="section-animate">
         <div class="section-header">
             <h2><i class="fa fa-film"></i> 实机演示视频</h2>
