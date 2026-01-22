@@ -34,19 +34,27 @@
         </div>
     </nav>
 
-    <!-- 控制面板 -->
-    <div class="control-panel">
-        <h3><i class="fa fa-sliders"></i> 个性化设置</h3>
-        <button class="control-btn" onclick="switchTheme('purple')">
-            <i class="fa fa-palette"></i> 银紫色主题
-        </button>
-        <button class="control-btn" onclick="switchTheme('blue')">
-            <i class="fa fa-snowflake-o"></i> 冰蓝色主题
-        </button>
-        <button class="control-btn" onclick="toggleDarkMode()">
-            <i class="fa fa-moon"></i> 深色模式
-        </button>
+    <!-- 控制面板（支持自由调色） -->
+<div class="control-panel">
+    <h3><i class="fa fa-sliders"></i> 个性化设置</h3>
+    <!-- 保留原有固定主题按钮 -->
+    <button class="control-btn" onclick="switchTheme('purple')">
+        <i class="fa fa-palette"></i> 银紫色主题
+    </button>
+    <button class="control-btn" onclick="switchTheme('blue')">
+        <i class="fa fa-snowflake-o"></i> 冰蓝色主题
+    </button>
+    <!-- 新增：自定义调色区域 -->
+    <div style="margin: 10px 0; display: flex; align-items: center; gap: 10px;">
+        <label style="color: #333; font-size: 14px;"><i class="fa fa-eyedropper"></i> 自定义主色调：</label>
+        <input type="color" id="customColorPicker" value="#8a5cf7" style="width: 40px; height: 30px; border: none; cursor: pointer;">
+        <button class="control-btn" onclick="applyCustomTheme()" style="padding: 5px 10px; font-size: 12px;">应用</button>
     </div>
+    <!-- 深色模式保留 -->
+    <button class="control-btn" onclick="toggleDarkMode()">
+        <i class="fa fa-moon"></i> 深色模式
+    </button>
+</div>
 
     <!-- 回到顶部 -->
     <div class="back-to-top hidden">
@@ -259,6 +267,7 @@
                 <button class="gallery-tab" data-type="art">立绘</button>
                 <button class="gallery-tab" data-type="battle">战斗</button>
                 <button class="gallery-tab" data-type="daily">日常</button>
+                <button class="gallery-tab" data-type="beauty">美图</button>
             </div>
             <div class="gallery-container">
                 <img src="1.jpg" alt="卡提希娅立绘1" class="gallery-img" onclick="previewImage(this.src)" data-type="art">

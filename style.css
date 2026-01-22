@@ -9,7 +9,7 @@
 }
 
 :root {
-    /* 主题配色（银紫色/冰蓝色） */
+    /* 主题配色（银紫色/冰蓝色）- 保留原有预设 */
     --primary-color-purple: #9c7ee6;
     --secondary-color-purple: #b8a3f5;
     --bg-color-purple: rgba(156, 126, 230, 0.05);
@@ -22,13 +22,17 @@
     --card-bg-blue: #ffffff;
     --shadow-blue: 0 8px 32px rgba(110, 198, 255, 0.2);
 
-    /* 默认主题变量 */
+    /* 默认主题变量（支持自定义调色覆盖） */
     --primary-color: var(--primary-color-purple);
     --secondary-color: var(--secondary-color-purple);
     --bg-color: var(--bg-color-purple);
     --card-bg: var(--card-bg-purple);
     --card-shadow: var(--shadow-purple);
     --card-shadow-hover: 0 12px 40px rgba(156, 126, 230, 0.3);
+
+    /* 新增：自定义调色专用变量（用于自动生成深浅色） */
+    --primary-dark: #8062d6;
+    --primary-lightest: rgba(156, 126, 230, 0.05);
 
     --white-color: #fff;
     --transition: all 0.3s ease-in-out;
@@ -107,11 +111,12 @@
 }
 .nav-item .nav-link:hover::after { width: 100%; }
 
-/* 控制面板 */
+/* 控制面板（适配自定义调色器样式） */
 .control-panel {
     position: fixed; top: 50%; right: 20px; transform: translateY(-50%);
     background: var(--card-bg); border-radius: var(--border-radius); box-shadow: var(--card-shadow);
     padding: 20px; z-index: 998; transition: var(--transition);
+    min-width: 220px; /* 增加最小宽度，避免调色器挤在一起 */
 }
 .control-panel h3 { font-size: 16px; margin-bottom: 20px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; }
 .control-panel h3 i { color: var(--primary-color) !important; }
@@ -121,6 +126,23 @@
     cursor: pointer; transition: var(--transition); font-size: 13px; text-align: center;
 }
 .control-btn:hover { background: var(--primary-color); color: #fff !important; }
+/* 自定义调色区域样式优化 */
+.control-panel .color-picker-wrap {
+    margin: 10px 0; display: flex; align-items: center; gap: 8px;
+    flex-wrap: wrap; justify-content: center;
+}
+.control-panel .color-picker-wrap label {
+    color: var(--primary-color) !important; /* 标签用主题色 */
+    font-size: 14px; white-space: nowrap;
+}
+.control-panel .color-picker-wrap input[type="color"] {
+    width: 40px; height: 30px; border: none; cursor: pointer;
+    border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.control-panel .color-picker-wrap .control-btn {
+    padding: 8px 12px; margin-bottom: 0; font-size: 12px;
+    width: auto; flex-shrink: 0;
+}
 
 /* 板块动效 */
 .section-animate {
@@ -246,4 +268,13 @@
     .gallery-img { width: 220px; height: 300px; }
     .play-btn { width: 60px; height: 60px; font-size: 22px; }
     .typewriter { font-size: 24px; border-right: 1px solid var(--primary-color) !important; }
+    /* 移动端控制面板适配 */
+    .control-panel {
+        min-width: 180px; padding: 15px;
+        top: auto; bottom: 80px; right: 10px;
+        transform: translateY(0);
+    }
+    .control-panel .color-picker-wrap {
+        gap: 5px;
+    }
 }

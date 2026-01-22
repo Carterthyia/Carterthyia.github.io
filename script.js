@@ -12,13 +12,24 @@ window.addEventListener('DOMContentLoaded', function() {
     initGalleryFilter();
     initGuideTab();
     initDefaultThemeAndMode();
+    initCustomColorPicker(); // 新增：初始化自定义调色器
     // 移除 initVideoTabs 函数，避免动态修改视频路径
 });
 
 // 初始化主题和深色模式
 function initDefaultThemeAndMode() {
     const root = document.documentElement;
-    const modeBtn = document.querySelector('.control-btn:nth-child(3) i');
+    const modeBtn = document.querySelector('.control-btn:nth-child(4) i'); // 调整索引：因新增调色器，深色模式按钮变为第4个
+    // 初始化CSS变量（确保主题色变量存在）
+    if (!root.style.getProperty('--primary-color-purple')) {
+        // 预设主题色变量
+        root.style.setProperty('--primary-color-purple', '#8a5cf7');
+        root.style.setProperty('--secondary-color-purple', '#a78bfa');
+        root.style.setProperty('--bg-color-purple', '#f5f3ff');
+        root.style.setProperty('--primary-color-blue', '#3b82f6');
+        root.style.setProperty('--secondary-color-blue', '#60a5fa');
+        root.style.setProperty('--bg-color-blue', '#eff6ff');
+    }
     switchTheme(currentTheme);
     if (isDarkMode) {
         document.body.classList.add('dark-mode');
@@ -28,6 +39,18 @@ function initDefaultThemeAndMode() {
         modeBtn?.classList.replace('fa-sun', 'fa-moon');
     }
     document.title = window.siteConfig?.siteName || "卡提希娅的星光小站";
+}
+
+// 新增：初始化自定义调色器
+function initCustomColorPicker() {
+    const colorPicker = document.getElementById('customColorPicker');
+    if (colorPicker) {
+        // 同步调色器初始值为当前主题色
+        const root = document.documentElement;
+        const currentPrimary = root.style.getProperty('--primary-color') || 
+                              (currentTheme === 'purple' ? '#8a5cf7' : '#3b82f6');
+        colorPicker.value = currentPrimary;
+    }
 }
 
 // 滚动动效
@@ -93,7 +116,7 @@ function initGuideTab() {
     });
 }
 
-// 主题切换
+// 主题切换（兼容原有固定主题 + 自定义调色）
 function switchTheme(theme) {
     const root = document.documentElement;
     currentTheme = theme;
@@ -106,13 +129,58 @@ function switchTheme(theme) {
         root.style.setProperty('--secondary-color', 'var(--secondary-color-blue)');
         root.style.setProperty('--bg-color', 'var(--bg-color-blue)');
     }
+    // 同步更新自定义调色器的值
+    const colorPicker = document.getElementById('customColorPicker');
+    if (colorPicker) {
+        colorPicker.value = root.style.getProperty('--primary-color').replace('var(', '').replace(')', '').split('-color-')[1] 
+                            ? (theme === 'purple' ? '#8a5cf7' : '#3b82f6') 
+                            : root.style.getProperty('--primary-color');
+    }
+}
+
+// 新增：自定义调色应用
+function applyCustomTheme() {
+    const colorPicker = document.getElementById('customColorPicker');
+    if (!colorPicker) return;
+    
+    const customColor = colorPicker.value;
+    const root = document.documentElement;
+    // 生成浅/深色调（保证视觉协调）
+    const lightColor = lightenColor(customColor, 20);
+    const darkColor = darkenColor(customColor, 20);
+    
+    // 覆盖主题色变量
+    root.style.setProperty('--primary-color', customColor);
+    root.style.setProperty('--secondary-color', lightColor);
+    root.style.setProperty('--bg-color', lightenColor(customColor, 85)); // 背景色超浅
+    currentTheme = 'custom'; // 标记为自定义主题
+}
+
+// 新增：颜色变浅辅助函数
+function lightenColor(color, percent) {
+    const num = parseInt(color.replace("#", ""), 16);
+    const amt = Math.round(2.55 * percent);
+    const R = Math.min(255, (num >> 16) + amt);
+    const G = Math.min(255, (num >> 8 & 0x00FF) + amt);
+    const B = Math.min(255, (num & 0x0000FF) + amt);
+    return "#" + (0x1000000 + R*0x10000 + G*0x100 + B).toString(16).slice(1);
+}
+
+// 新增：颜色变深辅助函数
+function darkenColor(color, percent) {
+    const num = parseInt(color.replace("#", ""), 16);
+    const amt = Math.round(2.55 * percent);
+    const R = Math.max(0, (num >> 16) - amt);
+    const G = Math.max(0, (num >> 8 & 0x00FF) - amt);
+    const B = Math.max(0, (num & 0x0000FF) - amt);
+    return "#" + (0x1000000 + R*0x10000 + G*0x100 + B).toString(16).slice(1);
 }
 
 // 深色模式切换
 function toggleDarkMode() {
     isDarkMode = !isDarkMode;
     document.body.classList.toggle('dark-mode');
-    const modeBtn = document.querySelector('.control-btn:nth-child(3) i');
+    const modeBtn = document.querySelector('.control-btn:nth-child(4) i'); // 调整索引：深色模式按钮变为第4个
     modeBtn?.classList.toggle('fa-moon');
     modeBtn?.classList.toggle('fa-sun');
 }
