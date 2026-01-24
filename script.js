@@ -17,21 +17,12 @@ window.addEventListener('DOMContentLoaded', function() {
     initGalleryImgs(); // 初始化图库默认显示
 });
 
-// 初始化主题和深色模式 - 强制赋值CSS变量，无读取操作
+// 初始化主题和深色模式 - 移除冗余CSS变量定义（样式表已配置，避免重复）
 function initDefaultThemeAndMode() {
     const root = document.documentElement;
     const modeBtn = document.querySelector('.control-btn:nth-child(4) i');
     
-    // 直接初始化所有主题变量，避免任何读取报错
-    root.style.setProperty('--primary-color-purple', '#8a5cf7');
-    root.style.setProperty('--secondary-color-purple', '#a78bfa');
-    root.style.setProperty('--bg-color-purple', '#f5f3ff');
-    root.style.setProperty('--primary-color-blue', '#3b82f6');
-    root.style.setProperty('--secondary-color-blue', '#60a5fa');
-    root.style.setProperty('--bg-color-blue', '#eff6ff');
-    root.style.setProperty('--rain-color-purple', 'rgba(156, 126, 230, 0.6)');
-    root.style.setProperty('--rain-color-blue', 'rgba(110, 198, 255, 0.6)');
-    
+    // 直接初始化主题，复用样式表预设变量
     switchTheme(currentTheme);
     // 深色模式初始化
     if (isDarkMode) {
@@ -56,10 +47,10 @@ function initCustomColorPicker() {
 function initRainEffect() {
     const rainContainer = document.getElementById('rainContainer');
     if (!rainContainer) return;
-    const rainColor = isDarkMode ? 'rgba(156, 126, 230, 0.6)' : 'rgba(255, 255, 255, 0.7)';
+    const rainColor = getCurrentRainColor();
     createRaindrops(rainColor);
     setInterval(() => {
-        rainEnabled && createRaindrops(rainColor);
+        rainEnabled && createRaindrops(getCurrentRainColor());
     }, 5000);
 }
 
@@ -133,8 +124,7 @@ function toggleRain() {
     rainEnabled = !rainEnabled;
     rainContainer.style.display = rainEnabled ? 'block' : 'none';
     if (rainEnabled) {
-        const rainColor = isDarkMode ? 'rgba(156, 126, 230, 0.6)' : 'rgba(255, 255, 255, 0.7)';
-        createRaindrops(rainColor);
+        createRaindrops(getCurrentRainColor());
     }
 }
 
@@ -273,12 +263,12 @@ function initGuideTab() {
     });
 }
 
-// 主题切换 - 无任何getProperty操作，彻底避免报错
+// 主题切换 - 彻底移除getProperty方法，直接赋值预设色值，避免报错
 function switchTheme(theme) {
     const root = document.documentElement;
     currentTheme = theme || 'purple';
     
-    // 直接赋值颜色值，不使用var()嵌套
+    // 直接赋值固定色值，无任何读取/嵌套操作，彻底避免方法报错
     if (currentTheme === 'purple') {
         root.style.setProperty('--primary-color', '#8a5cf7');
         root.style.setProperty('--secondary-color', '#a78bfa');
@@ -289,13 +279,8 @@ function switchTheme(theme) {
         root.style.setProperty('--bg-color', '#eff6ff');
     }
     
-    // 同步雨滴颜色
-    if (rainEnabled) {
-        const rainColor = isDarkMode 
-            ? (currentTheme === 'purple' ? 'rgba(136, 106, 210, 0.6)' : 'rgba(90, 178, 235, 0.6)')
-            : 'rgba(255, 255, 255, 0.7)';
-        createRaindrops(rainColor);
-    }
+    // 同步雨滴颜色（优化：调用统一方法，避免代码冗余）
+    rainEnabled && createRaindrops(getCurrentRainColor());
     
     // 同步调色器
     const colorPicker = document.getElementById('customColorPicker');
@@ -322,11 +307,7 @@ function applyCustomTheme() {
         currentTheme = 'custom';
         
         // 同步雨滴
-        if (rainEnabled) {
-            const rainRgb = hexToRgb(customColor);
-            const rainColor = isDarkMode ? `rgba(${rainRgb}, 0.5)` : `rgba(${rainRgb}, 0.7)`;
-            createRaindrops(rainColor);
-        }
+        rainEnabled && createRaindrops(getCurrentRainColor());
     } catch (e) {
         alert('调色失败，请选择其他颜色重试');
     }
@@ -396,7 +377,7 @@ function toggleDarkMode() {
     switchTheme(currentTheme); // 同步主题颜色
 }
 
-// 故事展开/收起 - 修复标签后无任何报错
+// 故事展开/收起
 function toggleStory() {
     const storyContent = document.getElementById('storyContent');
     const storyToggle = document.getElementById('storyToggle');
@@ -507,5 +488,24 @@ function switchVideo(type) {
         bigVideo.classList.remove('hidden');
         smallVideo.querySelector('video') && smallVideo.querySelector('video').pause();
         smallVideo.querySelector('.video-cover') && (smallVideo.querySelector('.video-cover').style.display = 'flex');
+    }
+}
+
+// 【新增工具方法】获取当前雨滴颜色 - 统一逻辑，避免代码冗余，同步主题/深色模式
+function getCurrentRainColor() {
+    if (!isDarkMode) {
+        return 'rgba(255, 255, 255, 0.7)';
+    }
+    // 深色模式下按主题匹配雨滴颜色
+    switch (currentTheme) {
+        case 'purple':
+            return 'rgba(136, 106, 210, 0.6)';
+        case 'blue':
+            return 'rgba(90, 178, 235, 0.6)';
+        default: // 自定义主题
+            const root = document.documentElement;
+            const primaryColor = root.style.getPropertyValue('--primary-color') || '#8a5cf7';
+            const rgb = hexToRgb(primaryColor);
+            return `rgba(${rgb}, 0.5)`;
     }
 }

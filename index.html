@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>卡提希娅的星光小站</title>
+    <!-- 优先加载配置文件，解决"未加载成功使用默认配置"问题 -->
+    <script src="config.js"></script>
     <style>
         /* 内置Font-Awesome图标（避免CDN拦截） */
         @font-face {
@@ -612,9 +614,9 @@
         <i class="fa fa-arrow-up"></i>
     </div>
 
-    <!-- Banner -->
+    <!-- Banner - 修正图片路径 -->
     <section id="home" class="top-banner">
-        <img src="images/banner.jpg" alt="卡提希娅Banner" class="banner-bg">
+        <img src="./images/banner.jpg" alt="卡提希娅Banner" class="banner-bg">
         <div class="banner-mask"></div>
         <div class="banner-text">卡提希娅的星光小站</div>
     </section>
@@ -767,7 +769,7 @@
                 </div>
             </section>
 
-            <!-- 角色图库 -->
+            <!-- 角色图库 - 全量修正图片路径 -->
             <section id="gallery" class="section-animate">
                 <div class="section-header">
                     <h2><i class="fa fa-images"></i> 角色图库</h2>
@@ -782,16 +784,16 @@
                         <button class="gallery-tab" data-type="beauty">美图</button>
                     </div>
                     <div class="gallery-container">
-                        <img src="images/info.jpg" alt="卡提希娅立绘1" class="gallery-img" onclick="previewImage(this.src)" data-type="art">
-                        <img src="images/banner.jpg" alt="卡提希娅立绘2" class="gallery-img" onclick="previewImage(this.src)" data-type="art">
-                        <img src="images/1215.jpg" alt="卡提希娅日常1" class="gallery-img" onclick="previewImage(this.src)" data-type="daily">
-                        <img src="images/1221.jpg" alt="卡提希娅战斗1" class="gallery-img" onclick="previewImage(this.src)" data-type="battle">
-                        <img src="images/12112.jpg" alt="卡提希娅战斗2" class="gallery-img" onclick="previewImage(this.src)" data-type="battle">
+                        <img src="./images/info.jpg" alt="卡提希娅立绘1" class="gallery-img" onclick="previewImage(this.src)" data-type="art">
+                        <img src="./images/banner.jpg" alt="卡提希娅立绘2" class="gallery-img" onclick="previewImage(this.src)" data-type="art">
+                        <img src="./images/1215.jpg" alt="卡提希娅日常1" class="gallery-img" onclick="previewImage(this.src)" data-type="daily">
+                        <img src="./images/1221.jpg" alt="卡提希娅战斗1" class="gallery-img" onclick="previewImage(this.src)" data-type="battle">
+                        <img src="./images/12112.jpg" alt="卡提希娅战斗2" class="gallery-img" onclick="previewImage(this.src)" data-type="battle">
                     </div>
                 </div>
             </section>
 
-            <!-- 实机演示 -->
+            <!-- 实机演示 - 修正视频封面路径 -->
             <section id="demo" class="section-animate">
                 <div class="section-header">
                     <h2><i class="fa fa-film"></i> 实机演示视频</h2>
@@ -807,8 +809,8 @@
                         <div class="video-cover" onclick="playVideo('videoPlayer1', this)">
                             <div class="play-btn"><i class="fa fa-play"></i></div>
                         </div>
-                        <video class="demo-video" id="videoPlayer1" controls muted playsinline preload="metadata" poster="images/info.jpg">
-                            <!-- 若无videos文件夹，注释下方source标签，避免404 -->
+                        <video class="demo-video" id="videoPlayer1" controls muted playsinline preload="metadata" poster="./images/info.jpg">
+                            <!-- 若无videos文件夹，保持注释，避免404 -->
                             <!-- <source src="videos/111.mp4" type="video/mp4"> -->
                             你的浏览器不支持HTML5视频播放，请升级至Chrome/Edge最新版本
                         </video>
@@ -818,8 +820,8 @@
                         <div class="video-cover" onclick="playVideo('videoPlayer2', this)">
                             <div class="play-btn"><i class="fa fa-play"></i></div>
                         </div>
-                        <video class="demo-video" id="videoPlayer2" controls muted playsinline preload="metadata" poster="images/banner.jpg">
-                            <!-- 若无videos文件夹，注释下方source标签，避免404 -->
+                        <video class="demo-video" id="videoPlayer2" controls muted playsinline preload="metadata" poster="./images/banner.jpg">
+                            <!-- 若无videos文件夹，保持注释，避免404 -->
                             <!-- <source src="videos/12.mp4" type="video/mp4"> -->
                             你的浏览器不支持HTML5视频播放，请升级至Chrome/Edge最新版本
                         </video>
@@ -828,11 +830,11 @@
             </section>
         </div>
 
-        <!-- 右侧信息 -->
+        <!-- 右侧信息 - 修正头像路径 -->
         <div class="content-right">
             <div class="info-card">
                 <div class="card-header">
-                    <img src="images/info.jpg" alt="卡提希娅头像" class="avatar">
+                    <img src="./images/info.jpg" alt="卡提希娅头像" class="avatar">
                     <span class="username">卡提希娅</span>
                     <p class="motto">于光影中守护的温柔使者</p>
                 </div>
@@ -842,34 +844,3 @@
                         <span class="stat-label">形态数</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-num">5</span>
-                        <span class="stat-label">核心技能</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-num">T0</span>
-                        <span class="stat-label">强度评级</span>
-                    </div>
-                </div>
-            </div>
-            <div class="info-card">
-                <div class="card-header">
-                    <h3 style="color: #333 !important; margin-bottom: 10px;">公告</h3>
-                </div>
-                <div style="padding: 16px;">
-                    <p style="color: #666 !important; font-size: 14px;">网站每周五更新，敬请关注~</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 图片预览 -->
-    <div id="imagePreviewModal" class="modal-hidden" onclick="closeImagePreview(event)">
-        <div class="preview-content">
-            <span class="preview-close" onclick="closeImagePreview(event)">&times;</span>
-            <img src="" alt="角色预览图" id="previewImage">
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
