@@ -21,7 +21,7 @@ function initDefaultThemeAndMode() {
     const root = document.documentElement;
     const modeBtn = document.querySelector('.control-btn:nth-child(4) i'); // 调整索引：因新增调色器，深色模式按钮变为第4个
     // 初始化CSS变量（确保主题色变量存在）
-    if (!root.style.getProperty('--primary-color-purple')) {
+    if (!root.style.getPropertyValue('--primary-color-purple')) {
         // 预设主题色变量
         root.style.setProperty('--primary-color-purple', '#8a5cf7');
         root.style.setProperty('--secondary-color-purple', '#a78bfa');
