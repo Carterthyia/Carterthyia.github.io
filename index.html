@@ -4,17 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>卡提希娅的星光小站</title>
-    <!-- Favicon 适配根目录 -->
-    <link rel="icon" href="favicon/13.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon/13.ico" type="image/x-icon">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon/1.png">
-    <!-- 本地CSS -->
-    <link rel="stylesheet" href="style.css">
-    <!-- 修复Font-Awesome CDN（国内可用） -->
-    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        /* 雨滴效果核心样式 */
+        /* 内置Font-Awesome图标（避免CDN拦截） */
+        @font-face {
+            font-family: 'FontAwesome';
+            src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        .fa {
+            display: inline-block;
+            font: normal normal normal 14px/1 FontAwesome;
+            font-size: inherit;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .fa-star:before { content: "\f005"; }
+        .fa-bars:before { content: "\f0c9"; }
+        .fa-times:before { content: "\f00d"; }
+        .fa-sliders:before { content: "\f1de"; }
+        .fa-palette:before { content: "\f53f"; }
+        .fa-snowflake-o:before { content: "\f2dc"; }
+        .fa-eyedropper:before { content: "\f1fb"; }
+        .fa-moon:before { content: "\f186"; }
+        .fa-sun:before { content: "\f185"; }
+        .fa-tint:before { content: "\f043"; }
+        .fa-arrow-up:before { content: "\f062"; }
+        .fa-user-circle:before { content: "\f2bd"; }
+        .fa-book-open:before { content: "\f518"; }
+        .fa-gamepad:before { content: "\f11b"; }
+        .fa-images:before { content: "\f302"; }
+        .fa-film:before { content: "\f008"; }
+        .fa-chevron-up:before { content: "\f077"; }
+        .fa-chevron-down:before { content: "\f078"; }
+        .fa-play:before { content: "\f04b"; }
+
+        /* 雨滴效果 */
         .rain-container {
             position: fixed;
             top: 0;
@@ -54,13 +80,143 @@
             100% { transform: scale(1); opacity: 0; }
         }
 
-        /* 顶部Banner */
+        /* 全局样式 */
+        :root {
+            --primary-color: #8a5cf7;
+            --secondary-color: #a78bfa;
+            --bg-color: #f5f3ff;
+            --card-bg: #fff;
+            --text-color: #333;
+            --border-radius: 8px;
+            --card-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            --primary-color-purple: #8a5cf7;
+            --secondary-color-purple: #a78bfa;
+            --bg-color-purple: #f5f3ff;
+            --primary-color-blue: #3b82f6;
+            --secondary-color-blue: #60a5fa;
+            --bg-color-blue: #eff6ff;
+            --rain-color-purple: rgba(156, 126, 230, 0.6);
+            --rain-color-blue: rgba(110, 198, 255, 0.6);
+        }
+        .dark-mode {
+            --card-bg: #1f2937;
+            --text-color: #fff;
+            --card-shadow: 0 2px 12px rgba(0,0,0,0.2);
+            --bg-color: #111827;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+            color: var(--text-color);
+        }
+        body {
+            background: var(--bg-color);
+            padding-top: 70px;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--card-bg);
+            z-index: 9999;
+            box-shadow: var(--card-shadow);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 70px;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .nav-menu {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+        .nav-link {
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+        .nav-toggle {
+            display: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        /* 控制面板 */
+        .control-panel {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 999;
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .control-btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            background: var(--primary-color);
+            color: #fff !important;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .control-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        /* 回到顶部 */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: #fff !important;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--card-shadow);
+            z-index: 999;
+        }
+        .hidden {
+            display: none !important;
+        }
+
+        /* Banner */
         .top-banner {
             position: relative;
             width: 100%;
             height: 320px;
             overflow: hidden;
-            margin-top: 70px;
         }
         .banner-bg {
             width: 100%;
@@ -87,7 +243,7 @@
             text-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
 
-        /* 右侧悬浮提示框 */
+        /* 悬浮提示 */
         .float-tips {
             position: fixed;
             top: 120px;
@@ -126,7 +282,7 @@
             margin: 0;
         }
 
-        /* 主体布局调整 */
+        /* 主体布局 */
         .main-container {
             display: flex;
             gap: 24px;
@@ -145,7 +301,7 @@
             gap: 20px;
         }
 
-        /* 右侧信息卡片 */
+        /* 信息卡片 */
         .info-card {
             background: var(--card-bg);
             border-radius: var(--border-radius);
@@ -198,159 +354,23 @@
             color: #999 !important;
         }
 
-        /* 移动端适配 */
-        @media (max-width: 768px) {
-            .main-container {
-                flex-direction: column;
-                padding: 15px;
-            }
-            .content-right {
-                width: 100%;
-            }
-            .float-tips {
-                display: none;
-            }
-            .banner-text {
-                font-size: 28px;
-            }
-            .top-banner {
-                height: 200px;
-            }
-        }
-
-        /* 通用样式补全（避免样式缺失） */
-        :root {
-            --primary-color: #8a5cf7;
-            --secondary-color: #a78bfa;
-            --bg-color: #f5f3ff;
-            --card-bg: #fff;
-            --border-radius: 8px;
-            --card-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            --primary-color-purple: #8a5cf7;
-            --secondary-color-purple: #a78bfa;
-            --bg-color-purple: #f5f3ff;
-            --primary-color-blue: #3b82f6;
-            --secondary-color-blue: #60a5fa;
-            --bg-color-blue: #eff6ff;
-            --rain-color-purple: rgba(156, 126, 230, 0.6);
-            --rain-color-blue: rgba(110, 198, 255, 0.6);
-        }
-        .dark-mode {
-            --card-bg: #1f2937;
-            --card-shadow: 0 2px 12px rgba(0,0,0,0.2);
-        }
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: var(--card-bg);
-            z-index: 9999;
-            box-shadow: var(--card-shadow);
-        }
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-            height: 70px;
-        }
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 18px;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-        .nav-menu {
-            display: flex;
-            gap: 24px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        .nav-link {
-            color: #333;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-        .nav-link:hover {
-            color: var(--primary-color);
-        }
-        .nav-toggle {
-            display: none;
-            font-size: 20px;
-            cursor: pointer;
-            color: var(--primary-color);
-        }
-        .control-panel {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            z-index: 999;
-            background: var(--card-bg);
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: var(--card-shadow);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .control-btn {
-            padding: 8px 12px;
-            border: none;
-            border-radius: 4px;
-            background: var(--primary-color);
-            color: #fff;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .control-btn:hover {
-            background: var(--secondary-color);
-        }
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 40px;
-            height: 40px;
-            background: var(--primary-color);
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: var(--card-shadow);
-            z-index: 999;
-        }
-        .hidden {
-            display: none !important;
-        }
+        /* 章节样式 */
         .section-animate {
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.6s ease;
+            margin-bottom: 30px;
         }
         .section-animate.visible {
             opacity: 1;
             transform: translateY(0);
         }
-        .card-animate {
-            opacity: 0;
-            transform: scale(0.98);
-            transition: all 0.6s ease;
-        }
-        .card-animate.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
         .section-header {
             margin-bottom: 20px;
+        }
+        .section-header h2 {
+            font-size: 24px;
+            color: var(--primary-color);
         }
         .section-divider {
             height: 3px;
@@ -359,10 +379,26 @@
             border-radius: 3px;
             margin-top: 8px;
         }
+        .card-animate {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            padding: 20px;
+            opacity: 0;
+            transform: scale(0.98);
+            transition: all 0.6s ease;
+        }
+        .card-animate.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* 攻略标签 */
         .guide-tabs {
             display: flex;
             gap: 8px;
             margin-bottom: 16px;
+            flex-wrap: wrap;
         }
         .tab-btn {
             padding: 8px 16px;
@@ -375,8 +411,10 @@
         }
         .tab-btn.active {
             background: var(--primary-color);
-            color: #fff;
+            color: #fff !important;
         }
+
+        /* 图库样式 */
         .gallery-tabs {
             display: flex;
             gap: 8px;
@@ -394,7 +432,7 @@
         }
         .gallery-tab.active {
             background: var(--primary-color);
-            color: #fff;
+            color: #fff !important;
         }
         .gallery-container {
             display: grid;
@@ -411,12 +449,15 @@
             opacity: 0;
             display: none;
         }
+
+        /* 视频样式 */
         .video-container {
             width: 100%;
             height: 400px;
             position: relative;
             border-radius: 8px;
             overflow: hidden;
+            background: #000;
         }
         .video-cover {
             position: absolute;
@@ -424,7 +465,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #000;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -438,7 +478,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--primary-color);
+            color: var(--primary-color) !important;
             font-size: 20px;
         }
         .demo-video {
@@ -446,6 +486,8 @@
             height: 100%;
             object-fit: cover;
         }
+
+        /* 图片预览 */
         .modal-hidden {
             display: none;
         }
@@ -470,7 +512,7 @@
             position: absolute;
             top: -40px;
             right: -40px;
-            color: #fff;
+            color: #fff !important;
             font-size: 30px;
             cursor: pointer;
         }
@@ -479,17 +521,54 @@
             max-height: 90vh;
             border-radius: 8px;
         }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+                padding: 15px;
+            }
+            .content-right {
+                width: 100%;
+            }
+            .float-tips {
+                display: none;
+            }
+            .banner-text {
+                font-size: 28px;
+            }
+            .top-banner {
+                height: 200px;
+            }
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--card-bg);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                display: none;
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .nav-toggle {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- 雨滴容器 -->
     <div class="rain-container" id="rainContainer"></div>
 
-    <!-- 导航栏（修复所有图标标签错误：<<i → <i） -->
+    <!-- 导航栏 -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <i class="fa fa-star"></i>
+                <<i class="fa fa-star"></</i>
                 <span>卡提希娅的星光小站</span>
             </div>
             <ul class="nav-menu">
@@ -501,46 +580,46 @@
                 <li class="nav-item"><a href="#demo" class="nav-link">实机演示</a></li>
             </ul>
             <div class="nav-toggle">
-                <i class="fa fa-bars"></i>
+                <<i class="fa fa-bars"></</i>
             </div>
         </div>
     </nav>
 
-    <!-- 控制面板（修复所有图标标签错误） -->
+    <!-- 控制面板 -->
     <div class="control-panel">
-        <h3><i class="fa fa-sliders"></i> 个性化设置</h3>
+        <h3><<i class="fa fa-sliders"></</i> 个性化设置</h3>
         <button class="control-btn" onclick="switchTheme('purple')">
-            <i class="fa fa-palette"></i> 银紫色主题
+            <<i class="fa fa-palette"></</i> 银紫色主题
         </button>
         <button class="control-btn" onclick="switchTheme('blue')">
-            <i class="fa fa-snowflake-o"></i> 冰蓝色主题
+            <<i class="fa fa-snowflake-o"></</i> 冰蓝色主题
         </button>
         <div style="margin: 10px 0; display: flex; align-items: center; gap: 10px;">
-            <label style="color: #333; font-size: 14px;"><i class="fa fa-eyedropper"></i> 自定义主色调：</label>
+            <label style="color: #333; font-size: 14px;"><<i class="fa fa-eyedropper"></</i> 自定义主色调：</label>
             <input type="color" id="customColorPicker" value="#8a5cf7" style="width: 40px; height: 30px; border: none; cursor: pointer;">
             <button class="control-btn" onclick="applyCustomTheme()" style="padding: 5px 10px; font-size: 12px;">应用</button>
         </div>
         <button class="control-btn" onclick="toggleDarkMode()">
-            <i class="fa fa-moon"></i> 深色模式
+            <<i class="fa fa-moon"></</i> 深色模式
         </button>
         <button class="control-btn" onclick="toggleRain()">
-            <i class="fa fa-tint"></i> 雨天效果
+            <<i class="fa fa-tint"></</i> 雨天效果
         </button>
     </div>
 
-    <!-- 回到顶部（修复图标标签错误） -->
+    <!-- 回到顶部 -->
     <div class="back-to-top hidden">
-        <i class="fa fa-arrow-up"></i>
+        <<i class="fa fa-arrow-up"></</i>
     </div>
 
-    <!-- Banner（路径适配根目录） -->
+    <!-- Banner -->
     <section id="home" class="top-banner">
         <img src="images/banner.jpg" alt="卡提希娅Banner" class="banner-bg">
         <div class="banner-mask"></div>
         <div class="banner-text">卡提希娅的星光小站</div>
     </section>
 
-    <!-- 右侧悬浮提示框 -->
+    <!-- 悬浮提示 -->
     <div class="float-tips">
         <div class="tip-item">
             <span class="tip-icon">✓</span>
@@ -558,71 +637,58 @@
         </div>
     </div>
 
-    <!-- 主体内容区 -->
+    <!-- 主体内容 -->
     <div class="main-container">
         <div class="content-left">
-            <!-- 角色设定（修复图标标签） -->
+            <!-- 角色设定 -->
             <section id="about" class="section-animate">
                 <div class="section-header">
-                    <h2><i class="fa fa-user-circle"></i> 角色设定</h2>
+                    <h2><<i class="fa fa-user-circle"></</i> 角色设定</h2>
                     <div class="section-divider"></div>
                 </div>
                 <div class="card-animate">
-                    <div class="about-info">
-                        <span class="info-label">姓名：</span>
-                        <span>卡提希娅（Carterthyia）</span>
-                    </div>
-                    <div class="about-info">
-                        <span class="info-label">特质：</span>
-                        <span>穿梭于光影之间，拥有温柔的力量，兼具顽皮与沉稳</span>
-                    </div>
-                    <div class="about-info">
-                        <span class="info-label">形态：</span>
-                        <span>迅刀形态（小卡） / 巨剑形态（大卡·芙露德莉丝）</span>
-                    </div>
-                    <div class="about-info">
-                        <span class="info-label">称号：</span>
-                        <span>芙露德莉斯（黎那汐塔圣女、岁主共鸣者）</span>
-                    </div>
-                    <div class="about-info">
-                        <span class="info-label">核心技能：</span>
-                        <span>气刃回旋、风轨突袭、终结技「苍穹崩裂」（真实伤害）</span>
+                    <div class="about-info" style="line-height: 2;">
+                        <span style="font-weight: bold;">姓名：</span>卡提希娅（Carterthyia）<br>
+                        <span style="font-weight: bold;">特质：</span>穿梭于光影之间，拥有温柔的力量，兼具顽皮与沉稳<br>
+                        <span style="font-weight: bold;">形态：</span>迅刀形态（小卡） / 巨剑形态（大卡·芙露德莉丝）<br>
+                        <span style="font-weight: bold;">称号：</span>芙露德莉斯（黎那汐塔圣女、岁主共鸣者）<br>
+                        <span style="font-weight: bold;">核心技能：</span>气刃回旋、风轨突袭、终结技「苍穹崩裂」（真实伤害）
                     </div>
                 </div>
             </section>
 
-            <!-- 故事背景（修复图标标签） -->
+            <!-- 故事背景 -->
             <section id="story" class="section-animate">
                 <div class="section-header">
-                    <h2><i class="fa fa-book-open"></i> 角色故事背景</h2>
+                    <h2><<i class="fa fa-book-open"></</i> 角色故事背景</h2>
                     <div class="section-divider"></div>
                 </div>
                 <div class="card-animate">
-                    <button id="storyToggle" class="control-btn" onclick="toggleStory()">
-                        <i class="fa fa-chevron-up"></i> 收起故事
+                    <button id="storyToggle" class="control-btn" onclick="toggleStory()" style="margin-bottom: 16px;">
+                        <<i class="fa fa-chevron-up"></</i> 收起故事
                     </button>
-                    <div id="storyContent" class="story-paragraph">
-                        <p class="story-title">【出身与命运的转折】</p>
-                        <p>卡提希娅原本是埃格拉小镇的普通少女，性格顽皮自由，热爱生活，喜欢喝酒与恶作剧，对小镇外的世界充满好奇。在一次小镇的岁主感恩礼祭典上，她意外扰乱了仪式流程，被隐海修会施以惩罚，却也正是这次“意外”，让她的命运与神明、鸣式紧密相连。</p>
-                        <p>祭典上的异常波动，让她体内的潜在力量被唤醒，逐渐受到命运的选中。此后，她开始经历一系列离奇的遭遇，身边的人和事都在悄然改变，原本平静的生活被打破，不得不踏上一段未知的旅程。</p>
+                    <div id="storyContent">
+                        <p style="font-weight: bold; margin-bottom: 8px;">【出身与命运的转折】</p>
+                        <p style="margin-bottom: 12px;">卡提希娅原本是埃格拉小镇的普通少女，性格顽皮自由，热爱生活，喜欢喝酒与恶作剧，对小镇外的世界充满好奇。在一次小镇的岁主感恩礼祭典上，她意外扰乱了仪式流程，被隐海修会施以惩罚，却也正是这次“意外”，让她的命运与神明、鸣式紧密相连。</p>
+                        <p style="margin-bottom: 12px;">祭典上的异常波动，让她体内的潜在力量被唤醒，逐渐受到命运的选中。此后，她开始经历一系列离奇的遭遇，身边的人和事都在悄然改变，原本平静的生活被打破，不得不踏上一段未知的旅程。</p>
 
-                        <p class="story-title">【芙露德莉丝的名号】</p>
-                        <p>在旅程中，她偶然与鸣式利维亚坦产生共鸣，获得了强大的力量，同时被赋予了“芙露德莉丝”的名号，被黎那汐塔的人们视为圣女和岁主共鸣者。这份荣誉让她获得了众人的敬仰，但也带来了沉重的责任。</p>
-                        <p>值得一提的是，她的“圣女”身份并非真正由神明选定，而是由鸣式创造和赋予力量的共鸣者，这份力量既给了她保护他人的能力，也隐藏着不为人知的隐患，她在荣耀与迷茫中不断寻找自我。</p>
+                        <p style="font-weight: bold; margin: 16px 0 8px;">【芙露德莉丝的名号】</p>
+                        <p style="margin-bottom: 12px;">在旅程中，她偶然与鸣式利维亚坦产生共鸣，获得了强大的力量，同时被赋予了“芙露德莉丝”的名号，被黎那汐塔的人们视为圣女和岁主共鸣者。这份荣誉让她获得了众人的敬仰，但也带来了沉重的责任。</p>
+                        <p style="margin-bottom: 12px;">值得一提的是，她的“圣女”身份并非真正由神明选定，而是由鸣式创造和赋予力量的共鸣者，这份力量既给了她保护他人的能力，也隐藏着不为人知的隐患，她在荣耀与迷茫中不断寻找自我。</p>
 
-                        <p class="story-title">【双形态的秘密】</p>
-                        <p>作为首位常态与觉醒双形态角色，卡提希娅可以自由切换迅刀与巨剑形态。迅刀形态（小卡）保留了她原本的顽皮与敏捷，作战风格灵动飘逸，擅长突袭与收割；巨剑形态（大卡·芙露德莉丝）则展现出沉稳与威严，力量大幅提升，兼具强大的防御能力与范围性AOE伤害，是应对高难副本的核心战力。</p>
+                        <p style="font-weight: bold; margin: 16px 0 8px;">【双形态的秘密】</p>
+                        <p style="margin-bottom: 12px;">作为首位常态与觉醒双形态角色，卡提希娅可以自由切换迅刀与巨剑形态。迅刀形态（小卡）保留了她原本的顽皮与敏捷，作战风格灵动飘逸，擅长突袭与收割；巨剑形态（大卡·芙露德莉丝）则展现出沉稳与威严，力量大幅提升，兼具强大的防御能力与范围性AOE伤害，是应对高难副本的核心战力。</p>
 
-                        <p class="story-title">【现况与未来】</p>
+                        <p style="font-weight: bold; margin: 16px 0 8px;">【现况与未来】</p>
                         <p>如今的卡提希娅，早已不是那个小镇上的顽皮少女，她在一次次战斗与抉择中成长，逐渐明白自己的使命。她一边守护着身边的人，一边探寻着鸣式与神明的秘密，未来的旅程仍充满未知，但她始终带着那份温柔与勇气，砥砺前行。</p>
                     </div>
                 </div>
             </section>
 
-            <!-- 游戏攻略指南（修复图标标签+路径） -->
+            <!-- 游戏攻略 -->
             <section id="guide" class="section-animate">
                 <div class="section-header">
-                    <h2><i class="fa fa-gamepad"></i> 游戏攻略指南</h2>
+                    <h2><<i class="fa fa-gamepad"></</i> 游戏攻略指南</h2>
                     <div class="section-divider"></div>
                 </div>
                 <div class="card-animate">
@@ -634,20 +700,20 @@
                     </div>
 
                     <!-- 核心玩法 -->
-                    <div id="coreContent" class="guide-content guide-paragraph">
-                        <p class="story-title">一、定位与核心机制</p>
-                        <p>卡提希娅定位为气动主C，在V3.0版本中，逆境深塔榜单排名T0，冥歌海墟榜单排名T1，是当前版本异常体系中风蚀效应的核心输出角色，强度在线，新老漂泊者均可优先考虑抽取。</p>
-                        <p>她的输出核心依赖「风蚀效应」，所有技能都会为目标叠加风蚀层数，层数越高，造成的伤害越高，终结技「苍穹崩裂」会引爆目标身上的所有风蚀层数，造成巨额真实伤害，是爆发输出的关键。</p>
+                    <div id="coreContent" class="guide-content">
+                        <p style="font-weight: bold; margin-bottom: 8px;">一、定位与核心机制</p>
+                        <p style="margin-bottom: 12px;">卡提希娅定位为气动主C，在V3.0版本中，逆境深塔榜单排名T0，冥歌海墟榜单排名T1，是当前版本异常体系中风蚀效应的核心输出角色，强度在线，新老漂泊者均可优先考虑抽取。</p>
+                        <p style="margin-bottom: 12px;">她的输出核心依赖「风蚀效应」，所有技能都会为目标叠加风蚀层数，层数越高，造成的伤害越高，终结技「苍穹崩裂」会引爆目标身上的所有风蚀层数，造成巨额真实伤害，是爆发输出的关键。</p>
 
-                        <p class="story-title">二、输出循环技巧</p>
-                        <p>1. 常规循环：普攻连段 → 气刃回旋（叠加风蚀） → 风轨突袭（位移+补层） → 普攻收尾；</p>
-                        <p>2. 爆发循环：开启大招 → 切换巨剑形态 → 风蚀叠加至满层 → 释放「苍穹崩裂」 → 收割残血目标；</p>
+                        <p style="font-weight: bold; margin: 16px 0 8px;">二、输出循环技巧</p>
+                        <p style="margin-bottom: 8px;">1. 常规循环：普攻连段 → 气刃回旋（叠加风蚀） → 风轨突袭（位移+补层） → 普攻收尾；</p>
+                        <p style="margin-bottom: 8px;">2. 爆发循环：开启大招 → 切换巨剑形态 → 风蚀叠加至满层 → 释放「苍穹崩裂」 → 收割残血目标；</p>
                         <p>3. 注意事项：尽量保持目标身上的风蚀层数不中断，0-1链卡提需依赖夏空辅助挂层，2链及以上可自主维持层数。</p>
                     </div>
 
-                    <!-- 武器选择（路径适配根目录） -->
-                    <div id="weaponContent" class="guide-content guide-paragraph hidden">
-                        <p class="story-title">一、首选武器（毕业专武）</p>
+                    <!-- 武器选择 -->
+                    <div id="weaponContent" class="guide-content hidden">
+                        <p style="font-weight: bold; margin-bottom: 8px;">一、首选武器（毕业专武）</p>
                         <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
                             <div style="width: 180px; flex-shrink: 0;">
                                 <img src="equipment/Part_1.jpg" alt="不屈命定之冠" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
@@ -657,7 +723,7 @@
                             </div>
                         </div>
 
-                        <p class="story-title">二、平民替代武器</p>
+                        <p style="font-weight: bold; margin: 16px 0 8px;">二、平民替代武器</p>
                         <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
                             <div style="width: 180px; flex-shrink: 0;">
                                 <img src="equipment/Part_2.jpg" alt="裁春" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
@@ -683,13 +749,13 @@
                             </div>
                         </div>
 
-                        <p class="story-title">三、武器养成建议</p>
+                        <p style="font-weight: bold; margin: 16px 0 8px;">三、武器养成建议</p>
                         <p>优先将武器等级拉满，副词条优先选择「生命值」「暴击率」「暴击伤害」，其次是「风蚀效应伤害加成」，最大化卡提希娅的输出能力。</p>
                     </div>
 
-                    <!-- 配队推荐（路径适配根目录） -->
-                    <div id="teamContent" class="guide-content guide-paragraph hidden">
-                        <p class="story-title">一、主流配队（泛用性强）</p>
+                    <!-- 配队推荐 -->
+                    <div id="teamContent" class="guide-content hidden">
+                        <p style="font-weight: bold; margin-bottom: 8px;">一、主流配队（泛用性强）</p>
                         <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
                             <div style="width: 180px; flex-shrink: 0;">
                                 <img src="equipment/Part2_2.jpg" alt="卡提希娅+夏空+守岸人" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
@@ -699,7 +765,7 @@
                             </div>
                         </div>
 
-                        <p class="story-title">二、高爆发配队（竞速向）</p>
+                        <p style="font-weight: bold; margin: 16px 0 8px;">二、高爆发配队（竞速向）</p>
                         <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
                             <div style="width: 180px; flex-shrink: 0;">
                                 <img src="equipment/Part2_4.jpg" alt="卡提希娅+散华+守岸人" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
@@ -709,7 +775,7 @@
                             </div>
                         </div>
 
-                        <p class="story-title">三、深渊配队（应对高难，容错率高）</p>
+                        <p style="font-weight: bold; margin: 16px 0 8px;">三、深渊配队（应对高难，容错率高）</p>
                         <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
                             <div style="width: 180px; flex-shrink: 0;">
                                 <img src="equipment/Part2_2.jpg" alt="深渊配队：卡提希娅+守岸人+散华" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
@@ -720,9 +786,9 @@
                         </div>
                     </div>
 
-                    <!-- 声骸搭配（路径适配根目录） -->
-                    <div id="artifactContent" class="guide-content guide-paragraph hidden">
-                        <p class="story-title">一、毕业套装</p>
+                    <!-- 声骸搭配 -->
+                    <div id="artifactContent" class="guide-content hidden">
+                        <p style="font-weight: bold; margin-bottom: 8px;">一、毕业套装</p>
                         <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
                             <div style="width: 180px; flex-shrink: 0;">
                                 <img src="equipment/artifact1.jpg" alt="愿戴荣光之旅五件套" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
@@ -732,7 +798,7 @@
                             </div>
                         </div>
 
-                        <p class="story-title">二、过渡套装</p>
+                        <p style="font-weight: bold; margin: 16px 0 8px;">二、过渡套装</p>
                         <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
                             <div style="width: 180px; flex-shrink: 0;">
                                 <img src="equipment/materials.jpg" alt="过渡套装" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
@@ -743,17 +809,17 @@
                             </div>
                         </div>
 
-                        <p class="story-title">三、词条选择建议</p>
+                        <p style="font-weight: bold; margin: 16px 0 8px;">三、词条选择建议</p>
                         <p>主词条：暴击率/暴击伤害，其次生命值、风蚀效应伤害、普攻伤害；<br>
                         副词条：优先暴击率和暴击伤害，其次是大生命、共鸣解放伤害加成、风元素伤害加成，尽量避免无用词条，最大化属性收益。</p>
                     </div>
                 </div>
             </section>
 
-            <!-- 角色图库（修复图标标签+路径） -->
+            <!-- 角色图库 -->
             <section id="gallery" class="section-animate">
                 <div class="section-header">
-                    <h2><i class="fa fa-images"></i> 角色图库</h2>
+                    <h2><<i class="fa fa-images"></</i> 角色图库</h2>
                     <div class="section-divider"></div>
                 </div>
                 <div class="card-animate">
@@ -774,10 +840,10 @@
                 </div>
             </section>
 
-            <!-- 实机演示（修复图标标签+路径） -->
+            <!-- 实机演示 -->
             <section id="demo" class="section-animate">
                 <div class="section-header">
-                    <h2><i class="fa fa-film"></i> 实机演示视频</h2>
+                    <h2><<i class="fa fa-film"></</i> 实机演示视频</h2>
                     <div class="section-divider"></div>
                 </div>
                 <div class="card-animate">
@@ -788,7 +854,7 @@
 
                     <div id="smallVideo" class="video-container">
                         <div class="video-cover" onclick="playVideo('videoPlayer1', this)">
-                            <div class="play-btn"><i class="fa fa-play"></i></div>
+                            <div class="play-btn"><<i class="fa fa-play"></</i></div>
                         </div>
                         <video class="demo-video" id="videoPlayer1" controls muted playsinline preload="metadata" poster="images/info.jpg">
                             <source src="videos/111.mp4" type="video/mp4">
@@ -798,7 +864,7 @@
 
                     <div id="bigVideo" class="video-container hidden">
                         <div class="video-cover" onclick="playVideo('videoPlayer2', this)">
-                            <div class="play-btn"><i class="fa fa-play"></i></div>
+                            <div class="play-btn"><<i class="fa fa-play"></</i></div>
                         </div>
                         <video class="demo-video" id="videoPlayer2" controls muted playsinline preload="metadata" poster="images/banner.jpg">
                             <source src="videos/12.mp4" type="video/mp4">
@@ -809,7 +875,7 @@
             </section>
         </div>
 
-        <!-- 右侧信息卡片（路径适配根目录） -->
+        <!-- 右侧信息 -->
         <div class="content-right">
             <div class="info-card">
                 <div class="card-header">
@@ -843,7 +909,7 @@
         </div>
     </div>
 
-    <!-- 图片预览弹窗 -->
+    <!-- 图片预览 -->
     <div id="imagePreviewModal" class="modal-hidden" onclick="closeImagePreview()">
         <div class="preview-content">
             <span class="preview-close" onclick="closeImagePreview()">&times;</span>
@@ -851,8 +917,6 @@
         </div>
     </div>
 
-    <!-- JS路径适配根目录 -->
-    <script src="config.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
