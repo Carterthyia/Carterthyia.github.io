@@ -568,7 +568,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <<i class="fa fa-star"></</i>
+                <i class="fa fa-star"></i>
                 <span>卡提希娅的星光小站</span>
             </div>
             <ul class="nav-menu">
@@ -580,36 +580,36 @@
                 <li class="nav-item"><a href="#demo" class="nav-link">实机演示</a></li>
             </ul>
             <div class="nav-toggle">
-                <<i class="fa fa-bars"></</i>
+                <i class="fa fa-bars"></i>
             </div>
         </div>
     </nav>
 
     <!-- 控制面板 -->
     <div class="control-panel">
-        <h3><<i class="fa fa-sliders"></</i> 个性化设置</h3>
+        <h3><i class="fa fa-sliders"></i> 个性化设置</h3>
         <button class="control-btn" onclick="switchTheme('purple')">
-            <<i class="fa fa-palette"></</i> 银紫色主题
+            <i class="fa fa-palette"></i> 银紫色主题
         </button>
         <button class="control-btn" onclick="switchTheme('blue')">
-            <<i class="fa fa-snowflake-o"></</i> 冰蓝色主题
+            <i class="fa fa-snowflake-o"></i> 冰蓝色主题
         </button>
         <div style="margin: 10px 0; display: flex; align-items: center; gap: 10px;">
-            <label style="color: #333; font-size: 14px;"><<i class="fa fa-eyedropper"></</i> 自定义主色调：</label>
+            <label style="color: #333; font-size: 14px;"><i class="fa fa-eyedropper"></i> 自定义主色调：</label>
             <input type="color" id="customColorPicker" value="#8a5cf7" style="width: 40px; height: 30px; border: none; cursor: pointer;">
             <button class="control-btn" onclick="applyCustomTheme()" style="padding: 5px 10px; font-size: 12px;">应用</button>
         </div>
         <button class="control-btn" onclick="toggleDarkMode()">
-            <<i class="fa fa-moon"></</i> 深色模式
+            <i class="fa fa-moon"></i> 深色模式
         </button>
         <button class="control-btn" onclick="toggleRain()">
-            <<i class="fa fa-tint"></</i> 雨天效果
+            <i class="fa fa-tint"></i> 雨天效果
         </button>
     </div>
 
     <!-- 回到顶部 -->
     <div class="back-to-top hidden">
-        <<i class="fa fa-arrow-up"></</i>
+        <i class="fa fa-arrow-up"></i>
     </div>
 
     <!-- Banner -->
@@ -643,7 +643,7 @@
             <!-- 角色设定 -->
             <section id="about" class="section-animate">
                 <div class="section-header">
-                    <h2><<i class="fa fa-user-circle"></</i> 角色设定</h2>
+                    <h2><i class="fa fa-user-circle"></i> 角色设定</h2>
                     <div class="section-divider"></div>
                 </div>
                 <div class="card-animate">
@@ -660,12 +660,12 @@
             <!-- 故事背景 -->
             <section id="story" class="section-animate">
                 <div class="section-header">
-                    <h2><<i class="fa fa-book-open"></</i> 角色故事背景</h2>
+                    <h2><i class="fa fa-book-open"></i> 角色故事背景</h2>
                     <div class="section-divider"></div>
                 </div>
                 <div class="card-animate">
                     <button id="storyToggle" class="control-btn" onclick="toggleStory()" style="margin-bottom: 16px;">
-                        <<i class="fa fa-chevron-up"></</i> 收起故事
+                        <i class="fa fa-chevron-up"></i> 收起故事
                     </button>
                     <div id="storyContent">
                         <p style="font-weight: bold; margin-bottom: 8px;">【出身与命运的转折】</p>
@@ -688,7 +688,7 @@
             <!-- 游戏攻略 -->
             <section id="guide" class="section-animate">
                 <div class="section-header">
-                    <h2><<i class="fa fa-gamepad"></</i> 游戏攻略指南</h2>
+                    <h2><i class="fa fa-gamepad"></i> 游戏攻略指南</h2>
                     <div class="section-divider"></div>
                 </div>
                 <div class="card-animate">
@@ -714,40 +714,16 @@
                     <!-- 武器选择 -->
                     <div id="weaponContent" class="guide-content hidden">
                         <p style="font-weight: bold; margin-bottom: 8px;">一、首选武器（毕业专武）</p>
-                        <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
-                            <div style="width: 180px; flex-shrink: 0;">
-                                <img src="equipment/Part_1.jpg" alt="不屈命定之冠" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
-                            </div>
-                            <div style="flex: 1; line-height: 1.6;">
-                                <p>不屈命定之冠：卡提希娅专属武器，无下位替代，刚需抽取。该武器大幅提升风蚀效应伤害，同时增加自身生命值（卡提核心属性），开启大招后额外获得暴击率加成，完美契合她的输出机制。</p>
-                            </div>
-                        </div>
+                        <p style="margin: 15px 0; line-height: 1.6;">
+                            不屈命定之冠：卡提希娅专属武器，无下位替代，刚需抽取。该武器大幅提升风蚀效应伤害，同时增加自身生命值（卡提核心属性），开启大招后额外获得暴击率加成，完美契合她的输出机制。
+                        </p>
 
                         <p style="font-weight: bold; margin: 16px 0 8px;">二、平民替代武器</p>
-                        <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
-                            <div style="width: 180px; flex-shrink: 0;">
-                                <img src="equipment/Part_2.jpg" alt="裁春" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
-                            </div>
-                            <div style="flex: 1; line-height: 1.6;">
-                                <p>1. 裁春（椿专属武器）：提升普攻伤害与暴击伤害，适合平民玩家过渡，性价比高，容易养成；</p>
-                            </div>
-                        </div>
-                        <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
-                            <div style="width: 180px; flex-shrink: 0;">
-                                <img src="equipment/Part_3.jpg" alt="戍关迅刀·镇海" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
-                            </div>
-                            <div style="flex: 1; line-height: 1.6;">
-                                <p>2. 戍关迅刀·镇海：三星武器，容易获取，基础属性优秀，适合新手前期过渡，后期可替换为高阶武器；</p>
-                            </div>
-                        </div>
-                        <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
-                            <div style="width: 180px; flex-shrink: 0;">
-                                <img src="equipment/Part2_1.jpg" alt="千古洑流" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
-                            </div>
-                            <div style="flex: 1; line-height: 1.6;">
-                                <p>3. 千古洑流平民神器 获取方式常驻武器池 面板较为优秀，主要词条为暴击率和攻击，武器效果为充能效果，能大幅提升共鸣效果和暴击率。</p>
-                            </div>
-                        </div>
+                        <p style="margin: 15px 0; line-height: 1.6;">
+                            1. 裁春（椿专属武器）：提升普攻伤害与暴击伤害，适合平民玩家过渡，性价比高，容易养成；<br>
+                            2. 戍关迅刀·镇海：三星武器，容易获取，基础属性优秀，适合新手前期过渡，后期可替换为高阶武器；<br>
+                            3. 千古洑流：平民神器，获取方式为常驻武器池，面板较为优秀，主要词条为暴击率和攻击，武器效果为充能效果，能大幅提升共鸣效果和暴击率。
+                        </p>
 
                         <p style="font-weight: bold; margin: 16px 0 8px;">三、武器养成建议</p>
                         <p>优先将武器等级拉满，副词条优先选择「生命值」「暴击率」「暴击伤害」，其次是「风蚀效应伤害加成」，最大化卡提希娅的输出能力。</p>
@@ -756,58 +732,33 @@
                     <!-- 配队推荐 -->
                     <div id="teamContent" class="guide-content hidden">
                         <p style="font-weight: bold; margin-bottom: 8px;">一、主流配队（泛用性强）</p>
-                        <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
-                            <div style="width: 180px; flex-shrink: 0;">
-                                <img src="equipment/Part2_2.jpg" alt="卡提希娅+夏空+守岸人" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
-                            </div>
-                            <div style="flex: 1; line-height: 1.6;">
-                                <p>卡提希娅 + 夏空 + 守岸人：夏空负责挂异常状态，守岸人提供增益与控制，卡提希娅担任主C，该配队输出稳定，适合大多数副本。</p>
-                            </div>
-                        </div>
+                        <p style="margin: 15px 0; line-height: 1.6;">
+                            卡提希娅 + 夏空 + 守岸人：夏空负责挂异常状态，守岸人提供增益与控制，卡提希娅担任主C，该配队输出稳定，适合大多数副本。
+                        </p>
 
                         <p style="font-weight: bold; margin: 16px 0 8px;">二、高爆发配队（竞速向）</p>
-                        <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
-                            <div style="width: 180px; flex-shrink: 0;">
-                                <img src="equipment/Part2_4.jpg" alt="卡提希娅+散华+守岸人" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
-                            </div>
-                            <div style="flex: 1; line-height: 1.6;">
-                                <p>卡提希娅 + 散华 + 守岸人：散华提供高额延奏，守岸人加攻，卡提希娅短时间内打出爆炸伤害，适合竞速深渊。</p>
-                            </div>
-                        </div>
+                        <p style="margin: 15px 0; line-height: 1.6;">
+                            卡提希娅 + 散华 + 守岸人：散华提供高额延奏，守岸人加攻，卡提希娅短时间内打出爆炸伤害，适合竞速深渊。
+                        </p>
 
                         <p style="font-weight: bold; margin: 16px 0 8px;">三、深渊配队（应对高难，容错率高）</p>
-                        <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
-                            <div style="width: 180px; flex-shrink: 0;">
-                                <img src="equipment/Part2_2.jpg" alt="深渊配队：卡提希娅+守岸人+散华" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
-                            </div>
-                            <div style="flex: 1; line-height: 1.6;">
-                                <p>卡提希娅 + 守岸人 + 散华：守岸人提供强大的辅助增益与控制能力，散华保证延奏，卡提希娅负责核心输出，该配队可应对绝大多数高难副本，容错率极高。</p>
-                            </div>
-                        </div>
+                        <p style="margin: 15px 0; line-height: 1.6;">
+                            卡提希娅 + 守岸人 + 散华：守岸人提供强大的辅助增益与控制能力，散华保证延奏，卡提希娅负责核心输出，该配队可应对绝大多数高难副本，容错率极高。
+                        </p>
                     </div>
 
                     <!-- 声骸搭配 -->
                     <div id="artifactContent" class="guide-content hidden">
                         <p style="font-weight: bold; margin-bottom: 8px;">一、毕业套装</p>
-                        <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
-                            <div style="width: 180px; flex-shrink: 0;">
-                                <img src="equipment/artifact1.jpg" alt="愿戴荣光之旅五件套" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
-                            </div>
-                            <div style="flex: 1; line-height: 1.6;">
-                                <p>愿戴荣光之旅五件套：卡提希娅的核心声骸套装，最优选择。套装效果大幅提升风蚀效应伤害与生命值，完美契合卡提的输出机制与属性需求，搭配44111词条，首位声骸装配芙露德莉丝专属声骸，输出最大化。</p>
-                            </div>
-                        </div>
+                        <p style="margin: 15px 0; line-height: 1.6;">
+                            愿戴荣光之旅五件套：卡提希娅的核心声骸套装，最优选择。套装效果大幅提升风蚀效应伤害与生命值，完美契合卡提的输出机制与属性需求，搭配44111词条，首位声骸装配芙露德莉丝专属声骸，输出最大化。
+                        </p>
 
                         <p style="font-weight: bold; margin: 16px 0 8px;">二、过渡套装</p>
-                        <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
-                            <div style="width: 180px; flex-shrink: 0;">
-                                <img src="equipment/materials.jpg" alt="过渡套装" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
-                            </div>
-                            <div style="flex: 1; line-height: 1.6;">
-                                <p>1. 风之低语四件套 + 生命增幅二件套：提升风元素伤害与生命值，适合前期过渡，容易获取；<br>
-                                2. 异常猎手五件套：提升所有异常状态伤害，可作为过渡选择，效果略逊于愿戴荣光之旅。</p>
-                            </div>
-                        </div>
+                        <p style="margin: 15px 0; line-height: 1.6;">
+                            1. 风之低语四件套 + 生命增幅二件套：提升风元素伤害与生命值，适合前期过渡，容易获取；<br>
+                            2. 异常猎手五件套：提升所有异常状态伤害，可作为过渡选择，效果略逊于愿戴荣光之旅。
+                        </p>
 
                         <p style="font-weight: bold; margin: 16px 0 8px;">三、词条选择建议</p>
                         <p>主词条：暴击率/暴击伤害，其次生命值、风蚀效应伤害、普攻伤害；<br>
@@ -819,7 +770,7 @@
             <!-- 角色图库 -->
             <section id="gallery" class="section-animate">
                 <div class="section-header">
-                    <h2><<i class="fa fa-images"></</i> 角色图库</h2>
+                    <h2><i class="fa fa-images"></i> 角色图库</h2>
                     <div class="section-divider"></div>
                 </div>
                 <div class="card-animate">
@@ -843,7 +794,7 @@
             <!-- 实机演示 -->
             <section id="demo" class="section-animate">
                 <div class="section-header">
-                    <h2><<i class="fa fa-film"></</i> 实机演示视频</h2>
+                    <h2><i class="fa fa-film"></i> 实机演示视频</h2>
                     <div class="section-divider"></div>
                 </div>
                 <div class="card-animate">
@@ -854,20 +805,22 @@
 
                     <div id="smallVideo" class="video-container">
                         <div class="video-cover" onclick="playVideo('videoPlayer1', this)">
-                            <div class="play-btn"><<i class="fa fa-play"></</i></div>
+                            <div class="play-btn"><i class="fa fa-play"></i></div>
                         </div>
                         <video class="demo-video" id="videoPlayer1" controls muted playsinline preload="metadata" poster="images/info.jpg">
-                            <source src="videos/111.mp4" type="video/mp4">
+                            <!-- 若无videos文件夹，注释下方source标签，避免404 -->
+                            <!-- <source src="videos/111.mp4" type="video/mp4"> -->
                             你的浏览器不支持HTML5视频播放，请升级至Chrome/Edge最新版本
                         </video>
                     </div>
 
                     <div id="bigVideo" class="video-container hidden">
                         <div class="video-cover" onclick="playVideo('videoPlayer2', this)">
-                            <div class="play-btn"><<i class="fa fa-play"></</i></div>
+                            <div class="play-btn"><i class="fa fa-play"></i></div>
                         </div>
                         <video class="demo-video" id="videoPlayer2" controls muted playsinline preload="metadata" poster="images/banner.jpg">
-                            <source src="videos/12.mp4" type="video/mp4">
+                            <!-- 若无videos文件夹，注释下方source标签，避免404 -->
+                            <!-- <source src="videos/12.mp4" type="video/mp4"> -->
                             你的浏览器不支持HTML5视频播放，请升级至Chrome/Edge最新版本
                         </video>
                     </div>
@@ -910,9 +863,9 @@
     </div>
 
     <!-- 图片预览 -->
-    <div id="imagePreviewModal" class="modal-hidden" onclick="closeImagePreview()">
+    <div id="imagePreviewModal" class="modal-hidden" onclick="closeImagePreview(event)">
         <div class="preview-content">
-            <span class="preview-close" onclick="closeImagePreview()">&times;</span>
+            <span class="preview-close" onclick="closeImagePreview(event)">&times;</span>
             <img src="" alt="角色预览图" id="previewImage">
         </div>
     </div>
