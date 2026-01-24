@@ -1,9 +1,6 @@
-
-
 let currentTheme = window.siteConfig.defaultTheme;
 let isDarkMode = window.siteConfig.defaultMode === 'dark';
 let isStoryVisible = true;
-
 // ================= 初始化 =================
 window.addEventListener('DOMContentLoaded', () => {
   if (!window.siteConfig) console.warn("config.js 未加载成功，使用默认配置");
