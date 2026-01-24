@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>卡提希娅的星光小站</title>
-    <!-- Favicon 配置（适配GitHub Pages根路径） -->
-    <link rel="icon" href="/favicon/13.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="/favicon/13.ico" type="image/x-icon">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/1.png">
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <!-- Favicon 适配根目录 -->
+    <link rel="icon" href="favicon/13.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon/13.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/1.png">
+    <!-- 本地CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- 修复Font-Awesome CDN（国内可用） -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        /* 二次元高颜值核心样式（适配现有CSS） */
-        /* 雨滴效果样式（集成到核心样式） */
+        /* 雨滴效果核心样式 */
         .rain-container {
             position: fixed;
             top: 0;
@@ -59,7 +60,7 @@
             width: 100%;
             height: 320px;
             overflow: hidden;
-            margin-top: 70px; /* 适配导航栏高度 */
+            margin-top: 70px;
         }
         .banner-bg {
             width: 100%;
@@ -197,7 +198,7 @@
             color: #999 !important;
         }
 
-        /* 修复移动端适配 */
+        /* 移动端适配 */
         @media (max-width: 768px) {
             .main-container {
                 flex-direction: column;
@@ -207,7 +208,7 @@
                 width: 100%;
             }
             .float-tips {
-                display: none; /* 移动端隐藏悬浮提示 */
+                display: none;
             }
             .banner-text {
                 font-size: 28px;
@@ -216,17 +217,279 @@
                 height: 200px;
             }
         }
+
+        /* 通用样式补全（避免样式缺失） */
+        :root {
+            --primary-color: #8a5cf7;
+            --secondary-color: #a78bfa;
+            --bg-color: #f5f3ff;
+            --card-bg: #fff;
+            --border-radius: 8px;
+            --card-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            --primary-color-purple: #8a5cf7;
+            --secondary-color-purple: #a78bfa;
+            --bg-color-purple: #f5f3ff;
+            --primary-color-blue: #3b82f6;
+            --secondary-color-blue: #60a5fa;
+            --bg-color-blue: #eff6ff;
+            --rain-color-purple: rgba(156, 126, 230, 0.6);
+            --rain-color-blue: rgba(110, 198, 255, 0.6);
+        }
+        .dark-mode {
+            --card-bg: #1f2937;
+            --card-shadow: 0 2px 12px rgba(0,0,0,0.2);
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--card-bg);
+            z-index: 9999;
+            box-shadow: var(--card-shadow);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 70px;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .nav-menu {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+        .nav-toggle {
+            display: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+        .control-panel {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 999;
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .control-btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            background: var(--primary-color);
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .control-btn:hover {
+            background: var(--secondary-color);
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--card-shadow);
+            z-index: 999;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .section-animate {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        .section-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .card-animate {
+            opacity: 0;
+            transform: scale(0.98);
+            transition: all 0.6s ease;
+        }
+        .card-animate.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .section-header {
+            margin-bottom: 20px;
+        }
+        .section-divider {
+            height: 3px;
+            width: 60px;
+            background: var(--primary-color);
+            border-radius: 3px;
+            margin-top: 8px;
+        }
+        .guide-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .tab-btn {
+            padding: 8px 16px;
+            border: 1px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: #fff;
+        }
+        .gallery-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .gallery-tab {
+            padding: 6px 12px;
+            border: 1px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .gallery-tab.active {
+            background: var(--primary-color);
+            color: #fff;
+        }
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        .gallery-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            opacity: 0;
+            display: none;
+        }
+        .video-container {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .video-cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 20px;
+        }
+        .demo-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .modal-hidden {
+            display: none;
+        }
+        #imagePreviewModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .preview-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        .preview-close {
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        #previewImage {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
-    <!-- 雨滴效果容器（核心新增） -->
+    <!-- 雨滴容器 -->
     <div class="rain-container" id="rainContainer"></div>
 
-    <!-- 导航栏（修复标签语法错误） -->
+    <!-- 导航栏（修复所有图标标签错误：<<i → <i） -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <<i class="fa fa-star"></</i>
+                <i class="fa fa-star"></i>
                 <span>卡提希娅的星光小站</span>
             </div>
             <ul class="nav-menu">
@@ -238,47 +501,46 @@
                 <li class="nav-item"><a href="#demo" class="nav-link">实机演示</a></li>
             </ul>
             <div class="nav-toggle">
-                <<i class="fa fa-bars"></</i>
+                <i class="fa fa-bars"></i>
             </div>
         </div>
     </nav>
 
-    <!-- 控制面板（新增雨滴开关按钮） -->
+    <!-- 控制面板（修复所有图标标签错误） -->
     <div class="control-panel">
-        <h3><<i class="fa fa-sliders"></</i> 个性化设置</h3>
+        <h3><i class="fa fa-sliders"></i> 个性化设置</h3>
         <button class="control-btn" onclick="switchTheme('purple')">
-            <<i class="fa fa-palette"></</i> 银紫色主题
+            <i class="fa fa-palette"></i> 银紫色主题
         </button>
         <button class="control-btn" onclick="switchTheme('blue')">
-            <<i class="fa fa-snowflake-o"></</i> 冰蓝色主题
+            <i class="fa fa-snowflake-o"></i> 冰蓝色主题
         </button>
         <div style="margin: 10px 0; display: flex; align-items: center; gap: 10px;">
-            <label style="color: #333; font-size: 14px;"><<i class="fa fa-eyedropper"></</i> 自定义主色调：</label>
+            <label style="color: #333; font-size: 14px;"><i class="fa fa-eyedropper"></i> 自定义主色调：</label>
             <input type="color" id="customColorPicker" value="#8a5cf7" style="width: 40px; height: 30px; border: none; cursor: pointer;">
             <button class="control-btn" onclick="applyCustomTheme()" style="padding: 5px 10px; font-size: 12px;">应用</button>
         </div>
         <button class="control-btn" onclick="toggleDarkMode()">
-            <<i class="fa fa-moon"></</i> 深色模式
+            <i class="fa fa-moon"></i> 深色模式
         </button>
-        <!-- 新增：雨滴效果开关 -->
         <button class="control-btn" onclick="toggleRain()">
-            <<i class="fa fa-tint"></</i> 雨天效果
+            <i class="fa fa-tint"></i> 雨天效果
         </button>
     </div>
 
-    <!-- 回到顶部（修复标签语法错误） -->
+    <!-- 回到顶部（修复图标标签错误） -->
     <div class="back-to-top hidden">
-        <<i class="fa fa-arrow-up"></</i>
+        <i class="fa fa-arrow-up"></i>
     </div>
 
-    <!-- 二次元Banner（修复图片路径为根路径） -->
+    <!-- Banner（路径适配根目录） -->
     <section id="home" class="top-banner">
-        <img src="/images/banner.jpg" alt="卡提希娅Banner" class="banner-bg">
+        <img src="images/banner.jpg" alt="卡提希娅Banner" class="banner-bg">
         <div class="banner-mask"></div>
         <div class="banner-text">卡提希娅的星光小站</div>
     </section>
 
-    <!-- 右侧悬浮提示框（修复标签语法错误） -->
+    <!-- 右侧悬浮提示框 -->
     <div class="float-tips">
         <div class="tip-item">
             <span class="tip-icon">✓</span>
@@ -298,12 +560,11 @@
 
     <!-- 主体内容区 -->
     <div class="main-container">
-        <!-- 左侧内容区 -->
         <div class="content-left">
-            <!-- 角色设定（修复标签语法错误） -->
+            <!-- 角色设定（修复图标标签） -->
             <section id="about" class="section-animate">
                 <div class="section-header">
-                    <h2><<i class="fa fa-user-circle"></</i> 角色设定</h2>
+                    <h2><i class="fa fa-user-circle"></i> 角色设定</h2>
                     <div class="section-divider"></div>
                 </div>
                 <div class="card-animate">
@@ -330,15 +591,15 @@
                 </div>
             </section>
 
-            <!-- 故事背景（修复标签语法错误） -->
+            <!-- 故事背景（修复图标标签） -->
             <section id="story" class="section-animate">
                 <div class="section-header">
-                    <h2><<i class="fa fa-book-open"></</i> 角色故事背景</h2>
+                    <h2><i class="fa fa-book-open"></i> 角色故事背景</h2>
                     <div class="section-divider"></div>
                 </div>
                 <div class="card-animate">
-                    <button id="storyToggle" class="btn" onclick="toggleStory()">
-                        <<i class="fa fa-chevron-up"></</i> 收起故事
+                    <button id="storyToggle" class="control-btn" onclick="toggleStory()">
+                        <i class="fa fa-chevron-up"></i> 收起故事
                     </button>
                     <div id="storyContent" class="story-paragraph">
                         <p class="story-title">【出身与命运的转折】</p>
@@ -358,10 +619,10 @@
                 </div>
             </section>
 
-            <!-- 游戏攻略指南（修复标签语法错误） -->
+            <!-- 游戏攻略指南（修复图标标签+路径） -->
             <section id="guide" class="section-animate">
                 <div class="section-header">
-                    <h2><<i class="fa fa-gamepad"></</i> 游戏攻略指南</h2>
+                    <h2><i class="fa fa-gamepad"></i> 游戏攻略指南</h2>
                     <div class="section-divider"></div>
                 </div>
                 <div class="card-animate">
@@ -384,12 +645,12 @@
                         <p>3. 注意事项：尽量保持目标身上的风蚀层数不中断，0-1链卡提需依赖夏空辅助挂层，2链及以上可自主维持层数。</p>
                     </div>
 
-                    <!-- 武器选择（修复图片路径为根路径） -->
+                    <!-- 武器选择（路径适配根目录） -->
                     <div id="weaponContent" class="guide-content guide-paragraph hidden">
                         <p class="story-title">一、首选武器（毕业专武）</p>
                         <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
                             <div style="width: 180px; flex-shrink: 0;">
-                                <img src="/equipment/Part_1.jpg" alt="不屈命定之冠" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                                <img src="equipment/Part_1.jpg" alt="不屈命定之冠" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
                             </div>
                             <div style="flex: 1; line-height: 1.6;">
                                 <p>不屈命定之冠：卡提希娅专属武器，无下位替代，刚需抽取。该武器大幅提升风蚀效应伤害，同时增加自身生命值（卡提核心属性），开启大招后额外获得暴击率加成，完美契合她的输出机制。</p>
@@ -399,7 +660,7 @@
                         <p class="story-title">二、平民替代武器</p>
                         <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
                             <div style="width: 180px; flex-shrink: 0;">
-                                <img src="/equipment/Part_2.jpg" alt="裁春" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                                <img src="equipment/Part_2.jpg" alt="裁春" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
                             </div>
                             <div style="flex: 1; line-height: 1.6;">
                                 <p>1. 裁春（椿专属武器）：提升普攻伤害与暴击伤害，适合平民玩家过渡，性价比高，容易养成；</p>
@@ -407,7 +668,7 @@
                         </div>
                         <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
                             <div style="width: 180px; flex-shrink: 0;">
-                                <img src="/equipment/Part_3.jpg" alt="戍关迅刀·镇海" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                                <img src="equipment/Part_3.jpg" alt="戍关迅刀·镇海" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
                             </div>
                             <div style="flex: 1; line-height: 1.6;">
                                 <p>2. 戍关迅刀·镇海：三星武器，容易获取，基础属性优秀，适合新手前期过渡，后期可替换为高阶武器；</p>
@@ -415,7 +676,7 @@
                         </div>
                         <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
                             <div style="width: 180px; flex-shrink: 0;">
-                                <img src="/equipment/Part2_1.jpg" alt="千古洑流" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                                <img src="equipment/Part2_1.jpg" alt="千古洑流" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
                             </div>
                             <div style="flex: 1; line-height: 1.6;">
                                 <p>3. 千古洑流平民神器 获取方式常驻武器池 面板较为优秀，主要词条为暴击率和攻击，武器效果为充能效果，能大幅提升共鸣效果和暴击率。</p>
@@ -426,12 +687,12 @@
                         <p>优先将武器等级拉满，副词条优先选择「生命值」「暴击率」「暴击伤害」，其次是「风蚀效应伤害加成」，最大化卡提希娅的输出能力。</p>
                     </div>
 
-                    <!-- 配队推荐（修复图片路径为根路径） -->
+                    <!-- 配队推荐（路径适配根目录） -->
                     <div id="teamContent" class="guide-content guide-paragraph hidden">
                         <p class="story-title">一、主流配队（泛用性强）</p>
                         <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
                             <div style="width: 180px; flex-shrink: 0;">
-                                <img src="/equipment/Part2_2.jpg" alt="卡提希娅+夏空+守岸人" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                                <img src="equipment/Part2_2.jpg" alt="卡提希娅+夏空+守岸人" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
                             </div>
                             <div style="flex: 1; line-height: 1.6;">
                                 <p>卡提希娅 + 夏空 + 守岸人：夏空负责挂异常状态，守岸人提供增益与控制，卡提希娅担任主C，该配队输出稳定，适合大多数副本。</p>
@@ -441,7 +702,7 @@
                         <p class="story-title">二、高爆发配队（竞速向）</p>
                         <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
                             <div style="width: 180px; flex-shrink: 0;">
-                                <img src="/equipment/Part2_4.jpg" alt="卡提希娅+散华+守岸人" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                                <img src="equipment/Part2_4.jpg" alt="卡提希娅+散华+守岸人" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
                             </div>
                             <div style="flex: 1; line-height: 1.6;">
                                 <p>卡提希娅 + 散华 + 守岸人：散华提供高额延奏，守岸人加攻，卡提希娅短时间内打出爆炸伤害，适合竞速深渊。</p>
@@ -451,7 +712,7 @@
                         <p class="story-title">三、深渊配队（应对高难，容错率高）</p>
                         <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
                             <div style="width: 180px; flex-shrink: 0;">
-                                <img src="/equipment/Part2_2.jpg" alt="深渊配队：卡提希娅+守岸人+散华" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                                <img src="equipment/Part2_2.jpg" alt="深渊配队：卡提希娅+守岸人+散华" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
                             </div>
                             <div style="flex: 1; line-height: 1.6;">
                                 <p>卡提希娅 + 守岸人 + 散华：守岸人提供强大的辅助增益与控制能力，散华保证延奏，卡提希娅负责核心输出，该配队可应对绝大多数高难副本，容错率极高。</p>
@@ -459,12 +720,12 @@
                         </div>
                     </div>
 
-                    <!-- 声骸搭配（修复图片路径为根路径） -->
+                    <!-- 声骸搭配（路径适配根目录） -->
                     <div id="artifactContent" class="guide-content guide-paragraph hidden">
                         <p class="story-title">一、毕业套装</p>
                         <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
                             <div style="width: 180px; flex-shrink: 0;">
-                                <img src="/equipment/artifact1.jpg" alt="愿戴荣光之旅五件套" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                                <img src="equipment/artifact1.jpg" alt="愿戴荣光之旅五件套" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
                             </div>
                             <div style="flex: 1; line-height: 1.6;">
                                 <p>愿戴荣光之旅五件套：卡提希娅的核心声骸套装，最优选择。套装效果大幅提升风蚀效应伤害与生命值，完美契合卡提的输出机制与属性需求，搭配44111词条，首位声骸装配芙露德莉丝专属声骸，输出最大化。</p>
@@ -474,7 +735,7 @@
                         <p class="story-title">二、过渡套装</p>
                         <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
                             <div style="width: 180px; flex-shrink: 0;">
-                                <img src="/equipment/materials.jpg" alt="过渡套装" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                                <img src="equipment/materials.jpg" alt="过渡套装" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
                             </div>
                             <div style="flex: 1; line-height: 1.6;">
                                 <p>1. 风之低语四件套 + 生命增幅二件套：提升风元素伤害与生命值，适合前期过渡，容易获取；<br>
@@ -489,10 +750,10 @@
                 </div>
             </section>
 
-            <!-- 角色图库（修复图片路径为根路径 + 标签语法） -->
+            <!-- 角色图库（修复图标标签+路径） -->
             <section id="gallery" class="section-animate">
                 <div class="section-header">
-                    <h2><<i class="fa fa-images"></</i> 角色图库</h2>
+                    <h2><i class="fa fa-images"></i> 角色图库</h2>
                     <div class="section-divider"></div>
                 </div>
                 <div class="card-animate">
@@ -504,19 +765,19 @@
                         <button class="gallery-tab" data-type="beauty">美图</button>
                     </div>
                     <div class="gallery-container">
-                        <img src="/images/info.jpg" alt="卡提希娅立绘1" class="gallery-img" onclick="previewImage(this.src)" data-type="art">
-                        <img src="/images/banner.jpg" alt="卡提希娅立绘2" class="gallery-img" onclick="previewImage(this.src)" data-type="art">
-                        <img src="/images/1215.jpg" alt="卡提希娅日常1" class="gallery-img" onclick="previewImage(this.src)" data-type="daily">
-                        <img src="/images/1221.jpg" alt="卡提希娅战斗1" class="gallery-img" onclick="previewImage(this.src)" data-type="battle">
-                        <img src="/images/12112.jpg" alt="卡提希娅战斗2" class="gallery-img" onclick="previewImage(this.src)" data-type="battle">
+                        <img src="images/info.jpg" alt="卡提希娅立绘1" class="gallery-img" onclick="previewImage(this.src)" data-type="art">
+                        <img src="images/banner.jpg" alt="卡提希娅立绘2" class="gallery-img" onclick="previewImage(this.src)" data-type="art">
+                        <img src="images/1215.jpg" alt="卡提希娅日常1" class="gallery-img" onclick="previewImage(this.src)" data-type="daily">
+                        <img src="images/1221.jpg" alt="卡提希娅战斗1" class="gallery-img" onclick="previewImage(this.src)" data-type="battle">
+                        <img src="images/12112.jpg" alt="卡提希娅战斗2" class="gallery-img" onclick="previewImage(this.src)" data-type="battle">
                     </div>
                 </div>
             </section>
 
-            <!-- 实机演示（修复标签语法 + 视频路径） -->
+            <!-- 实机演示（修复图标标签+路径） -->
             <section id="demo" class="section-animate">
                 <div class="section-header">
-                    <h2><<i class="fa fa-film"></</i> 实机演示视频</h2>
+                    <h2><i class="fa fa-film"></i> 实机演示视频</h2>
                     <div class="section-divider"></div>
                 </div>
                 <div class="card-animate">
@@ -527,20 +788,20 @@
 
                     <div id="smallVideo" class="video-container">
                         <div class="video-cover" onclick="playVideo('videoPlayer1', this)">
-                            <div class="play-btn"><<i class="fa fa-play"></</i></div>
+                            <div class="play-btn"><i class="fa fa-play"></i></div>
                         </div>
-                        <video class="demo-video" id="videoPlayer1" controls muted playsinline preload="metadata" poster="/images/info.jpg">
-                            <source src="/videos/111.mp4" type="video/mp4">
+                        <video class="demo-video" id="videoPlayer1" controls muted playsinline preload="metadata" poster="images/info.jpg">
+                            <source src="videos/111.mp4" type="video/mp4">
                             你的浏览器不支持HTML5视频播放，请升级至Chrome/Edge最新版本
                         </video>
                     </div>
 
                     <div id="bigVideo" class="video-container hidden">
                         <div class="video-cover" onclick="playVideo('videoPlayer2', this)">
-                            <div class="play-btn"><<i class="fa fa-play"></</i></div>
+                            <div class="play-btn"><i class="fa fa-play"></i></div>
                         </div>
-                        <video class="demo-video" id="videoPlayer2" controls muted playsinline preload="metadata" poster="/images/banner.jpg">
-                            <source src="/videos/12.mp4" type="video/mp4">
+                        <video class="demo-video" id="videoPlayer2" controls muted playsinline preload="metadata" poster="images/banner.jpg">
+                            <source src="videos/12.mp4" type="video/mp4">
                             你的浏览器不支持HTML5视频播放，请升级至Chrome/Edge最新版本
                         </video>
                     </div>
@@ -548,11 +809,11 @@
             </section>
         </div>
 
-        <!-- 右侧信息卡片（修复图片路径为根路径） -->
+        <!-- 右侧信息卡片（路径适配根目录） -->
         <div class="content-right">
             <div class="info-card">
                 <div class="card-header">
-                    <img src="/images/info.jpg" alt="卡提希娅头像" class="avatar">
+                    <img src="images/info.jpg" alt="卡提希娅头像" class="avatar">
                     <span class="username">卡提希娅</span>
                     <p class="motto">于光影中守护的温柔使者</p>
                 </div>
@@ -590,7 +851,8 @@
         </div>
     </div>
 
-    <script src="/config.js"></script>
-    <script src="/script.js"></script>
+    <!-- JS路径适配根目录 -->
+    <script src="config.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
