@@ -4,568 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>卡提希娅的星光小站</title>
-    <!-- 优先加载配置文件，解决"未加载成功使用默认配置"问题 -->
-    <script src="config.js"></script>
-    <style>
-        /* 内置Font-Awesome图标（避免CDN拦截） */
-        @font-face {
-            font-family: 'FontAwesome';
-            src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-        .fa {
-            display: inline-block;
-            font: normal normal normal 14px/1 FontAwesome;
-            font-size: inherit;
-            text-rendering: auto;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        .fa-star:before { content: "\f005"; }
-        .fa-bars:before { content: "\f0c9"; }
-        .fa-times:before { content: "\f00d"; }
-        .fa-sliders:before { content: "\f1de"; }
-        .fa-palette:before { content: "\f53f"; }
-        .fa-snowflake-o:before { content: "\f2dc"; }
-        .fa-eyedropper:before { content: "\f1fb"; }
-        .fa-moon:before { content: "\f186"; }
-        .fa-sun:before { content: "\f185"; }
-        .fa-tint:before { content: "\f043"; }
-        .fa-arrow-up:before { content: "\f062"; }
-        .fa-user-circle:before { content: "\f2bd"; }
-        .fa-book-open:before { content: "\f518"; }
-        .fa-gamepad:before { content: "\f11b"; }
-        .fa-images:before { content: "\f302"; }
-        .fa-film:before { content: "\f008"; }
-        .fa-chevron-up:before { content: "\f077"; }
-        .fa-chevron-down:before { content: "\f078"; }
-        .fa-play:before { content: "\f04b"; }
-
-        /* 雨滴效果 */
-        .rain-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 99999;
-            overflow: hidden;
-        }
-        .raindrop {
-            position: absolute;
-            width: 2px;
-            background: linear-gradient(transparent, rgba(255, 255, 255, 0.7));
-            border-radius: 0 0 50% 50%;
-            animation: rain-fall linear infinite;
-            opacity: 0;
-        }
-        .rain-splash {
-            position: absolute;
-            width: 8px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 50%;
-            transform: scale(0);
-            animation: splash 0.5s ease-out forwards;
-            pointer-events: none;
-        }
-        @keyframes rain-fall {
-            0% { transform: translateY(-10px); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(100vh); opacity: 0; }
-        }
-        @keyframes splash {
-            0% { transform: scale(0); opacity: 1; }
-            100% { transform: scale(1); opacity: 0; }
-        }
-
-        /* 全局样式 */
-        :root {
-            --primary-color: #8a5cf7;
-            --secondary-color: #a78bfa;
-            --bg-color: #f5f3ff;
-            --card-bg: #fff;
-            --text-color: #333;
-            --border-radius: 8px;
-            --card-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            --primary-color-purple: #8a5cf7;
-            --secondary-color-purple: #a78bfa;
-            --bg-color-purple: #f5f3ff;
-            --primary-color-blue: #3b82f6;
-            --secondary-color-blue: #60a5fa;
-            --bg-color-blue: #eff6ff;
-            --rain-color-purple: rgba(156, 126, 230, 0.6);
-            --rain-color-blue: rgba(110, 198, 255, 0.6);
-        }
-        .dark-mode {
-            --card-bg: #1f2937;
-            --text-color: #fff;
-            --card-shadow: 0 2px 12px rgba(0,0,0,0.2);
-            --bg-color: #111827;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Microsoft Yahei", sans-serif;
-            color: var(--text-color);
-        }
-        body {
-            background: var(--bg-color);
-            padding-top: 70px;
-        }
-
-        /* 导航栏 */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: var(--card-bg);
-            z-index: 9999;
-            box-shadow: var(--card-shadow);
-        }
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-            height: 70px;
-        }
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 18px;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-        .nav-menu {
-            display: flex;
-            gap: 24px;
-            list-style: none;
-        }
-        .nav-link {
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-        .nav-link:hover {
-            color: var(--primary-color);
-        }
-        .nav-toggle {
-            display: none;
-            font-size: 20px;
-            cursor: pointer;
-            color: var(--primary-color);
-        }
-
-        /* 控制面板 */
-        .control-panel {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            z-index: 999;
-            background: var(--card-bg);
-            padding: 15px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--card-shadow);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .control-btn {
-            padding: 8px 12px;
-            border: none;
-            border-radius: 4px;
-            background: var(--primary-color);
-            color: #fff !important;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .control-btn:hover {
-            background: var(--secondary-color);
-        }
-
-        /* 回到顶部 */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 40px;
-            height: 40px;
-            background: var(--primary-color);
-            color: #fff !important;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: var(--card-shadow);
-            z-index: 999;
-        }
-        .hidden {
-            display: none !important;
-        }
-
-        /* Banner */
-        .top-banner {
-            position: relative;
-            width: 100%;
-            height: 320px;
-            overflow: hidden;
-        }
-        .banner-bg {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.9);
-        }
-        .banner-mask {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.2));
-        }
-        .banner-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 42px;
-            color: #fff !important;
-            font-weight: bold;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-        }
-
-        /* 悬浮提示 */
-        .float-tips {
-            position: fixed;
-            top: 120px;
-            right: 30px;
-            z-index: 999;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .tip-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            padding: 14px 18px;
-            background: #f0f9ff;
-            border-radius: 8px;
-            border-left: 4px solid #36d399;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            width: 280px;
-        }
-        .tip-icon {
-            color: #36d399 !important;
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 2px;
-        }
-        .tip-title {
-            font-size: 14px;
-            color: #333 !important;
-            font-weight: 600;
-            margin: 0 0 4px 0;
-        }
-        .tip-desc {
-            font-size: 12px;
-            color: #666 !important;
-            margin: 0;
-        }
-
-        /* 主体布局 */
-        .main-container {
-            display: flex;
-            gap: 24px;
-            padding: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .content-left {
-            flex: 1;
-        }
-        .content-right {
-            width: 300px;
-            flex-shrink: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        /* 信息卡片 */
-        .info-card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            box-shadow: var(--card-shadow);
-            overflow: hidden;
-        }
-        .info-card .card-header {
-            padding: 24px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4eaf5 100%);
-            text-align: center;
-        }
-        .info-card .avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #fff;
-            margin-bottom: 10px;
-        }
-        .info-card .username {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333 !important;
-            display: block;
-            margin-bottom: 6px;
-        }
-        .info-card .motto {
-            font-size: 12px;
-            color: #666 !important;
-            margin: 0;
-            font-style: italic;
-        }
-        .info-card .card-stats {
-            display: flex;
-            justify-content: space-around;
-            padding: 20px 0;
-            border-top: 1px solid #f0f0f0;
-        }
-        .info-card .stat-item {
-            text-align: center;
-        }
-        .info-card .stat-num {
-            font-size: 22px;
-            font-weight: bold;
-            color: #4096ff !important;
-            display: block;
-        }
-        .info-card .stat-label {
-            font-size: 12px;
-            color: #999 !important;
-        }
-
-        /* 章节样式 */
-        .section-animate {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
-            margin-bottom: 30px;
-        }
-        .section-animate.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .section-header {
-            margin-bottom: 20px;
-        }
-        .section-header h2 {
-            font-size: 24px;
-            color: var(--primary-color);
-        }
-        .section-divider {
-            height: 3px;
-            width: 60px;
-            background: var(--primary-color);
-            border-radius: 3px;
-            margin-top: 8px;
-        }
-        .card-animate {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            box-shadow: var(--card-shadow);
-            padding: 20px;
-            opacity: 0;
-            transform: scale(0.98);
-            transition: all 0.6s ease;
-        }
-        .card-animate.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* 攻略标签 */
-        .guide-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-        }
-        .tab-btn {
-            padding: 8px 16px;
-            border: 1px solid var(--primary-color);
-            background: transparent;
-            color: var(--primary-color);
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .tab-btn.active {
-            background: var(--primary-color);
-            color: #fff !important;
-        }
-
-        /* 图库样式 */
-        .gallery-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-        }
-        .gallery-tab {
-            padding: 6px 12px;
-            border: 1px solid var(--primary-color);
-            background: transparent;
-            color: var(--primary-color);
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .gallery-tab.active {
-            background: var(--primary-color);
-            color: #fff !important;
-        }
-        .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 16px;
-        }
-        .gallery-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: opacity 0.3s;
-            opacity: 0;
-            display: none;
-        }
-
-        /* 视频样式 */
-        .video-container {
-            width: 100%;
-            height: 400px;
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            background: #000;
-        }
-        .video-cover {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-        .play-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-color) !important;
-            font-size: 20px;
-        }
-        .demo-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* 图片预览 */
-        .modal-hidden {
-            display: none;
-        }
-        #imagePreviewModal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 99999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .preview-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-        }
-        .preview-close {
-            position: absolute;
-            top: -40px;
-            right: -40px;
-            color: #fff !important;
-            font-size: 30px;
-            cursor: pointer;
-        }
-        #previewImage {
-            max-width: 100%;
-            max-height: 90vh;
-            border-radius: 8px;
-        }
-
-        /* 移动端适配 */
-        @media (max-width: 768px) {
-            .main-container {
-                flex-direction: column;
-                padding: 15px;
-            }
-            .content-right {
-                width: 100%;
-            }
-            .float-tips {
-                display: none;
-            }
-            .banner-text {
-                font-size: 28px;
-            }
-            .top-banner {
-                height: 200px;
-            }
-            .nav-menu {
-                position: fixed;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: var(--card-bg);
-                flex-direction: column;
-                padding: 20px;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-                display: none;
-            }
-            .nav-menu.active {
-                display: flex;
-            }
-            .nav-toggle {
-                display: block;
-            }
-        }
-    </style>
+     <!-- Favicon 配置 -->
+    <link rel="icon" href="/favicon/13.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon/13.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/1.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <!-- 雨滴容器 -->
-    <div class="rain-container" id="rainContainer"></div>
-
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="nav-container">
@@ -587,260 +34,311 @@
         </div>
     </nav>
 
-    <!-- 控制面板 -->
-    <div class="control-panel">
-        <h3><i class="fa fa-sliders"></i> 个性化设置</h3>
-        <button class="control-btn" onclick="switchTheme('purple')">
-            <i class="fa fa-palette"></i> 银紫色主题
-        </button>
-        <button class="control-btn" onclick="switchTheme('blue')">
-            <i class="fa fa-snowflake-o"></i> 冰蓝色主题
-        </button>
-        <div style="margin: 10px 0; display: flex; align-items: center; gap: 10px;">
-            <label style="color: #333; font-size: 14px;"><i class="fa fa-eyedropper"></i> 自定义主色调：</label>
-            <input type="color" id="customColorPicker" value="#8a5cf7" style="width: 40px; height: 30px; border: none; cursor: pointer;">
-            <button class="control-btn" onclick="applyCustomTheme()" style="padding: 5px 10px; font-size: 12px;">应用</button>
-        </div>
-        <button class="control-btn" onclick="toggleDarkMode()">
-            <i class="fa fa-moon"></i> 深色模式
-        </button>
-        <button class="control-btn" onclick="toggleRain()">
-            <i class="fa fa-tint"></i> 雨天效果
-        </button>
+    <!-- 控制面板（支持自由调色） -->
+<div class="control-panel">
+    <h3><i class="fa fa-sliders"></i> 个性化设置</h3>
+    <!-- 保留原有固定主题按钮 -->
+    <button class="control-btn" onclick="switchTheme('purple')">
+        <i class="fa fa-palette"></i> 银紫色主题
+    </button>
+    <button class="control-btn" onclick="switchTheme('blue')">
+        <i class="fa fa-snowflake-o"></i> 冰蓝色主题
+    </button>
+    <!-- 新增：自定义调色区域 -->
+    <div style="margin: 10px 0; display: flex; align-items: center; gap: 10px;">
+        <label style="color: #333; font-size: 14px;"><i class="fa fa-eyedropper"></i> 自定义主色调：</label>
+        <input type="color" id="customColorPicker" value="#8a5cf7" style="width: 40px; height: 30px; border: none; cursor: pointer;">
+        <button class="control-btn" onclick="applyCustomTheme()" style="padding: 5px 10px; font-size: 12px;">应用</button>
     </div>
+    <!-- 深色模式保留 -->
+    <button class="control-btn" onclick="toggleDarkMode()">
+        <i class="fa fa-moon"></i> 深色模式
+    </button>
+</div>
 
     <!-- 回到顶部 -->
     <div class="back-to-top hidden">
         <i class="fa fa-arrow-up"></i>
     </div>
 
-    <!-- Banner - 修正图片路径 -->
-    <section id="home" class="top-banner">
-        <img src="./images/banner.jpg" alt="卡提希娅Banner" class="banner-bg">
-        <div class="banner-mask"></div>
-        <div class="banner-text">卡提希娅的星光小站</div>
-    </section>
-
-    <!-- 悬浮提示 -->
-    <div class="float-tips">
-        <div class="tip-item">
-            <span class="tip-icon">✓</span>
-            <div class="tip-content">
-                <p class="tip-title">搜索功能敬请期待</p>
-                <p class="tip-desc">该模块未开放，作者没有空</p>
+    <!-- 首页（打字机标题） -->
+    <section id="home" class="home-section section-animate">
+        <div class="home-container">
+            <img src="1.jpg" alt="卡提希娅头像" class="carterthyia-avatar">
+            <h1 class="character-title typewriter">卡提希娅（芙露德莉丝）</h1>
+            <p class="character-desc">于光影中守护的温柔使者 · 双形态战斗达人</p>
+            <div class="home-btns">
+                <a href="#gallery" class="btn">进入角色图库</a>
+                <a href="#demo" class="btn btn-secondary">查看实机演示</a>
             </div>
         </div>
-        <div class="tip-item">
-            <span class="tip-icon">✓</span>
-            <div class="tip-content">
-                <p class="tip-title">攻略内容持续更新</p>
-                <p class="tip-desc">后续将补充更多实战技巧</p>
+    </section>
+
+    <!-- 角色设定/故事背景/游戏攻略 内容不变 -->
+    <section id="about" class="section-animate">
+        <div class="section-header">
+            <h2><i class="fa fa-user-circle"></i> 角色设定</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="card-animate">
+            <div class="about-info">
+                <span class="info-label">姓名：</span>
+                <span>卡提希娅（Carterthyia）</span>
             </div>
+            <div class="about-info">
+                <span class="info-label">特质：</span>
+                <span>穿梭于光影之间，拥有温柔的力量，兼具顽皮与沉稳</span>
+            </div>
+            <div class="about-info">
+                <span class="info-label">形态：</span>
+                <span>迅刀形态（小卡） / 巨剑形态（大卡·芙露德莉丝）</span>
+            </div>
+            <div class="about-info">
+                <span class="info-label">称号：</span>
+                <span>芙露德莉斯（黎那汐塔圣女、岁主共鸣者）</span>
+            </div>
+            <div class="about-info">
+                <span class="info-label">核心技能：</span>
+                <span>气刃回旋、风轨突袭、终结技「苍穹崩裂」（真实伤害）</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="story" class="section-animate">
+        <div class="section-header">
+            <h2><i class="fa fa-book-open"></i> 角色故事背景</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="card-animate">
+            <button id="storyToggle" class="btn" onclick="toggleStory()">
+                <i class="fa fa-chevron-up"></i> 收起故事
+            </button>
+            <div id="storyContent" class="story-paragraph">
+                <p class="story-title">【出身与命运的转折】</p>
+                <p>卡提希娅原本是埃格拉小镇的普通少女，性格顽皮自由，热爱生活，喜欢喝酒与恶作剧，对小镇外的世界充满好奇。在一次小镇的岁主感恩礼祭典上，她意外扰乱了仪式流程，被隐海修会施以惩罚，却也正是这次“意外”，让她的命运与神明、鸣式紧密相连。</p>
+                <p>祭典上的异常波动，让她体内的潜在力量被唤醒，逐渐受到命运的选中。此后，她开始经历一系列离奇的遭遇，身边的人和事都在悄然改变，原本平静的生活被打破，不得不踏上一段未知的旅程。</p>
+
+                <p class="story-title">【芙露德莉丝的名号】</p>
+                <p>在旅程中，她偶然与鸣式利维亚坦产生共鸣，获得了强大的力量，同时被赋予了“芙露德莉丝”的名号，被黎那汐塔的人们视为圣女和岁主共鸣者。这份荣誉让她获得了众人的敬仰，但也带来了沉重的责任。</p>
+                <p>值得一提的是，她的“圣女”身份并非真正由神明选定，而是由鸣式创造和赋予力量的共鸣者，这份力量既给了她保护他人的能力，也隐藏着不为人知的隐患，她在荣耀与迷茫中不断寻找自我。</p>
+
+                <p class="story-title">【双形态的秘密】</p>
+                <p>作为首位常态与觉醒双形态角色，卡提希娅可以自由切换迅刀与巨剑形态。迅刀形态（小卡）保留了她原本的顽皮与敏捷，作战风格灵动飘逸，擅长突袭与收割；巨剑形态（大卡·芙露德莉丝）则展现出沉稳与威严，力量大幅提升，兼具强大的防御能力与范围性AOE伤害，是应对高难副本的核心战力。</p>
+
+                <p class="story-title">【现况与未来】</p>
+                <p>如今的卡提希娅，早已不是那个小镇上的顽皮少女，她在一次次战斗与抉择中成长，逐渐明白自己的使命。她一边守护着身边的人，一边探寻着鸣式与神明的秘密，未来的旅程仍充满未知，但她始终带着那份温柔与勇气，砥砺前行。</p>
+            </div>
+        </div>
+    </section>
+
+   <!-- 游戏攻略指南 完整修复版 -->
+<section id="guide" class="section-animate">
+    <div class="section-header">
+        <h2><i class="fa fa-gamepad"></i> 游戏攻略指南</h2>
+        <div class="section-divider"></div>
+    </div>
+    <div class="card-animate">
+        <div class="guide-tabs">
+            <button class="tab-btn active" data-tab="core" onclick="switchGuideTab('core')">核心玩法</button>
+            <button class="tab-btn" data-tab="weapon" onclick="switchGuideTab('weapon')">武器选择</button>
+            <button class="tab-btn" data-tab="team" onclick="switchGuideTab('team')">配队推荐</button>
+            <button class="tab-btn" data-tab="artifact" onclick="switchGuideTab('artifact')">声骸搭配</button>
+        </div>
+
+        <!-- 核心玩法 -->
+        <div id="coreContent" class="guide-content guide-paragraph">
+            <p class="story-title">一、定位与核心机制</p>
+            <p>卡提希娅定位为气动主C，在V3.0版本中，逆境深塔榜单排名T0，冥歌海墟榜单排名T1，是当前版本异常体系中风蚀效应的核心输出角色，强度在线，新老漂泊者均可优先考虑抽取。</p>
+            <p>她的输出核心依赖「风蚀效应」，所有技能都会为目标叠加风蚀层数，层数越高，造成的伤害越高，终结技「苍穹崩裂」会引爆目标身上的所有风蚀层数，造成巨额真实伤害，是爆发输出的关键。</p>
+
+            <p class="story-title">二、输出循环技巧</p>
+            <p>1. 常规循环：普攻连段 → 气刃回旋（叠加风蚀） → 风轨突袭（位移+补层） → 普攻收尾；</p>
+            <p>2. 爆发循环：开启大招 → 切换巨剑形态 → 风蚀叠加至满层 → 释放「苍穹崩裂」 → 收割残血目标；</p>
+            <p>3. 注意事项：尽量保持目标身上的风蚀层数不中断，0-1链卡提需依赖夏空辅助挂层，2链及以上可自主维持层数。</p>
+        </div>
+
+        <!-- 武器选择（带图片） -->
+        <div id="weaponContent" class="guide-content guide-paragraph hidden">
+            <p class="story-title">一、首选武器（毕业专武）</p>
+            <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
+                <div style="width: 180px; flex-shrink: 0;">
+                    <img src="/equipment/Part_1.jpg" alt="不屈命定之冠" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                </div>
+                <div style="flex: 1; line-height: 1.6;">
+                    <p>不屈命定之冠：卡提希娅专属武器，无下位替代，刚需抽取。该武器大幅提升风蚀效应伤害，同时增加自身生命值（卡提核心属性），开启大招后额外获得暴击率加成，完美契合她的输出机制。</p>
+                </div>
+            </div>
+
+            <p class="story-title">二、平民替代武器</p>
+            <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
+                <div style="width: 180px; flex-shrink: 0;">
+                    <img src="/equipment/Part_2.jpg" alt="裁春" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                </div>
+                <div style="flex: 1; line-height: 1.6;">
+                    <p>1. 裁春（椿专属武器）：提升普攻伤害与暴击伤害，适合平民玩家过渡，性价比高，容易养成；</p>
+                </div>
+            </div>
+            <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
+                <div style="width: 180px; flex-shrink: 0;">
+                    <img src="/equipment/Part_3.jpg" alt="戍关迅刀·镇海" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                </div>
+                <div style="flex: 1; line-height: 1.6;">
+                    <p>2. 戍关迅刀·镇海：三星武器，容易获取，基础属性优秀，适合新手前期过渡，后期可替换为高阶武器；</p>
+                </div>
+            </div>
+            <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
+                <div style="width: 180px; flex-shrink: 0;">
+                    <img src="/equipment/Part2_1.jpg" alt="千古洑流" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                </div>
+                <div style="flex: 1; line-height: 1.6;">
+                    <p>3. 千古洑流平民神器 获取方式常驻武器池 面板较为优秀，主要词条为暴击率和攻击，武器效果为充能效果，能大幅提升共鸣效果和暴击率。</p>
+                </div>
+            </div>
+
+            <p class="story-title">三、武器养成建议</p>
+            <p>优先将武器等级拉满，副词条优先选择「生命值」「暴击率」「暴击伤害」，其次是「风蚀效应伤害加成」，最大化卡提希娅的输出能力。</p>
+        </div>
+
+        <!-- 配队推荐（带图片） -->
+        <div id="teamContent" class="guide-content guide-paragraph hidden">
+            <p class="story-title">一、最优配队（输出最大化）</p>
+            <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
+                <div style="width: 180px; flex-shrink: 0;">
+                    <img src="/equipment/Part2_2.jpg" alt="最优配队：卡提希娅+夏空+千咲" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                </div>
+                <div style="flex: 1; line-height: 1.6;">
+                    <p>卡提希娅 + 夏空 + 千咲：风蚀体系拉满，夏空负责挂风蚀、提供辅助加成，千咲负责治疗与续航，同时提供一定的输出增益，该配队适合高难副本，输出与生存兼备。</p>
+                </div>
+            </div>
+
+            <p class="story-title">二、平民配队（易获取，成型快）</p>
+            <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
+                <div style="width: 180px; flex-shrink: 0;">
+                    <img src="/equipment/Part2_4.jpg" alt="平民配队：卡提希娅+气动主+散华" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                </div>
+                <div style="flex: 1; line-height: 1.6;">
+                    <p>1. 卡提希娅 + 气动主 + 散华：气动主提供风元素加成，散华负责辅助与控制，容易获取，养成成本低，适合新手玩家；</p>
+                </div>
+            </div>
+            <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
+                <div style="width: 180px; flex-shrink: 0;">
+                    <img src="/equipment/Part3_3.jpg" alt="平民配队：卡提希娅+秧秧+白芷" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                </div>
+                <div style="flex: 1; line-height: 1.6;">
+                    <p>2. 卡提希娅 + 秧秧 + 白芷：爆這支隊伍以「低成本高效運轉」為核心設計，透過風屬性傷害與能量回復機制，確保主輸出卡提希婭能穩定施展連段，同時白芷提供生存保障。對資源有限的玩家而言，此組合不僅能應對多數戰鬥情境，更是極具性價比的選擇。</p>
+                </div>
+            </div>
+
+            <p class="story-title">三、深渊配队（应对高难，容错率高）</p>
+            <div style="display: flex; align-items: flex-start; margin: 15px 0; gap: 20px; flex-wrap: wrap;">
+                <div style="width: 180px; flex-shrink: 0;">
+                    <img src="/equipment/Part2_2.jpg" alt="深渊配队：卡提希娅+守岸人+散华" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid #eee;">
+                </div>
+                <div style="flex: 1; line-height: 1.6;">
+                    <p>卡提希娅 + 守岸人 + 散华：守岸人提供强大的辅助增益与控制能力，散华保证延奏，卡提希娅负责核心输出，该配队可应对绝大多数高难副本，容错率极高。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 声骸搭配 -->
+        <div id="artifactContent" class="guide-content guide-paragraph hidden">
+            <p class="story-title">一、毕业套装</p>
+            <p>愿戴荣光之旅五件套：卡提希娅的核心声骸套装，最优选择。套装效果大幅提升风蚀效应伤害与生命值，完美契合卡提的输出机制与属性需求，搭配44111词条，首位声骸装配芙露德莉丝专属声骸，输出最大化。</p>
+
+            <p class="story-title">二、过渡套装</p>
+            <p>1. 风之低语四件套 + 生命增幅二件套：提升风元素伤害与生命值，适合前期过渡，容易获取；</p>
+            <p>2. 异常猎手五件套：提升所有异常状态伤害，可作为过渡选择，效果略逊于愿戴荣光之旅。</p>
+
+            <p class="story-title">三、词条选择建议</p>
+            <p>主词条：暴击率/暴击伤害，其次生命值、风蚀效应伤害、普攻伤害；</p>
+            <p>副词条：优先暴击率和暴击伤害，其次是大生命、共鸣解放伤害加成、风元素伤害加成，尽量避免无用词条，最大化属性收益。</p>
+        </div>
+    </div>
+</section>
+    <!-- 角色图库（横向排列） -->
+    <section id="gallery" class="section-animate">
+        <div class="section-header">
+            <h2><i class="fa fa-images"></i> 角色图库</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="card-animate">
+            <div class="gallery-tabs">
+                <button class="gallery-tab active" data-type="all">全部</button>
+                <button class="gallery-tab" data-type="art">立绘</button>
+                <button class="gallery-tab" data-type="battle">战斗</button>
+                <button class="gallery-tab" data-type="daily">日常</button>
+                <button class="gallery-tab" data-type="beauty">美图</button>
+            </div>
+            <div class="gallery-container">
+                <img src="1.jpg" alt="卡提希娅立绘1" class="gallery-img" onclick="previewImage(this.src)" data-type="art">
+                <img src="2.jpg" alt="卡提希娅立绘2" class="gallery-img" onclick="previewImage(this.src)" data-type="art">
+                <img src="3.jpg" alt="卡提希娅日常1" class="gallery-img" onclick="previewImage(this.src)" data-type="daily">
+                <img src="4.jpg" alt="卡提希娅战斗1" class="gallery-img" onclick="previewImage(this.src)" data-type="battle">
+                <img src="5.jpg" alt="卡提希娅战斗2" class="gallery-img" onclick="previewImage(this.src)" data-type="battle">
+                <img src="6.jpg" alt="卡提希娅日常2" class="gallery-img" onclick="previewImage(this.src)" data-type="daily">
+                <img src="7.jpg" alt="卡提希娅立绘3" class="gallery-img" onclick="previewImage(this.src)" data-type="art">
+                <img src="8.jpg" alt="卡提希娅战斗3" class="gallery-img" onclick="previewImage(this.src)" data-type="battle">
+                <img src="123.jpg" alt="卡提希娅美图1" class="gallery-img" onclick="previewImage(this.src)" data-type="beauty">
+                <img src="17.jpg" alt="卡提希娅美图1" class="gallery-img" onclick="previewImage(this.src)" data-type="beauty">
+                <img src="master.jpg" alt="卡提希娅美图1" class="gallery-img" onclick="previewImage(this.src)" data-type="beauty">
+                <img src="167.jpg" alt="卡提希娅美图1" class="gallery-img" onclick="previewImage(this.src)" data-type="beauty">
+                <img src="134.jpg" alt="卡提希娅美图1" class="gallery-img" onclick="previewImage(this.src)" data-type="beauty">
+                <img src="32.jpg" alt="卡提希娅美图1" class="gallery-img" onclick="previewImage(this.src)" data-type="beauty">
+                <img src="kl.jpg" alt="卡提希娅美图1" class="gallery-img" onclick="previewImage(this.src)" data-type="beauty">
+                <img src="121.jpg" alt="卡提希娅美图1" class="gallery-img" onclick="previewImage(this.src)" data-type="beauty">
+                <img src="12112.jpg" alt="卡提希娅美图1" class="gallery-img" onclick="previewImage(this.src)" data-type="beauty">
+                <img src="1221.jpg" alt="卡提希娅美图1" class="gallery-img" onclick="previewImage(this.src)" data-type="beauty">
+                <img src="12115.jpg" alt="卡提希娅美图1" class="gallery-img" onclick="previewImage(this.src)" data-type="beauty">
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 实机演示（视频路径写死，杜绝重复） -->
+    <section id="demo" class="section-animate">
+        <div class="section-header">
+            <h2><i class="fa fa-film"></i> 实机演示视频</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="card-animate">
+            <div class="gallery-tabs">
+                <button class="gallery-tab active" data-type="small" onclick="switchVideo('small')">小卡（迅刀形态）</button>
+                <button class="gallery-tab" data-type="big" onclick="switchVideo('big')">大卡（芙露德莉丝·巨剑形态）</button>
+            </div>
+
+            <!-- 小卡视频：强制指定 videos/111.mp4 -->
+            <div id="smallVideo" class="video-container">
+                <div class="video-cover" onclick="playVideo('videoPlayer1', this)">
+                    <div class="play-btn"><i class="fa fa-play"></i></div>
+                </div>
+                <video class="demo-video" id="videoPlayer1" controls muted playsinline preload="metadata" poster="1.jpg">
+                    <source src="videos/111.mp4" type="video/mp4">
+                    你的浏览器不支持HTML5视频播放，请升级至Chrome/Edge最新版本
+                </video>
+            </div>
+
+            <!-- 大卡视频：强制指定 videos/12.mp4 -->
+            <div id="bigVideo" class="video-container hidden">
+                <div class="video-cover" onclick="playVideo('videoPlayer2', this)">
+                    <div class="play-btn"><i class="fa fa-play"></i></div>
+                </div>
+                <video class="demo-video" id="videoPlayer2" controls muted playsinline preload="metadata" poster="2.jpg">
+                    <source src="videos/12.mp4" type="video/mp4">
+                    你的浏览器不支持HTML5视频播放，请升级至Chrome/Edge最新版本
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- 图片预览弹窗 -->
+    <div id="imagePreviewModal" class="modal-hidden" onclick="closeImagePreview()">
+        <div class="preview-content">
+            <span class="preview-close" onclick="closeImagePreview()">&times;</span>
+            <img src="" alt="角色预览图" id="previewImage">
         </div>
     </div>
 
-    <!-- 主体内容 -->
-    <div class="main-container">
-        <div class="content-left">
-            <!-- 角色设定 -->
-            <section id="about" class="section-animate">
-                <div class="section-header">
-                    <h2><i class="fa fa-user-circle"></i> 角色设定</h2>
-                    <div class="section-divider"></div>
-                </div>
-                <div class="card-animate">
-                    <div class="about-info" style="line-height: 2;">
-                        <span style="font-weight: bold;">姓名：</span>卡提希娅（Carterthyia）<br>
-                        <span style="font-weight: bold;">特质：</span>穿梭于光影之间，拥有温柔的力量，兼具顽皮与沉稳<br>
-                        <span style="font-weight: bold;">形态：</span>迅刀形态（小卡） / 巨剑形态（大卡·芙露德莉丝）<br>
-                        <span style="font-weight: bold;">称号：</span>芙露德莉斯（黎那汐塔圣女、岁主共鸣者）<br>
-                        <span style="font-weight: bold;">核心技能：</span>气刃回旋、风轨突袭、终结技「苍穹崩裂」（真实伤害）
-                    </div>
-                </div>
-            </section>
-
-            <!-- 故事背景 -->
-            <section id="story" class="section-animate">
-                <div class="section-header">
-                    <h2><i class="fa fa-book-open"></i> 角色故事背景</h2>
-                    <div class="section-divider"></div>
-                </div>
-                <div class="card-animate">
-                    <button id="storyToggle" class="control-btn" onclick="toggleStory()" style="margin-bottom: 16px;">
-                        <i class="fa fa-chevron-up"></i> 收起故事
-                    </button>
-                    <div id="storyContent">
-                        <p style="font-weight: bold; margin-bottom: 8px;">【出身与命运的转折】</p>
-                        <p style="margin-bottom: 12px;">卡提希娅原本是埃格拉小镇的普通少女，性格顽皮自由，热爱生活，喜欢喝酒与恶作剧，对小镇外的世界充满好奇。在一次小镇的岁主感恩礼祭典上，她意外扰乱了仪式流程，被隐海修会施以惩罚，却也正是这次“意外”，让她的命运与神明、鸣式紧密相连。</p>
-                        <p style="margin-bottom: 12px;">祭典上的异常波动，让她体内的潜在力量被唤醒，逐渐受到命运的选中。此后，她开始经历一系列离奇的遭遇，身边的人和事都在悄然改变，原本平静的生活被打破，不得不踏上一段未知的旅程。</p>
-
-                        <p style="font-weight: bold; margin: 16px 0 8px;">【芙露德莉丝的名号】</p>
-                        <p style="margin-bottom: 12px;">在旅程中，她偶然与鸣式利维亚坦产生共鸣，获得了强大的力量，同时被赋予了“芙露德莉丝”的名号，被黎那汐塔的人们视为圣女和岁主共鸣者。这份荣誉让她获得了众人的敬仰，但也带来了沉重的责任。</p>
-                        <p style="margin-bottom: 12px;">值得一提的是，她的“圣女”身份并非真正由神明选定，而是由鸣式创造和赋予力量的共鸣者，这份力量既给了她保护他人的能力，也隐藏着不为人知的隐患，她在荣耀与迷茫中不断寻找自我。</p>
-
-                        <p style="font-weight: bold; margin: 16px 0 8px;">【双形态的秘密】</p>
-                        <p style="margin-bottom: 12px;">作为首位常态与觉醒双形态角色，卡提希娅可以自由切换迅刀与巨剑形态。迅刀形态（小卡）保留了她原本的顽皮与敏捷，作战风格灵动飘逸，擅长突袭与收割；巨剑形态（大卡·芙露德莉丝）则展现出沉稳与威严，力量大幅提升，兼具强大的防御能力与范围性AOE伤害，是应对高难副本的核心战力。</p>
-
-                        <p style="font-weight: bold; margin: 16px 0 8px;">【现况与未来】</p>
-                        <p>如今的卡提希娅，早已不是那个小镇上的顽皮少女，她在一次次战斗与抉择中成长，逐渐明白自己的使命。她一边守护着身边的人，一边探寻着鸣式与神明的秘密，未来的旅程仍充满未知，但她始终带着那份温柔与勇气，砥砺前行。</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 游戏攻略 -->
-            <section id="guide" class="section-animate">
-                <div class="section-header">
-                    <h2><i class="fa fa-gamepad"></i> 游戏攻略指南</h2>
-                    <div class="section-divider"></div>
-                </div>
-                <div class="card-animate">
-                    <div class="guide-tabs">
-                        <button class="tab-btn active" data-tab="core" onclick="switchGuideTab('core')">核心玩法</button>
-                        <button class="tab-btn" data-tab="weapon" onclick="switchGuideTab('weapon')">武器选择</button>
-                        <button class="tab-btn" data-tab="team" onclick="switchGuideTab('team')">配队推荐</button>
-                        <button class="tab-btn" data-tab="artifact" onclick="switchGuideTab('artifact')">声骸搭配</button>
-                    </div>
-
-                    <!-- 核心玩法 -->
-                    <div id="coreContent" class="guide-content">
-                        <p style="font-weight: bold; margin-bottom: 8px;">一、定位与核心机制</p>
-                        <p style="margin-bottom: 12px;">卡提希娅定位为气动主C，在V3.0版本中，逆境深塔榜单排名T0，冥歌海墟榜单排名T1，是当前版本异常体系中风蚀效应的核心输出角色，强度在线，新老漂泊者均可优先考虑抽取。</p>
-                        <p style="margin-bottom: 12px;">她的输出核心依赖「风蚀效应」，所有技能都会为目标叠加风蚀层数，层数越高，造成的伤害越高，终结技「苍穹崩裂」会引爆目标身上的所有风蚀层数，造成巨额真实伤害，是爆发输出的关键。</p>
-
-                        <p style="font-weight: bold; margin: 16px 0 8px;">二、输出循环技巧</p>
-                        <p style="margin-bottom: 8px;">1. 常规循环：普攻连段 → 气刃回旋（叠加风蚀） → 风轨突袭（位移+补层） → 普攻收尾；</p>
-                        <p style="margin-bottom: 8px;">2. 爆发循环：开启大招 → 切换巨剑形态 → 风蚀叠加至满层 → 释放「苍穹崩裂」 → 收割残血目标；</p>
-                        <p>3. 注意事项：尽量保持目标身上的风蚀层数不中断，0-1链卡提需依赖夏空辅助挂层，2链及以上可自主维持层数。</p>
-                    </div>
-
-                    <!-- 武器选择 -->
-                    <div id="weaponContent" class="guide-content hidden">
-                        <p style="font-weight: bold; margin-bottom: 8px;">一、首选武器（毕业专武）</p>
-                        <p style="margin: 15px 0; line-height: 1.6;">
-                            不屈命定之冠：卡提希娅专属武器，无下位替代，刚需抽取。该武器大幅提升风蚀效应伤害，同时增加自身生命值（卡提核心属性），开启大招后额外获得暴击率加成，完美契合她的输出机制。
-                        </p>
-
-                        <p style="font-weight: bold; margin: 16px 0 8px;">二、平民替代武器</p>
-                        <p style="margin: 15px 0; line-height: 1.6;">
-                            1. 裁春（椿专属武器）：提升普攻伤害与暴击伤害，适合平民玩家过渡，性价比高，容易养成；<br>
-                            2. 戍关迅刀·镇海：三星武器，容易获取，基础属性优秀，适合新手前期过渡，后期可替换为高阶武器；<br>
-                            3. 千古洑流：平民神器，获取方式为常驻武器池，面板较为优秀，主要词条为暴击率和攻击，武器效果为充能效果，能大幅提升共鸣效果和暴击率。
-                        </p>
-
-                        <p style="font-weight: bold; margin: 16px 0 8px;">三、武器养成建议</p>
-                        <p>优先将武器等级拉满，副词条优先选择「生命值」「暴击率」「暴击伤害」，其次是「风蚀效应伤害加成」，最大化卡提希娅的输出能力。</p>
-                    </div>
-
-                    <!-- 配队推荐 -->
-                    <div id="teamContent" class="guide-content hidden">
-                        <p style="font-weight: bold; margin-bottom: 8px;">一、主流配队（泛用性强）</p>
-                        <p style="margin: 15px 0; line-height: 1.6;">
-                            卡提希娅 + 夏空 + 守岸人：夏空负责挂异常状态，守岸人提供增益与控制，卡提希娅担任主C，该配队输出稳定，适合大多数副本。
-                        </p>
-
-                        <p style="font-weight: bold; margin: 16px 0 8px;">二、高爆发配队（竞速向）</p>
-                        <p style="margin: 15px 0; line-height: 1.6;">
-                            卡提希娅 + 散华 + 守岸人：散华提供高额延奏，守岸人加攻，卡提希娅短时间内打出爆炸伤害，适合竞速深渊。
-                        </p>
-
-                        <p style="font-weight: bold; margin: 16px 0 8px;">三、深渊配队（应对高难，容错率高）</p>
-                        <p style="margin: 15px 0; line-height: 1.6;">
-                            卡提希娅 + 守岸人 + 散华：守岸人提供强大的辅助增益与控制能力，散华保证延奏，卡提希娅负责核心输出，该配队可应对绝大多数高难副本，容错率极高。
-                        </p>
-                    </div>
-
-                    <!-- 声骸搭配 -->
-                    <div id="artifactContent" class="guide-content hidden">
-                        <p style="font-weight: bold; margin-bottom: 8px;">一、毕业套装</p>
-                        <p style="margin: 15px 0; line-height: 1.6;">
-                            愿戴荣光之旅五件套：卡提希娅的核心声骸套装，最优选择。套装效果大幅提升风蚀效应伤害与生命值，完美契合卡提的输出机制与属性需求，搭配44111词条，首位声骸装配芙露德莉丝专属声骸，输出最大化。
-                        </p>
-
-                        <p style="font-weight: bold; margin: 16px 0 8px;">二、过渡套装</p>
-                        <p style="margin: 15px 0; line-height: 1.6;">
-                            1. 风之低语四件套 + 生命增幅二件套：提升风元素伤害与生命值，适合前期过渡，容易获取；<br>
-                            2. 异常猎手五件套：提升所有异常状态伤害，可作为过渡选择，效果略逊于愿戴荣光之旅。
-                        </p>
-
-                        <p style="font-weight: bold; margin: 16px 0 8px;">三、词条选择建议</p>
-                        <p>主词条：暴击率/暴击伤害，其次生命值、风蚀效应伤害、普攻伤害；<br>
-                        副词条：优先暴击率和暴击伤害，其次是大生命、共鸣解放伤害加成、风元素伤害加成，尽量避免无用词条，最大化属性收益。</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 角色图库 - 全量修正图片路径 -->
-            <section id="gallery" class="section-animate">
-                <div class="section-header">
-                    <h2><i class="fa fa-images"></i> 角色图库</h2>
-                    <div class="section-divider"></div>
-                </div>
-                <div class="card-animate">
-                    <div class="gallery-tabs">
-                        <button class="gallery-tab active" data-type="all">全部</button>
-                        <button class="gallery-tab" data-type="art">立绘</button>
-                        <button class="gallery-tab" data-type="battle">战斗</button>
-                        <button class="gallery-tab" data-type="daily">日常</button>
-                        <button class="gallery-tab" data-type="beauty">美图</button>
-                    </div>
-                    <div class="gallery-container">
-                        <img src="./images/info.jpg" alt="卡提希娅立绘1" class="gallery-img" onclick="previewImage(this.src)" data-type="art">
-                        <img src="./images/banner.jpg" alt="卡提希娅立绘2" class="gallery-img" onclick="previewImage(this.src)" data-type="art">
-                        <img src="./images/1215.jpg" alt="卡提希娅日常1" class="gallery-img" onclick="previewImage(this.src)" data-type="daily">
-                        <img src="./images/1221.jpg" alt="卡提希娅战斗1" class="gallery-img" onclick="previewImage(this.src)" data-type="battle">
-                        <img src="./images/12112.jpg" alt="卡提希娅战斗2" class="gallery-img" onclick="previewImage(this.src)" data-type="battle">
-                    </div>
-                </div>
-            </section>
-
-            <!-- 实机演示 - 修正视频封面路径 -->
-            <section id="demo" class="section-animate">
-                <div class="section-header">
-                    <h2><i class="fa fa-film"></i> 实机演示视频</h2>
-                    <div class="section-divider"></div>
-                </div>
-                <div class="card-animate">
-                    <div class="gallery-tabs">
-                        <button class="gallery-tab active" data-type="small" onclick="switchVideo('small')">小卡（迅刀形态）</button>
-                        <button class="gallery-tab" data-type="big" onclick="switchVideo('big')">大卡（芙露德莉丝·巨剑形态）</button>
-                    </div>
-
-                    <div id="smallVideo" class="video-container">
-                        <div class="video-cover" onclick="playVideo('videoPlayer1', this)">
-                            <div class="play-btn"><i class="fa fa-play"></i></div>
-                        </div>
-                        <video class="demo-video" id="videoPlayer1" controls muted playsinline preload="metadata" poster="./images/info.jpg">
-                            <!-- 若无videos文件夹，保持注释，避免404 -->
-                            <!-- <source src="videos/111.mp4" type="video/mp4"> -->
-                            你的浏览器不支持HTML5视频播放，请升级至Chrome/Edge最新版本
-                        </video>
-                    </div>
-
-                    <div id="bigVideo" class="video-container hidden">
-                        <div class="video-cover" onclick="playVideo('videoPlayer2', this)">
-                            <div class="play-btn"><i class="fa fa-play"></i></div>
-                        </div>
-                        <video class="demo-video" id="videoPlayer2" controls muted playsinline preload="metadata" poster="./images/banner.jpg">
-                            <!-- 若无videos文件夹，保持注释，避免404 -->
-                            <!-- <source src="videos/12.mp4" type="video/mp4"> -->
-                            你的浏览器不支持HTML5视频播放，请升级至Chrome/Edge最新版本
-                        </video>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- 右侧信息 - 修正头像路径 -->
-        <div class="content-right">
-            <div class="info-card">
-                <div class="card-header">
-                    <img src="./images/info.jpg" alt="卡提希娅头像" class="avatar">
-                    <span class="username">卡提希娅</span>
-                    <p class="motto">于光影中守护的温柔使者</p>
-                </div>
-                <div class="card-stats">
-                    <div class="stat-item">
-                        <span class="stat-num">2</span>
-                        <span class="stat-label">形态数</span>
-                    </div>
-                    <div class="stat-item">
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
