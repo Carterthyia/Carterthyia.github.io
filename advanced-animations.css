@@ -1,0 +1,436 @@
+/* advanced-animations.css - 高级动画效果 */
+
+/* 1. 加载动画 */
+.page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.loader-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid var(--primary-color);
+    border-top: 4px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 2. 文字渐变流动 */
+.text-gradient-flow {
+    background: linear-gradient(
+        90deg,
+        var(--primary-color) 0%,
+        var(--secondary-color) 25%,
+        #ff6bcb 50%,
+        var(--secondary-color) 75%,
+        var(--primary-color) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: textFlow 3s linear infinite;
+}
+
+@keyframes textFlow {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+/* 3. 3D翻转卡片 */
+.card-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card-3d:hover {
+    transform: rotateY(180deg);
+}
+
+.card-3d-front,
+.card-3d-back {
+    backface-visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.card-3d-back {
+    transform: rotateY(180deg);
+}
+
+/* 4. 粒子背景 */
+.particle-bg {
+    position: relative;
+    overflow: hidden;
+}
+
+.particle-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 30%, var(--primary-color) 1px, transparent 1px),
+        radial-gradient(circle at 80% 70%, var(--secondary-color) 1px, transparent 1px),
+        radial-gradient(circle at 40% 80%, #ff6bcb 1px, transparent 1px);
+    background-size: 100px 100px, 150px 150px, 200px 200px;
+    opacity: 0.1;
+    animation: particlesFloat 20s linear infinite;
+}
+
+@keyframes particlesFloat {
+    0% { transform: translateY(0) translateX(0); }
+    100% { transform: translateY(-100px) translateX(100px); }
+}
+
+/* 5. 霓虹边框 */
+.neon-border {
+    position: relative;
+    border: 2px solid transparent;
+    border-radius: var(--border-radius);
+}
+
+.neon-border::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg,
+        var(--primary-color),
+        var(--secondary-color),
+        #ff6bcb,
+        var(--primary-color)
+    );
+    border-radius: calc(var(--border-radius) + 2px);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: neonPulse 2s linear infinite;
+}
+
+.neon-border:hover::before {
+    opacity: 1;
+}
+
+@keyframes neonPulse {
+    0%, 100% { 
+        filter: drop-shadow(0 0 5px var(--primary-color))
+                drop-shadow(0 0 10px var(--primary-color));
+    }
+    50% { 
+        filter: drop-shadow(0 0 10px var(--secondary-color))
+                drop-shadow(0 0 20px var(--secondary-color));
+    }
+}
+
+/* 6. 波浪效果 */
+.wave-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.wave-effect::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transform: translateX(-100%);
+    animation: wave 2s linear infinite;
+}
+
+@keyframes wave {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* 7. 玻璃态磨砂效果 */
+.glass-morphism {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.glass-morphism-dark {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 8. 无限滚动横幅 */
+.marquee-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 40px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 20%,
+        black 80%,
+        transparent
+    );
+}
+
+.marquee-content {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee 30s linear infinite;
+    padding-left: 100%;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+/* 9. 呼吸灯效果 */
+.breathing-light {
+    animation: breathing 3s ease-in-out infinite;
+}
+
+@keyframes breathing {
+    0%, 100% { 
+        opacity: 0.7;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+/* 10. 星空闪烁 */
+.star-twinkle {
+    position: relative;
+}
+
+.star-twinkle::before {
+    content: '✦';
+    position: absolute;
+    color: white;
+    animation: twinkle 1.5s ease-in-out infinite;
+    font-size: 24px;
+}
+
+@keyframes twinkle {
+    0%, 100% { 
+        opacity: 0.2;
+        transform: scale(0.8);
+    }
+    50% { 
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* 11. 3D按钮按下效果 */
+.btn-3d {
+    position: relative;
+    border: none;
+    transform: translateY(0);
+    transition: all 0.2s ease;
+}
+
+.btn-3d:active {
+    transform: translateY(4px);
+}
+
+.btn-3d::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius);
+    z-index: -1;
+    transition: all 0.2s ease;
+}
+
+.btn-3d:active::after {
+    top: 0;
+    height: calc(100% - 4px);
+}
+
+/* 12. 视差滚动层 */
+.parallax-layer {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* 13. 故障文字效果 */
+.glitch-text {
+    position: relative;
+    animation: glitch 3s infinite;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch-text::before {
+    left: 2px;
+    text-shadow: -2px 0 #ff00ff;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+    left: -2px;
+    text-shadow: -2px 0 #00ffff;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(31px, 9999px, 94px, 0); }
+    5% { clip: rect(112px, 9999px, 76px, 0); }
+    10% { clip: rect(85px, 9999px, 77px, 0); }
+    15% { clip: rect(91px, 9999px, 98px, 0); }
+    20% { clip: rect(30px, 9999px, 98px, 0); }
+    25% { clip: rect(88px, 9999px, 98px, 0); }
+    30% { clip: rect(7px, 9999px, 29px, 0); }
+    35% { clip: rect(69px, 9999px, 85px, 0); }
+    40% { clip: rect(24px, 9999px, 40px, 0); }
+    45% { clip: rect(91px, 9999px, 29px, 0); }
+    50% { clip: rect(42px, 9999px, 73px, 0); }
+    55% { clip: rect(20px, 9999px, 20px, 0); }
+    60% { clip: rect(64px, 9999px, 44px, 0); }
+    65% { clip: rect(34px, 9999px, 82px, 0); }
+    70% { clip: rect(95px, 9999px, 54px, 0); }
+    75% { clip: rect(75px, 9999px, 5px, 0); }
+    80% { clip: rect(18px, 9999px, 41px, 0); }
+    85% { clip: rect(90px, 9999px, 22px, 0); }
+    90% { clip: rect(57px, 9999px, 65px, 0); }
+    95% { clip: rect(7px, 9999px, 59px, 0); }
+    100% { clip: rect(88px, 9999px, 98px, 0); }
+}
+
+/* 14. 液体填充效果 */
+.liquid-fill {
+    position: relative;
+    overflow: hidden;
+}
+
+.liquid-fill::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--primary-color)
+    );
+    animation: liquidRise 3s ease-in-out infinite;
+    opacity: 0.3;
+}
+
+@keyframes liquidRise {
+    0%, 100% { transform: translateY(100%); }
+    50% { transform: translateY(0); }
+}
+
+/* 15. 全息投影效果 */
+.hologram-effect {
+    position: relative;
+}
+
+.hologram-effect::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(
+        45deg,
+        #ff0000,
+        #ff9900,
+        #ffff00,
+        #00ff00,
+        #00ffff,
+        #0000ff,
+        #9900ff,
+        #ff0000
+    );
+    background-size: 400% 400%;
+    z-index: -1;
+    filter: blur(20px);
+    opacity: 0.5;
+    animation: hologram 4s ease infinite;
+}
+
+@keyframes hologram {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* 性能优化类 */
+.performance-optimized {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+/* 深色模式适配 */
+.dark-mode .glass-morphism {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .neon-border::before {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .neon-border::before,
+    .hologram-effect::before {
+        display: none;
+    }
+    
+    .text-gradient-flow {
+        animation-duration: 4s;
+    }
+}

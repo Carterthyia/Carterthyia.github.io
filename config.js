@@ -13,6 +13,15 @@ const siteConfig = {
     videoPoster2: "2.jpg"
   },
   galleryCount: 8,
-  galleryTypes: ["all", "art", "battle", "daily"]
+  galleryTypes: ["all", "art", "battle", "daily"],
+  // 新增：特效配置（可选）
+  effectsConfig: {
+    enableAdvancedEffects: true,
+    maxParticles: 150,
+    enableAudioVisualizer: true,
+    enableParallax: true,
+    performanceMode: false,
+    defaultParticleDensity: 50
+  }
 };
 window.siteConfig = siteConfig;

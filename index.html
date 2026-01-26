@@ -13,8 +13,15 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="style.css">
+  <!-- 新增：高级动画CSS -->
+  <link rel="stylesheet" href="advanced-animations.css">
 </head>
 <body>
+  <!-- 新增：页面加载动画 -->
+  <div class="page-loader">
+    <div class="loader-spinner"></div>
+  </div>
+
   <!-- 导航 -->
   <nav class="navbar">
     <div class="nav-container">
@@ -42,20 +49,27 @@
       <button class="control-btn" onclick="applyCustomTheme()">应用</button>
     </div>
     <button class="control-btn" onclick="toggleDarkMode()"><i class="fa fa-moon"></i> 深色模式</button>
+    <!-- 新增：高级特效开关 -->
+    <button class="control-btn" id="toggleEffectsBtn"><i class="fa fa-magic"></i> 切换高级特效</button>
+    <!-- 新增：粒子密度控制 -->
+    <div class="color-picker-wrap">
+      <label><i class="fa fa-snowflake-o"></i> 粒子密度：</label>
+      <input type="range" id="particleDensity" min="1" max="100" value="50">
+    </div>
   </div>
 
   <!-- 回到顶部 -->
   <div class="back-to-top hidden"><i class="fa fa-arrow-up"></i></div>
 
   <!-- 首页 -->
-  <section id="home" class="home-section section-animate">
+  <section id="home" class="home-section section-animate particle-bg">
     <div class="home-container">
       <img src="1.jpg" alt="卡提希娅头像" class="carterthyia-avatar">
-      <h1 class="character-title typewriter">卡提希娅（芙露德莉丝）</h1>
+      <h1 class="character-title typewriter text-gradient-flow">卡提希娅（芙露德莉丝）</h1>
       <p class="character-desc">于光影中守护的温柔使者 · 双形态战斗达人</p>
       <div class="home-btns">
-        <a href="#gallery" class="btn">进入角色图库</a>
-        <a href="#demo" class="btn btn-secondary">查看实机演示</a>
+        <a href="#gallery" class="btn btn-3d">进入角色图库</a>
+        <a href="#demo" class="btn btn-secondary btn-3d">查看实机演示</a>
       </div>
     </div>
   </section>
@@ -63,7 +77,7 @@
   <!-- 角色设定 -->
   <section id="about" class="section-animate">
     <div class="section-header"><h2><i class="fa fa-user-circle"></i> 角色设定</h2><div class="section-divider"></div></div>
-    <div class="card-animate">
+    <div class="card-animate neon-border">
       <div class="about-info"><span class="info-label">姓名：</span><span>卡提希娅（Carterthyia）</span></div>
       <div class="about-info"><span class="info-label">特质：</span><span>穿梭于光影之间，拥有温柔的力量，兼具顽皮与沉稳</span></div>
       <div class="about-info"><span class="info-label">形态：</span><span>迅刀形态（小卡） / 巨剑形态（大卡·芙露德莉丝）</span></div>
@@ -75,16 +89,16 @@
   <!-- 故事背景 -->
   <section id="story" class="section-animate">
     <div class="section-header"><h2><i class="fa fa-book-open"></i> 角色故事背景</h2><div class="section-divider"></div></div>
-    <div class="card-animate">
-      <button id="storyToggle" class="btn" onclick="toggleStory()"><i class="fa fa-chevron-up"></i> 收起故事</button>
+    <div class="card-animate neon-border">
+      <button id="storyToggle" class="btn btn-3d" onclick="toggleStory()"><i class="fa fa-chevron-up"></i> 收起故事</button>
       <div id="storyContent" class="story-paragraph">
-        <p class="story-title">【出身与命运的转折】</p>
-        <p>卡提希娅原本是埃格拉小镇的普通少女，性格顽皮自由，热爱生活，喜欢喝酒与恶作剧，对小镇外的世界充满好奇。在一次小镇的岁主感恩礼祭典上，她意外扰乱了仪式流程，被隐海修会施以惩罚，却也正是这次“意外”，让她的命运与神明、鸣式紧密相连。</p>
-        <p class="story-title">【芙露德莉丝的名号】</p>
-        <p>在旅程中，她偶然与鸣式利维亚坦产生共鸣，获得了强大的力量，同时被赋予了“芙露德莉丝”的名号，被黎那汐塔的人们视为圣女和岁主共鸣者。</p>
-        <p class="story-title">【双形态的秘密】</p>
+        <p class="story-title text-gradient-flow">【出身与命运的转折】</p>
+        <p>卡提希娅原本是埃格拉小镇的普通少女，性格顽皮自由，热爱生活，喜欢喝酒与恶作剧，对小镇外的世界充满好奇。在一次小镇的岁主感恩礼祭典上，她意外扰乱了仪式流程，被隐海修会施以惩罚，却也正是这次"意外"，让她的命运与神明、鸣式紧密相连。</p>
+        <p class="story-title text-gradient-flow">【芙露德莉丝的名号】</p>
+        <p>在旅程中，她偶然与鸣式利维亚坦产生共鸣，获得了强大的力量，同时被赋予了"芙露德莉丝"的名号，被黎那汐塔的人们视为圣女和岁主共鸣者。</p>
+        <p class="story-title text-gradient-flow">【双形态的秘密】</p>
         <p>作为首位常态与觉醒双形态角色，卡提希娅可以自由切换迅刀与巨剑形态。迅刀形态（小卡）保留了她原本的顽皮与敏捷，作战风格灵动飘逸；巨剑形态（大卡·芙露德莉丝）则展现出沉稳与威严，力量大幅提升。</p>
-        <p class="story-title">【现况与未来】</p>
+        <p class="story-title text-gradient-flow">【现况与未来】</p>
         <p>如今的卡提希娅，早已不是那个小镇上的顽皮少女，她在一次次战斗与抉择中成长，逐渐明白自己的使命。她一边守护着身边的人，一边探寻着鸣式与神明的秘密，未来的旅程仍充满未知，但她始终带着那份温柔与勇气，砥砺前行。</p>
       </div>
     </div>
@@ -93,7 +107,7 @@
   <!-- 游戏攻略 -->
   <section id="guide" class="section-animate">
     <div class="section-header"><h2><i class="fa fa-gamepad"></i> 游戏攻略指南</h2><div class="section-divider"></div></div>
-    <div class="card-animate">
+    <div class="card-animate neon-border">
       <div class="guide-tabs">
         <button class="tab-btn active" data-tab="core" onclick="switchGuideTab('core')">核心玩法</button>
         <button class="tab-btn" data-tab="weapon" onclick="switchGuideTab('weapon')">武器选择</button>
@@ -101,28 +115,28 @@
         <button class="tab-btn" data-tab="artifact" onclick="switchGuideTab('artifact')">声骸搭配</button>
       </div>
       <div id="coreContent" class="guide-content">
-        <p class="story-title">一、定位与核心机制</p>
+        <p class="story-title text-gradient-flow">一、定位与核心机制</p>
         <p>卡提希娅定位为气动主C，在V3.0版本中，逆境深塔榜单排名T0，冥歌海墟榜单排名T1，是当前版本异常体系中风蚀效应的核心输出角色。</p>
-        <p class="story-title">二、输出循环技巧</p>
+        <p class="story-title text-gradient-flow">二、输出循环技巧</p>
         <p>1. 常规循环：普攻连段 → 气刃回旋（叠加风蚀） → 风轨突袭（位移+补层） → 普攻收尾；</p>
         <p>2. 爆发循环：开启大招 → 切换巨剑形态 → 风蚀叠加至满层 → 释放「苍穹崩裂」 → 收割残血目标；</p>
       </div>
       <div id="weaponContent" class="guide-content hidden">
-        <p class="story-title">一、首选武器（毕业专武）</p>
+        <p class="story-title text-gradient-flow">一、首选武器（毕业专武）</p>
         <p>不屈命定之冠：卡提希娅专属武器，无下位替代，刚需抽取。该武器大幅提升风蚀效应伤害，同时增加自身生命值。</p>
-        <p class="story-title">二、平民替代武器</p>
+        <p class="story-title text-gradient-flow">二、平民替代武器</p>
         <p>裁春、戍关迅刀·镇海、千古洑流等可作为过渡。</p>
       </div>
       <div id="teamContent" class="guide-content hidden">
-        <p class="story-title">一、最优配队</p>
+        <p class="story-title text-gradient-flow">一、最优配队</p>
         <p>卡提希娅 + 夏空 + 千咲：风蚀体系拉满，夏空负责挂风蚀，千咲负责治疗与续航。</p>
-        <p class="story-title">二、平民配队</p>
+        <p class="story-title text-gradient-flow">二、平民配队</p>
         <p>卡提希娅 + 气动主 + 散华 / 秧秧 + 白芷，低成本高效运转。</p>
       </div>
       <div id="artifactContent" class="guide-content hidden">
-        <p class="story-title">一、毕业套装</p>
+        <p class="story-title text-gradient-flow">一、毕业套装</p>
         <p>愿戴荣光之旅五件套：核心声骸套装，最优选择。</p>
-        <p class="story-title">二、过渡套装</p>
+        <p class="story-title text-gradient-flow">二、过渡套装</p>
         <p>风之低语四件套 + 生命增幅二件套，或异常猎手五件套。</p>
       </div>
     </div>
@@ -131,7 +145,7 @@
   <!-- 角色图库 -->
   <section id="gallery" class="section-animate">
     <div class="section-header"><h2><i class="fa fa-images"></i> 角色图库</h2><div class="section-divider"></div></div>
-    <div class="card-animate">
+    <div class="card-animate neon-border">
       <div class="gallery-tabs">
         <button class="gallery-tab active" data-type="all" onclick="filterGallery('all')">全部</button>
         <button class="gallery-tab" data-type="art" onclick="filterGallery('art')">立绘</button>
@@ -166,7 +180,7 @@
   <!-- 实机演示 -->
   <section id="demo" class="section-animate">
     <div class="section-header"><h2><i class="fa fa-film"></i> 实机演示视频</h2><div class="section-divider"></div></div>
-    <div class="card-animate">
+    <div class="card-animate neon-border">
       <div class="gallery-tabs">
         <button class="gallery-tab active" onclick="switchVideo('small')">小卡（迅刀形态）</button>
         <button class="gallery-tab" onclick="switchVideo('big')">大卡（芙露德莉丝·巨剑形态）</button>
@@ -190,7 +204,7 @@
     </div>
   </div>
 
-<!-- ================= 整合同一文件版脚本（含 config） ================= -->
+<!-- ================= 整合脚本 ================= -->
 <script>
 /* ------------ 站点配置 ------------ */
 const siteConfig = {
@@ -208,7 +222,15 @@ const siteConfig = {
     videoPoster2: "2.jpg"
   },
   galleryCount: 8,
-  galleryTypes: ["all", "art", "battle", "daily", "beauty"]
+  galleryTypes: ["all", "art", "battle", "daily", "beauty"],
+  // 新增：特效配置
+  effectsConfig: {
+    enableAdvancedEffects: true,
+    maxParticles: 150,
+    enableAudioVisualizer: true,
+    enableParallax: true,
+    performanceMode: false
+  }
 };
 window.siteConfig = siteConfig;
 
@@ -216,9 +238,16 @@ window.siteConfig = siteConfig;
 let currentTheme = window.siteConfig.defaultTheme;
 let isDarkMode = window.siteConfig.defaultMode === 'dark';
 let isStoryVisible = true;
+let enhancedEffectsEnabled = window.siteConfig.effectsConfig.enableAdvancedEffects;
+let enhancedEffectsManager = null;
 
 /* ------------ 初始化 ------------ */
 window.addEventListener('DOMContentLoaded', () => {
+  // 隐藏加载动画
+  setTimeout(() => {
+    document.querySelector('.page-loader')?.remove();
+  }, 500);
+  
   initAnimations();
   initNavbar();
   initBackToTop();
@@ -228,12 +257,24 @@ window.addEventListener('DOMContentLoaded', () => {
   initCustomColorPicker();
   initStarCanvas();
   initRipple();
+  
+  // 初始化高级特效
+  if (enhancedEffectsEnabled) {
+    setTimeout(() => {
+      initEnhancedEffects();
+    }, 1000);
+  }
+  
+  // 初始化特效控制按钮
+  initEffectsControls();
 });
 
 /* ------------ 主题 & 深色模式 ------------ */
 function initDefaultThemeAndMode() {
   const root = document.documentElement;
   const modeBtn = document.querySelector('.control-btn:nth-child(4) i');
+  
+  // 设置CSS变量
   if (!root.style.getPropertyValue('--primary-color-purple')) {
     root.style.setProperty('--primary-color-purple', '#8a5cf7');
     root.style.setProperty('--secondary-color-purple', '#a78bfa');
@@ -242,7 +283,14 @@ function initDefaultThemeAndMode() {
     root.style.setProperty('--secondary-color-blue', '#60a5fa');
     root.style.setProperty('--bg-color-blue', '#eff6ff');
   }
+  
+  // 添加RGB变量用于特效
+  if (!root.style.getPropertyValue('--primary-rgb')) {
+    root.style.setProperty('--primary-rgb', '138, 92, 247');
+  }
+  
   switchTheme(currentTheme);
+  
   if (isDarkMode) {
     document.body.classList.add('dark-mode');
     modeBtn?.classList.replace('fa-moon', 'fa-sun');
@@ -250,42 +298,65 @@ function initDefaultThemeAndMode() {
     document.body.classList.remove('dark-mode');
     modeBtn?.classList.replace('fa-sun', 'fa-moon');
   }
+  
   document.title = window.siteConfig?.siteName || "卡提希娅的星光小站";
 }
 
 function initCustomColorPicker() {
   const picker = document.getElementById('customColorPicker');
   if (!picker) return;
+  
   const root = document.documentElement;
   const currentPrimary = root.style.getPropertyValue('--primary-color').replace('var(', '').replace(')', '').split('-color-')[1]
     ? (currentTheme === 'purple' ? '#8a5cf7' : '#3b82f6')
     : root.style.getPropertyValue('--primary-color');
+  
   picker.value = currentPrimary;
 }
 
 function switchTheme(theme) {
   const root = document.documentElement;
   currentTheme = theme;
+  
   if (theme === 'purple') {
     root.style.setProperty('--primary-color', 'var(--primary-color-purple)');
     root.style.setProperty('--secondary-color', 'var(--secondary-color-purple)');
     root.style.setProperty('--bg-color', 'var(--bg-color-purple)');
+    root.style.setProperty('--primary-rgb', '138, 92, 247');
   } else if (theme === 'blue') {
     root.style.setProperty('--primary-color', 'var(--primary-color-blue)');
     root.style.setProperty('--secondary-color', 'var(--secondary-color-blue)');
     root.style.setProperty('--bg-color', 'var(--bg-color-blue)');
+    root.style.setProperty('--primary-rgb', '59, 130, 246');
   }
 }
 
 function applyCustomTheme() {
   const picker = document.getElementById('customColorPicker');
   if (!picker) return;
+  
   const customColor = picker.value;
   const root = document.documentElement;
   const lightColor = lightenColor(customColor, 20);
+  
+  // 解析RGB值
+  const rgb = hexToRgb(customColor);
+  if (rgb) {
+    root.style.setProperty('--primary-rgb', `${rgb.r}, ${rgb.g}, ${rgb.b}`);
+  }
+  
   root.style.setProperty('--primary-color', customColor);
   root.style.setProperty('--secondary-color', lightColor);
   currentTheme = 'custom';
+}
+
+function hexToRgb(hex) {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : null;
 }
 
 function lightenColor(color, percent) {
@@ -323,7 +394,9 @@ function initNavbar() {
   const navbar = document.querySelector('.navbar');
   const navToggle = document.querySelector('.nav-toggle');
   const navMenu = document.querySelector('.nav-menu');
+  
   window.addEventListener('scroll', () => window.scrollY > 50 ? navbar.classList.add('scrolled') : navbar.classList.remove('scrolled'));
+  
   navToggle?.addEventListener('click', () => {
     navMenu?.classList.toggle('active');
     const icon = navToggle.querySelector('i');
@@ -345,6 +418,7 @@ function initGalleryFilter() {
       document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
       this.classList.add('active');
       const type = this.dataset.type;
+      
       document.querySelectorAll('.gallery-img').forEach(img => {
         if (type === 'all' || img.dataset.type === type) {
           img.style.display = 'block';
@@ -357,13 +431,19 @@ function initGalleryFilter() {
     });
   });
 }
+
 function filterGallery(type) {
   document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
   document.querySelector(`.gallery-tab[data-type="${type}"]`)?.classList.add('active');
+  
   document.querySelectorAll('.gallery-img').forEach(img => {
     if (type === 'all' || img.dataset.type === type) {
-      img.style.display = 'block'; setTimeout(() => img.style.opacity = '1', 100);
-    } else { img.style.opacity = '0'; setTimeout(() => img.style.display = 'none', 300); }
+      img.style.display = 'block';
+      setTimeout(() => img.style.opacity = '1', 100);
+    } else {
+      img.style.opacity = '0';
+      setTimeout(() => img.style.display = 'none', 300);
+    }
   });
 }
 
@@ -374,6 +454,7 @@ function initGuideTab() {
   document.querySelector('.tab-btn[data-tab="core"]')?.classList.add('active');
   document.getElementById('coreContent')?.classList.remove('hidden');
 }
+
 function switchGuideTab(tab) {
   document.querySelectorAll('.guide-content').forEach(c => c.classList.add('hidden'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -386,6 +467,7 @@ function toggleStory() {
   const content = document.getElementById('storyContent');
   const toggle = document.getElementById('storyToggle');
   isStoryVisible = !isStoryVisible;
+  
   if (isStoryVisible) {
     content.style.display = 'block';
     toggle.innerHTML = '<i class="fa fa-chevron-up"></i> 收起故事';
@@ -403,6 +485,7 @@ function previewImage(src) {
   modal.classList.remove('modal-hidden');
   document.body.style.overflow = 'hidden';
 }
+
 function closeImagePreview() {
   const modal = document.getElementById('imagePreviewModal');
   modal.classList.add('modal-hidden');
@@ -413,6 +496,7 @@ function closeImagePreview() {
 function playVideo(playerId, coverElement) {
   const videoElement = document.getElementById(playerId);
   if (!videoElement || !coverElement) return;
+  
   const playPromise = videoElement.play();
   if (playPromise) {
     playPromise.then(() => coverElement.style.display = 'none')
@@ -420,15 +504,20 @@ function playVideo(playerId, coverElement) {
         coverElement.style.display = 'none';
         alert('视频自动播放被浏览器限制，请手动点击视频控件播放');
       });
-  } else coverElement.style.display = 'none';
+  } else {
+    coverElement.style.display = 'none';
+  }
+  
   videoElement.addEventListener('ended', () => {
     videoElement.currentTime = 0;
     coverElement.style.display = 'flex';
   });
 }
+
 function switchVideo(type) {
   document.querySelectorAll('.gallery-tab[data-type]').forEach(tab => tab.classList.remove('active'));
   document.querySelector(`.gallery-tab[data-type="${type}"]`)?.classList.add('active');
+  
   if (type === 'small') {
     document.getElementById('smallVideo').classList.remove('hidden');
     document.getElementById('bigVideo').classList.add('hidden');
@@ -440,20 +529,25 @@ function switchVideo(type) {
 
 /* ------------ 星空粒子 ------------ */
 let starCanvas, starCtx, particles = [], mx = 0, my = 0;
+
 function initStarCanvas() {
   starCanvas = document.createElement('canvas');
   starCanvas.id = 'starCanvas';
   document.body.appendChild(starCanvas);
   starCtx = starCanvas.getContext('2d');
+  
   resizeStar();
   window.addEventListener('resize', resizeStar);
   window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  
   animateStars();
 }
+
 function resizeStar() {
   starCanvas.width = window.innerWidth;
   starCanvas.height = window.innerHeight;
 }
+
 class Particle {
   constructor() {
     this.x = Math.random() * starCanvas.width;
@@ -462,16 +556,20 @@ class Particle {
     this.vx = (Math.random() - 0.5) * 0.6;
     this.r = Math.random() * 1.5 + 0.5;
   }
+  
   update() {
     this.y += this.vy;
     this.x += this.vx;
     const dx = this.x - mx, dy = this.y - my, d = Math.hypot(dx, dy);
+    
     if (d < 120) {
       this.x += dx / d * 1.2;
       this.y += dy / d * 1.2;
     }
+    
     if (this.y < -20) this.y = starCanvas.height + 20;
   }
+  
   draw() {
     starCtx.beginPath();
     const g = starCtx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r);
@@ -482,14 +580,20 @@ class Particle {
     starCtx.fill();
   }
 }
+
 function animateStars() {
   starCtx.clearRect(0, 0, starCanvas.width, starCanvas.height);
-  if (particles.length < (window.innerWidth < 768 ? 60 : 120)) particles.push(new Particle());
+  
+  if (particles.length < (window.innerWidth < 768 ? 60 : 120)) {
+    particles.push(new Particle());
+  }
+  
   particles = particles.filter(p => {
     p.update();
     p.draw();
     return p.y > -30;
   });
+  
   requestAnimationFrame(animateStars);
 }
 
@@ -498,20 +602,422 @@ function initRipple() {
   document.body.addEventListener('click', function (e) {
     const card = e.target.closest('.card-animate,.video-container,.gallery-img,.btn');
     if (!card) return;
+    
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
+    
     const ripple = document.createElement('span');
     ripple.className = 'ripple';
     ripple.style.width = ripple.style.height = '20px';
     ripple.style.left = x - 10 + 'px';
     ripple.style.top = y - 10 + 'px';
+    
     card.style.position = 'relative';
     card.style.overflow = 'hidden';
     card.appendChild(ripple);
+    
     setTimeout(() => ripple.remove(), 600);
   });
 }
+
+/* ------------ 高级特效系统 ------------ */
+function initEnhancedEffects() {
+  if (window.enhancedEffectsManager) return;
+  
+  // 简化版高级特效（避免代码太长）
+  window.enhancedEffectsManager = {
+    effects: [],
+    enabled: true,
+    
+    init() {
+      // 1. 3D视差效果
+      this.initParallax3D();
+      
+      // 2. 粒子系统
+      this.initParticleSystem();
+      
+      // 3. 文字流光
+      this.initTextFlow();
+      
+      // 4. 鼠标轨迹
+      this.initMouseTrail();
+      
+      // 5. 动态背景
+      this.initDynamicBackground();
+      
+      // 6. 灯光效果
+      this.initLightingEffects();
+      
+      console.log('高级特效系统已加载');
+    },
+    
+    initParallax3D() {
+      const cards = document.querySelectorAll('.card-animate, .video-container, .gallery-img');
+      
+      document.addEventListener('mousemove', (e) => {
+        const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+        const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+        
+        cards.forEach(card => {
+          if (this.isElementInViewport(card)) {
+            card.style.transform = `perspective(1000px) rotateY(${xAxis}deg) rotateX(${yAxis}deg) scale(1.02)`;
+          }
+        });
+      });
+      
+      document.addEventListener('mouseleave', () => {
+        cards.forEach(card => {
+          card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)';
+        });
+      });
+    },
+    
+    initParticleSystem() {
+      const canvas = document.createElement('canvas');
+      canvas.id = 'quantumCanvas';
+      canvas.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+      `;
+      document.body.appendChild(canvas);
+      
+      const ctx = canvas.getContext('2d');
+      const particles = [];
+      const mouse = { x: 0, y: 0, radius: 100 };
+      
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      
+      resize();
+      window.addEventListener('resize', resize);
+      
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = e.x;
+        mouse.y = e.y;
+      });
+      
+      // 创建粒子
+      for (let i = 0; i < 80; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 1.5 + 0.5,
+          speedX: Math.random() * 0.3 - 0.15,
+          speedY: Math.random() * 0.3 - 0.15,
+          color: `hsla(${Math.random() * 60 + 270}, 100%, 65%, ${Math.random() * 0.2 + 0.05})`
+        });
+      }
+      
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        particles.forEach((p, i) => {
+          // 鼠标斥力
+          const dx = mouse.x - p.x;
+          const dy = mouse.y - p.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < mouse.radius) {
+            const force = (mouse.radius - distance) / mouse.radius;
+            p.x -= dx * force * 0.05;
+            p.y -= dy * force * 0.05;
+          }
+          
+          p.x += p.speedX;
+          p.y += p.speedY;
+          
+          // 边界检测
+          if (p.x <= 0 || p.x >= canvas.width) p.speedX = -p.speedX;
+          if (p.y <= 0 || p.y >= canvas.height) p.speedY = -p.speedY;
+          
+          // 绘制粒子
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.fill();
+          
+          // 绘制连线
+          for (let j = i + 1; j < particles.length; j++) {
+            const p2 = particles[j];
+            const dx = p.x - p2.x;
+            const dy = p.y - p2.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < 80) {
+              ctx.beginPath();
+              ctx.strokeStyle = `hsla(${Math.random() * 60 + 270}, 100%, 65%, ${0.08 * (1 - distance/80)})`;
+              ctx.lineWidth = 0.3;
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.stroke();
+            }
+          }
+        });
+        
+        requestAnimationFrame(animate);
+      }
+      
+      animate();
+      this.effects.push({ type: 'particles', canvas: canvas });
+    },
+    
+    initTextFlow() {
+      const titles = document.querySelectorAll('.character-title, .section-header h2, .story-title');
+      
+      titles.forEach(title => {
+        title.classList.add('text-gradient-flow');
+        
+        // 添加悬停效果
+        title.addEventListener('mouseenter', () => {
+          title.style.animationDuration = '1s';
+        });
+        
+        title.addEventListener('mouseleave', () => {
+          title.style.animationDuration = '3s';
+        });
+      });
+    },
+    
+    initMouseTrail() {
+      const trail = [];
+      const maxTrail = 15;
+      
+      document.addEventListener('mousemove', (e) => {
+        const trailEl = document.createElement('div');
+        trailEl.className = 'mouse-trail';
+        trailEl.style.cssText = `
+          position: fixed;
+          width: 6px;
+          height: 6px;
+          background: var(--primary-color);
+          border-radius: 50%;
+          pointer-events: none;
+          z-index: 9999;
+          left: ${e.clientX - 3}px;
+          top: ${e.clientY - 3}px;
+          opacity: 0.7;
+          transform: scale(1);
+          transition: all 0.3s ease-out;
+        `;
+        
+        document.body.appendChild(trailEl);
+        trail.push(trailEl);
+        
+        // 清理旧轨迹
+        if (trail.length > maxTrail) {
+          const old = trail.shift();
+          if (old && old.parentNode) {
+            old.parentNode.removeChild(old);
+          }
+        }
+        
+        // 动画效果
+        setTimeout(() => {
+          trailEl.style.opacity = '0';
+          trailEl.style.transform = 'scale(0)';
+        }, 50);
+        
+        setTimeout(() => {
+          if (trailEl.parentNode) {
+            trailEl.parentNode.removeChild(trailEl);
+          }
+        }, 300);
+      });
+    },
+    
+    initDynamicBackground() {
+      const bg = document.createElement('div');
+      bg.id = 'dynamic-bg';
+      bg.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+        background: linear-gradient(45deg, 
+          rgba(var(--primary-rgb), 0.05) 0%,
+          rgba(255, 107, 203, 0.05) 25%,
+          rgba(110, 198, 255, 0.05) 50%,
+          rgba(156, 126, 230, 0.05) 75%,
+          rgba(var(--primary-rgb), 0.05) 100%
+        );
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+      `;
+      
+      document.body.appendChild(bg);
+      
+      // 添加浮动形状
+      for (let i = 0; i < 10; i++) {
+        const shape = document.createElement('div');
+        const size = Math.random() * 60 + 20;
+        
+        shape.style.cssText = `
+          position: fixed;
+          width: ${size}px;
+          height: ${size}px;
+          background: rgba(var(--primary-rgb), 0.05);
+          border-radius: 50%;
+          opacity: 0.1;
+          left: ${Math.random() * 100}vw;
+          top: ${Math.random() * 100}vh;
+          animation: floatShape ${Math.random() * 20 + 20}s linear infinite;
+          animation-delay: ${Math.random() * 5}s;
+          z-index: -1;
+        `;
+        
+        bg.appendChild(shape);
+      }
+    },
+    
+    initLightingEffects() {
+      // 聚光灯
+      const spotlight = document.createElement('div');
+      spotlight.id = 'dynamic-spotlight';
+      spotlight.style.cssText = `
+        position: fixed;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0.05) 30%,
+          transparent 70%
+        );
+        pointer-events: none;
+        z-index: 3;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      `;
+      document.body.appendChild(spotlight);
+      
+      document.addEventListener('mousemove', (e) => {
+        spotlight.style.left = `${e.clientX - 100}px`;
+        spotlight.style.top = `${e.clientY - 100}px`;
+        spotlight.style.opacity = '0.8';
+      });
+      
+      document.addEventListener('mouseleave', () => {
+        spotlight.style.opacity = '0';
+      });
+    },
+    
+    isElementInViewport(el) {
+      const rect = el.getBoundingClientRect();
+      return (
+        rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.bottom >= 0 &&
+        rect.left <= (window.innerWidth || document.documentElement.clientWidth) &&
+        rect.right >= 0
+      );
+    },
+    
+    toggleAllEffects() {
+      this.enabled = !this.enabled;
+      
+      const effects = [
+        '#quantumCanvas',
+        '#dynamic-bg',
+        '#dynamic-spotlight',
+        '.mouse-trail'
+      ];
+      
+      effects.forEach(selector => {
+        const el = document.querySelector(selector);
+        if (el) {
+          el.style.display = this.enabled ? 'block' : 'none';
+        }
+      });
+      
+      // 更新按钮文本
+      const btn = document.getElementById('toggleEffectsBtn');
+      if (btn) {
+        const icon = btn.querySelector('i');
+        if (this.enabled) {
+          icon.className = 'fa fa-magic';
+          btn.innerHTML = '<i class="fa fa-magic"></i> 关闭高级特效';
+        } else {
+          icon.className = 'fa fa-ban';
+          btn.innerHTML = '<i class="fa fa-ban"></i> 开启高级特效';
+        }
+      }
+      
+      return this.enabled;
+    },
+    
+    setParticleDensity(density) {
+      const canvas = document.getElementById('quantumCanvas');
+      if (canvas) {
+        canvas.style.opacity = density / 100;
+      }
+    }
+  };
+  
+  window.enhancedEffectsManager.init();
+  enhancedEffectsManager = window.enhancedEffectsManager;
+}
+
+/* ------------ 特效控制 ------------ */
+function initEffectsControls() {
+  const toggleBtn = document.getElementById('toggleEffectsBtn');
+  const densitySlider = document.getElementById('particleDensity');
+  
+  if (toggleBtn) {
+    toggleBtn.onclick = () => {
+      enhancedEffectsEnabled = !enhancedEffectsEnabled;
+      
+      if (enhancedEffectsEnabled && !enhancedEffectsManager) {
+        initEnhancedEffects();
+      } else if (enhancedEffectsManager) {
+        enhancedEffectsManager.toggleAllEffects();
+      }
+    };
+  }
+  
+  if (densitySlider) {
+    densitySlider.addEventListener('input', (e) => {
+      if (enhancedEffectsManager) {
+        enhancedEffectsManager.setParticleDensity(e.target.value);
+      }
+    });
+  }
+}
+
+/* ------------ 页面加载完成后初始化特效 ------------ */
+window.addEventListener('load', () => {
+  // 添加CSS动画
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    @keyframes floatShape {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+    
+    @keyframes trailFade {
+      to {
+        opacity: 0;
+        transform: scale(0);
+      }
+    }
+  `;
+  document.head.appendChild(style);
+});
 </script>
 </body>
 </html>
