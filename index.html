@@ -15,12 +15,12 @@
   
   <!-- ================= 完整整合的CSS ================= -->
   <style>
-/* 全局样式重置 + 强制文字颜色（解决浅色模式不可见） */
+/* 全局样式重置样式以及 强制文字颜色（方便解决浅色模式不可见） */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "微软雅黑", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-family: "楷体", "PingFang SC", "Microsoft YaHei", sans-serif;
     scroll-behavior: smooth;
     color: #333333 !important; /* 强制浅色模式文字颜色，最高优先级 */
 }
@@ -1567,7 +1567,7 @@ window.addEventListener('load', () => {
 });
 
 function optimizePerformance() {
-  // 减少动画对性能的影响
+  // 减少过渡动画对浏览器性能的影响
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   
   if (prefersReducedMotion.matches) {
